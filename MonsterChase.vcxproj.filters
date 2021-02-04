@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Console">
       <UniqueIdentifier>{6011e31a-c4e3-40da-a5de-e1a2a265847a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{759a9ad0-854b-462e-8188-07fb93083b43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -38,6 +41,9 @@
     </ClCompile>
     <ClCompile Include="Console\ConsolePrint.Win32.cpp">
       <Filter>Source Files\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\EngineUtils.cpp">
+      <Filter>Source Files\Engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +64,9 @@
     </ClInclude>
     <ClInclude Include="Containers\List-inl.h">
       <Filter>Source Files\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\EngineUtils.h">
+      <Filter>Source Files\Engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

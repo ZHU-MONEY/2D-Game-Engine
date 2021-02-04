@@ -105,8 +105,9 @@
       <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d3d11.lib;GLib\GLib_$(PlatformTarget)-$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -139,15 +140,17 @@
       <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d3d11.lib;GLib\GLib_$(PlatformTarget)-$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor\Actor.cpp" />
     <ClCompile Include="Console\ConsolePrint.Win32.cpp" />
+    <ClCompile Include="Engine\EngineUtils.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math\Vector2.cpp" />
   </ItemGroup>
@@ -156,6 +159,7 @@
     <ClInclude Include="Console\ConsolePrint.h" />
     <ClInclude Include="Containers\List-inl.h" />
     <ClInclude Include="Containers\List.h" />
+    <ClInclude Include="Engine\EngineUtils.h" />
     <ClInclude Include="Math\Vector2-inl.h" />
     <ClInclude Include="Math\Vector2.h" />
   </ItemGroup>
