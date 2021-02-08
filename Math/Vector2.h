@@ -50,7 +50,7 @@ public:
 	static const Vector2 Zero;
 
 private:
-	int	m_x, m_y;
+	int	x_, y_;
 
 } ;
 

@@ -6,22 +6,22 @@ namespace Math
 {
 	
 inline Vector2::Vector2(int i_x, int i_y) :
-	m_x(i_x),
-	m_y(i_y)
+	x_(i_x),
+	y_(i_y)
 {
 }
 
 inline Vector2::Vector2(const Vector2 & i_other) :
-	m_x(i_other.m_x),
-	m_y(i_other.m_y)
+	x_(i_other.x_),
+	y_(i_other.y_)
 {
 }
 
 // operators
 inline Vector2 & Vector2::operator=(const Vector2 & i_other)
 {
-	m_x = i_other.m_x;
-	m_y = i_other.m_y;
+	x_ = i_other.x_;
+	y_ = i_other.y_;
 
 	return *this;
 }
@@ -29,96 +29,96 @@ inline Vector2 & Vector2::operator=(const Vector2 & i_other)
 // accessors
 inline int Vector2::x(void) const
 {
-	return m_x;
+	return x_;
 }
 
 inline int Vector2::y(void) const
 {
-	return m_y;
+	return y_;
 }
 
 inline void Vector2::x(int i_x)
 {
-	m_x = i_x;
+	x_ = i_x;
 }
 
 inline void Vector2::y(int i_y)
 {
-	m_y = i_y;
+	y_ = i_y;
 }
 
 inline Vector2 & Vector2::operator+=(const Vector2 & i_other)
 {
-	m_x += i_other.m_x;
-	m_y += i_other.m_y;
+	x_ += i_other.x_;
+	y_ += i_other.y_;
 
 	return *this;
 }
 
 inline Vector2 & Vector2::operator-=(const Vector2 & i_other)
 {
-	m_x -= i_other.m_x;
-	m_y -= i_other.m_y;
+	x_ -= i_other.x_;
+	y_ -= i_other.y_;
 
 	return *this;
 }
 
 inline Vector2 & Vector2::operator*=(const Vector2 & i_other)
 {
-	m_x *= i_other.m_x;
-	m_y *= i_other.m_y;
+	x_ *= i_other.x_;
+	y_ *= i_other.y_;
 
 	return *this;
 }
 
 inline Vector2 & Vector2::operator*=(int i_other)
 {
-	m_x *= i_other;
-	m_y *= i_other;
+	x_ *= i_other;
+	y_ *= i_other;
 
 	return *this;
 }
 
 inline Vector2 & Vector2::operator*=(float i_other)
 {
-	m_x *= int(i_other * m_x);
-	m_y *= int(i_other * m_y);
+	x_ *= int(i_other * x_);
+	y_ *= int(i_other * y_);
 
 	return *this;
 }
 
 inline Vector2 & Vector2::operator/=(const Vector2 & i_other)
 {
-	m_x /= i_other.m_x;
-	m_y /= i_other.m_y;
+	x_ /= i_other.x_;
+	y_ /= i_other.y_;
 
 	return *this;
 }
 
 inline Vector2 & Vector2::operator/=(int i_other)
 {
-	m_x /= i_other;
-	m_y /= i_other;
+	x_ /= i_other;
+	y_ /= i_other;
 
 	return *this;
 }
 
 inline Vector2 & Vector2::operator/=(float i_other)
 {
-	m_x = int( (float) m_x / i_other);
-	m_y = int( (float) m_y / i_other);
+	x_ = int( (float) x_ / i_other);
+	y_ = int( (float) y_ / i_other);
 
 	return *this;
 }
 
 inline Vector2 Vector2::operator-(void)
 {
-	return Vector2(-m_x, -m_y);
+	return Vector2(-x_, -y_);
 }
 
 inline int Vector2::LengthSq() const
 {
-	return (m_x * m_x) + (m_y * m_y);
+	return (x_ * x_) + (y_ * y_);
 }
 
 inline float Vector2::Length() const

@@ -6,22 +6,22 @@
 class Actor
 {
 public:
-	Actor(const char * i_pName, const Engine::Math::Vector2 & i_InitialPosition);
+	Actor(const char * name, const Engine::Math::Vector2 & initialPosition);
 
 	~Actor();
 
-	Actor(const Actor & i_Other);
-	Actor & operator=(const Actor & i_Other);
+	Actor(const Actor & other);
+	Actor & operator=(const Actor & other);
 
-	const char * Name() const { return pName; }
-	void Move(const Engine::Math::Vector2 & i_Movement);
+	const char * Name() const { return name_; }
+	void Move(const Engine::Math::Vector2 & movement);
 	void Output() const;
-	void SetSprite(GLib::Sprite* s);
-	GLib::Sprite* GetSprite();
+	void SetSprite(GLib::Sprite* sprite);
+	const GLib::Sprite* GetSprite();
 
 private:
-	char *							pName;
-	Engine::Math::Vector2			Position;
-	GLib::Sprite*					pSprite;
+	char *							name_;
+	Engine::Math::Vector2			position_;
+	GLib::Sprite*					sprite_;
 };
 

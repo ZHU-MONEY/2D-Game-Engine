@@ -351,10 +351,11 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 		// IMPORTANT (if we want keypress info from GLib): Set a callback for notification of key presses
 		GLib::SetKeyStateChangeCallback(TestKeyCallback);
 
-		Actor Player("asdasd", Engine::Math::Vector2(0, 0));
+		Actor player = Actor("zhu", Engine::Math::Vector2(0, 0));
+		//Actor *p2 = new Actor("asdad", Engine::Math::Vector2(0, 0));
 
 		GLib::Sprite* pGoodGuy = CreateSprite("data\\GoodGuy.dds");
-		Player.SetSprite(pGoodGuy);
+		player.SetSprite(pGoodGuy);
 
 		// Create a couple of sprites using our own helper routine CreateSprite
 		//GLib::Sprite* pGoodGuy = CreateSprite("data\\GoodGuy.dds");
@@ -374,7 +375,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 				// Tell GLib that we want to render some sprites
 				GLib::Sprites::BeginRendering();
 
-				if (Player.GetSprite())
+				if (player.GetSprite())
 				{
 					static float			moveDist = .01f;
 					static float			moveDir = moveDist;
@@ -389,7 +390,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 					Offset.x += moveDir;
 
 					// Tell GLib to render this sprite at our calculated location
-					GLib::Render(*(Player.GetSprite()), Offset, 0.0f, 0.0f);
+					GLib::Render(*(player.GetSprite()), Offset, 0.0f, 0.0f);
 				}
 				//if (pBadGuy)
 				//{
@@ -416,18 +417,19 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 			}
 		} while (bQuit == false);
 
-		if (Player.GetSprite())
+		if (player.GetSprite())
 			GLib::Release(pGoodGuy);
 		//if (pBadGuy)
 		//	GLib::Release(pBadGuy);
 
 		// IMPORTANT:  Tell GLib to shutdown, releasing resources.
 		GLib::Shutdown();
+
 	}
 
-#if defined _DEBUG
+//#if defined _DEBUG
 	_CrtDumpMemoryLeaks();
-#endif // _DEBUG
+//#endif // _DEBUG
 
 }
 
