@@ -8,17 +8,19 @@
 #include "Console/ConsolePrint.h"
 
 
-Actor::Actor(const char * name, const Engine::Math::Vector2 & i_InitialPosition) :
+
+Actor::Actor(const char* name, const Engine::Math::Vector2& i_InitialPosition) :
 	name_(_strdup(name ? name : "Unnamed")),
 	position_(i_InitialPosition)
 
 {
 #ifdef _DEBUG_ACTOR_CONSTRUCTORS
-	DEBUG_PRINT("Creating actor named %s using standard constructor.", pName ? pName : "Unnamed" );
+	DEBUG_PRINT("Creating actor named %s using standard constructor.", pName ? pName : "Unnamed");
 #endif // _DEBUG_ACTOR_CONSTRUCTORS
 }
 
-Actor::Actor(const Actor & other) :
+
+Actor::Actor(const Actor& other) :
 	name_(other.name_ ? _strdup(other.name_) : nullptr),
 	position_(other.position_)
 {
@@ -31,9 +33,11 @@ Actor::~Actor()
 {
 	if (name_)
 		free(name_);
+	if(sprite_)
+		GLib::Release(sprite_);
 }
 
-Actor & Actor::operator=(const Actor & other)
+Actor& Actor::operator=(const Actor& other)
 {
 #ifdef _DEBUG_ACTOR_CONSTRUCTORS
 	DEBUG_PRINT("Reassigning actor named %s to %s using assignment operator.", pName ? pName : "Unnamed", i_Other.pName ? i_Other.pName : "Unnamed");
@@ -41,14 +45,14 @@ Actor & Actor::operator=(const Actor & other)
 
 	if (name_)
 		free(name_);
-	
+
 	name_ = other.name_ ? _strdup(other.name_) : nullptr;
 	position_ = other.position_;
 
 	return *this;
 }
 
-void Actor::Move(const Engine::Math::Vector2 & movement)
+void Actor::Move(const Engine::Math::Vector2& movement)
 {
 	position_ += movement;
 }

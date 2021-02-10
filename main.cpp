@@ -17,6 +17,8 @@
 #include "Console/ConsolePrint.h"
 #include "Glib/GLib.h"
 #include "Engine\EngineUtils.h"
+#include "Game/MonsterChaseGame.h"
+using namespace Engine::Math;
 
 // create a random number in a range
 // not a very robust solution tends to bias toward the low end
@@ -36,9 +38,9 @@ T RandInRange(T i_Min, T i_Max)
 }
 
 // create 2D with it's x and y values in a given range
-Engine::Math::Vector2 RandomVector2(int i_Min, int i_Max)
+Vector2 RandomVector2(int i_Min, int i_Max)
 {
-	return Engine::Math::Vector2(RandInRange(i_Min, i_Max), RandInRange(i_Min, i_Max));
+	return Vector2(RandInRange(i_Min, i_Max), RandInRange(i_Min, i_Max));
 }
 
 char GetUserInput()
@@ -264,86 +266,87 @@ void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)
 #endif // __DEBUG
 }
 
-void* LoadFile(const char* i_pFilename, size_t& o_sizeFile)
-{
-	assert(i_pFilename != NULL);
-
-	FILE* pFile = NULL;
-
-	errno_t fopenError = fopen_s(&pFile, i_pFilename, "rb");
-	if (fopenError != 0)
-		return NULL;
-
-	assert(pFile != NULL);
-
-	int FileIOError = fseek(pFile, 0, SEEK_END);
-	assert(FileIOError == 0);
-
-	long FileSize = ftell(pFile);
-	assert(FileSize >= 0);
-
-	FileIOError = fseek(pFile, 0, SEEK_SET);
-	assert(FileIOError == 0);
-
-	uint8_t* pBuffer = new uint8_t[FileSize];
-	assert(pBuffer);
-
-	size_t FileRead = fread(pBuffer, 1, FileSize, pFile);
-	assert(FileRead == FileSize);
-
-	fclose(pFile);
-
-	o_sizeFile = FileSize;
-
-	return pBuffer;
-}
-
-GLib::Sprite* CreateSprite(const char* i_pFilename)
-{
-	assert(i_pFilename);
-
-	size_t sizeTextureFile = 0;
-
-	// Load the source file (texture data)
-	void* pTextureFile = LoadFile(i_pFilename, sizeTextureFile);
-
-	// Ask GLib to create a texture out of the data (assuming it was loaded successfully)
-	GLib::Texture* pTexture = pTextureFile ? GLib::CreateTexture(pTextureFile, sizeTextureFile) : nullptr;
-
-	// exit if something didn't work
-	// probably need some debug logging in here!!!!
-	if (pTextureFile)
-		delete[] pTextureFile;
-
-	if (pTexture == nullptr)
-		return nullptr;
-
-	unsigned int width = 0;
-	unsigned int height = 0;
-	unsigned int depth = 0;
-
-	// Get the dimensions of the texture. We'll use this to determine how big it is on screen
-	bool result = GLib::GetDimensions(*pTexture, width, height, depth);
-	assert(result == true);
-	assert((width > 0) && (height > 0));
-
-	// Define the sprite edges
-	GLib::SpriteEdges	Edges = { -float(width / 2.0f), float(height), float(width / 2.0f), 0.0f };
-	GLib::SpriteUVs	UVs = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 0.0f, 1.0f }, { 1.0f, 1.0f } };
-	GLib::RGBA							Color = { 255, 255, 255, 255 };
-
-	// Create the sprite
-	GLib::Sprite* pSprite = GLib::CreateSprite(Edges, 0.1f, Color, UVs, pTexture);
-
-	// release our reference on the Texture
-	GLib::Release(pTexture);
-
-	return pSprite;
-}
+//void* LoadFile(const char* i_pFilename, size_t& o_sizeFile)
+//{
+//	assert(i_pFilename != NULL);
+//
+//	FILE* pFile = NULL;
+//
+//	errno_t fopenError = fopen_s(&pFile, i_pFilename, "rb");
+//	if (fopenError != 0)
+//		return NULL;
+//
+//	assert(pFile != NULL);
+//
+//	int FileIOError = fseek(pFile, 0, SEEK_END);
+//	assert(FileIOError == 0);
+//
+//	long FileSize = ftell(pFile);
+//	assert(FileSize >= 0);
+//
+//	FileIOError = fseek(pFile, 0, SEEK_SET);
+//	assert(FileIOError == 0);
+//
+//	uint8_t* pBuffer = new uint8_t[FileSize];
+//	assert(pBuffer);
+//
+//	size_t FileRead = fread(pBuffer, 1, FileSize, pFile);
+//	assert(FileRead == FileSize);
+//
+//	fclose(pFile);
+//
+//	o_sizeFile = FileSize;
+//
+//	return pBuffer;
+//}
+//
+//GLib::Sprite* CreateSprite(const char* i_pFilename)
+//{
+//	assert(i_pFilename);
+//
+//	size_t sizeTextureFile = 0;
+//
+//	// Load the source file (texture data)
+//	void* pTextureFile = LoadFile(i_pFilename, sizeTextureFile);
+//
+//	// Ask GLib to create a texture out of the data (assuming it was loaded successfully)
+//	GLib::Texture* pTexture = pTextureFile ? GLib::CreateTexture(pTextureFile, sizeTextureFile) : nullptr;
+//
+//	// exit if something didn't work
+//	// probably need some debug logging in here!!!!
+//	if (pTextureFile)
+//		delete[] pTextureFile;
+//
+//	if (pTexture == nullptr)
+//		return nullptr;
+//
+//	unsigned int width = 0;
+//	unsigned int height = 0;
+//	unsigned int depth = 0;
+//
+//	// Get the dimensions of the texture. We'll use this to determine how big it is on screen
+//	bool result = GLib::GetDimensions(*pTexture, width, height, depth);
+//	assert(result == true);
+//	assert((width > 0) && (height > 0));
+//
+//	// Define the sprite edges
+//	GLib::SpriteEdges	Edges = { -float(width / 2.0f), float(height), float(width / 2.0f), 0.0f };
+//	GLib::SpriteUVs	UVs = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 0.0f, 1.0f }, { 1.0f, 1.0f } };
+//	GLib::RGBA							Color = { 255, 255, 255, 255 };
+//
+//	// Create the sprite
+//	GLib::Sprite* pSprite = GLib::CreateSprite(Edges, 0.1f, Color, UVs, pTexture);
+//
+//	// release our reference on the Texture
+//	GLib::Release(pTexture);
+//
+//	return pSprite;
+//}
 
 
 int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow)
 {
+
 	// IMPORTANT: first we need to initialize GLib
 	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "GLibTest", -1, 800, 600, true);
 	if (bSuccess)
@@ -351,15 +354,9 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 		// IMPORTANT (if we want keypress info from GLib): Set a callback for notification of key presses
 		GLib::SetKeyStateChangeCallback(TestKeyCallback);
 
-		Actor player = Actor("zhu", Engine::Math::Vector2(0, 0));
-		//Actor *p2 = new Actor("asdad", Engine::Math::Vector2(0, 0));
+		MonsterChaseGame MC = MonsterChaseGame();
 
-		GLib::Sprite* pGoodGuy = CreateSprite("data\\GoodGuy.dds");
-		player.SetSprite(pGoodGuy);
-
-		// Create a couple of sprites using our own helper routine CreateSprite
-		//GLib::Sprite* pGoodGuy = CreateSprite("data\\GoodGuy.dds");
-		//GLib::Sprite* pBadGuy = CreateSprite("data\\BadGuy.dds");
+		//Actor player = Actor("zhu", Vector2(0, 0));
 
 		bool bQuit = false;
 
@@ -375,7 +372,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 				// Tell GLib that we want to render some sprites
 				GLib::Sprites::BeginRendering();
 
-				if (player.GetSprite())
+				if (MC.GetPlayer()->GetSprite())
 				{
 					static float			moveDist = .01f;
 					static float			moveDir = moveDist;
@@ -390,7 +387,8 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 					Offset.x += moveDir;
 
 					// Tell GLib to render this sprite at our calculated location
-					GLib::Render(*(player.GetSprite()), Offset, 0.0f, 0.0f);
+					//GLib::Render(*(player.GetSprite()), Offset, 0.0f, 0.0f);
+					GLib::Render(*MC.GetPlayer()->GetSprite(), Offset, 0.0f, 0.0f);
 				}
 				//if (pBadGuy)
 				//{
@@ -417,8 +415,8 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 			}
 		} while (bQuit == false);
 
-		if (player.GetSprite())
-			GLib::Release(pGoodGuy);
+		//if (player.GetSprite())
+		//	GLib::Release(pGoodGuy);
 		//if (pBadGuy)
 		//	GLib::Release(pBadGuy);
 

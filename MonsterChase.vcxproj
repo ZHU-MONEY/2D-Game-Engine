@@ -151,8 +151,9 @@
     <ClCompile Include="Actor\Actor.cpp" />
     <ClCompile Include="Console\ConsolePrint.Win32.cpp" />
     <ClCompile Include="Engine\EngineUtils.cpp" />
+    <ClCompile Include="Game\MonsterChaseGame.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Math\Vector2.cpp" />
+    <ClCompile Include="Engine\Math\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h" />
@@ -160,8 +161,10 @@
     <ClInclude Include="Containers\List-inl.h" />
     <ClInclude Include="Containers\List.h" />
     <ClInclude Include="Engine\EngineUtils.h" />
-    <ClInclude Include="Math\Vector2-inl.h" />
-    <ClInclude Include="Math\Vector2.h" />
+    <ClInclude Include="Engine\Math\Vector2-inl.h" />
+    <ClInclude Include="Engine\Math\Vector2.h" />
+    <ClInclude Include="Game\MonsterChaseGame.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

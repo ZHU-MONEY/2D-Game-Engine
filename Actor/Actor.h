@@ -1,6 +1,7 @@
 #pragma once
-
-#include "Math\Vector2.h"
+#ifndef ACTOR_
+#define ACTOR_
+#include "Engine/Math/Vector2.h"
 #include "Glib\GLib.h"
 
 class Actor
@@ -24,4 +25,5 @@ private:
 	Engine::Math::Vector2			position_;
 	GLib::Sprite*					sprite_;
 };
+#endif
 
