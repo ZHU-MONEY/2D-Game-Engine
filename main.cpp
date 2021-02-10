@@ -18,6 +18,7 @@
 #include "Glib/GLib.h"
 #include "Engine\EngineUtils.h"
 #include "Game/MonsterChaseGame.h"
+#include <iostream>
 using namespace Engine::Math;
 
 // create a random number in a range
@@ -45,7 +46,7 @@ Vector2 RandomVector2(int i_Min, int i_Max)
 
 char GetUserInput()
 {
-//#define FAKE_USER_INPUT
+	//#define FAKE_USER_INPUT
 #ifdef FAKE_USER_INPUT
 	return 'd';
 #else
@@ -149,7 +150,7 @@ void RunGame()
 
 		while (pMonster)
 		{
-			pMonster->Item.Output();
+			pMonster->Item.Print();
 
 			pMonster->Item.Move(RandomVector2(-2, 2));
 
@@ -159,7 +160,7 @@ void RunGame()
 
 		// show the player location.
 		printf("Player:\n");
-		Player.Output();
+		Player.Print();
 		printf("\n");
 
 		// 10% chance of a monster dying.
@@ -241,125 +242,30 @@ void RunGame()
 	printf("Thanks for playing.\n");
 }
 
-//console main
-
-//int main()
-//{
-//	RunGame();
-//
-//#ifdef _DEBUG	
-//	_CrtDumpMemoryLeaks();
-//#endif // _DEBUG	
-//
-//	return 0;
-//}
-
-
 void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)
 {
 #ifdef _DEBUG
 	const size_t	lenBuffer = 65;
 	char			Buffer[lenBuffer];
 
+	//sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
 	sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
 	OutputDebugStringA(Buffer);
+	//std::cout << "THE KEY YOU PRESSED IS-----" << i_VKeyID << std::endl;
+
 #endif // __DEBUG
 }
-
-//void* LoadFile(const char* i_pFilename, size_t& o_sizeFile)
-//{
-//	assert(i_pFilename != NULL);
-//
-//	FILE* pFile = NULL;
-//
-//	errno_t fopenError = fopen_s(&pFile, i_pFilename, "rb");
-//	if (fopenError != 0)
-//		return NULL;
-//
-//	assert(pFile != NULL);
-//
-//	int FileIOError = fseek(pFile, 0, SEEK_END);
-//	assert(FileIOError == 0);
-//
-//	long FileSize = ftell(pFile);
-//	assert(FileSize >= 0);
-//
-//	FileIOError = fseek(pFile, 0, SEEK_SET);
-//	assert(FileIOError == 0);
-//
-//	uint8_t* pBuffer = new uint8_t[FileSize];
-//	assert(pBuffer);
-//
-//	size_t FileRead = fread(pBuffer, 1, FileSize, pFile);
-//	assert(FileRead == FileSize);
-//
-//	fclose(pFile);
-//
-//	o_sizeFile = FileSize;
-//
-//	return pBuffer;
-//}
-//
-//GLib::Sprite* CreateSprite(const char* i_pFilename)
-//{
-//	assert(i_pFilename);
-//
-//	size_t sizeTextureFile = 0;
-//
-//	// Load the source file (texture data)
-//	void* pTextureFile = LoadFile(i_pFilename, sizeTextureFile);
-//
-//	// Ask GLib to create a texture out of the data (assuming it was loaded successfully)
-//	GLib::Texture* pTexture = pTextureFile ? GLib::CreateTexture(pTextureFile, sizeTextureFile) : nullptr;
-//
-//	// exit if something didn't work
-//	// probably need some debug logging in here!!!!
-//	if (pTextureFile)
-//		delete[] pTextureFile;
-//
-//	if (pTexture == nullptr)
-//		return nullptr;
-//
-//	unsigned int width = 0;
-//	unsigned int height = 0;
-//	unsigned int depth = 0;
-//
-//	// Get the dimensions of the texture. We'll use this to determine how big it is on screen
-//	bool result = GLib::GetDimensions(*pTexture, width, height, depth);
-//	assert(result == true);
-//	assert((width > 0) && (height > 0));
-//
-//	// Define the sprite edges
-//	GLib::SpriteEdges	Edges = { -float(width / 2.0f), float(height), float(width / 2.0f), 0.0f };
-//	GLib::SpriteUVs	UVs = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 0.0f, 1.0f }, { 1.0f, 1.0f } };
-//	GLib::RGBA							Color = { 255, 255, 255, 255 };
-//
-//	// Create the sprite
-//	GLib::Sprite* pSprite = GLib::CreateSprite(Edges, 0.1f, Color, UVs, pTexture);
-//
-//	// release our reference on the Texture
-//	GLib::Release(pTexture);
-//
-//	return pSprite;
-//}
-
 
 int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow)
 {
 
 	// IMPORTANT: first we need to initialize GLib
-	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "GLibTest", -1, 800, 600, true);
+	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "MonsterChaseGame", -1, 800, 600, true);
 	if (bSuccess)
 	{
-		// IMPORTANT (if we want keypress info from GLib): Set a callback for notification of key presses
-		GLib::SetKeyStateChangeCallback(TestKeyCallback);
-
-		MonsterChaseGame MC = MonsterChaseGame();
-
-		//Actor player = Actor("zhu", Vector2(0, 0));
-
+		Game::StartUp();
+		Game::MonsterChaseGame* MC = Game::MonsterChaseGame::GetInstance();
 		bool bQuit = false;
-
 		do
 		{
 			// IMPORTANT: We need to let GLib do it's thing. 
@@ -367,67 +273,19 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 
 			if (!bQuit)
 			{
-				// IMPORTANT: Tell GLib that we want to start rendering
-				GLib::BeginRendering(DirectX::Colors::Blue);
-				// Tell GLib that we want to render some sprites
-				GLib::Sprites::BeginRendering();
-
-				if (MC.GetPlayer()->GetSprite())
-				{
-					static float			moveDist = .01f;
-					static float			moveDir = moveDist;
-
-					static GLib::Point2D	Offset = { -180.0f, -100.0f };
-
-					if (Offset.x < -220.0f)
-						moveDir = moveDist;
-					else if (Offset.x > -140.0f)
-						moveDir = -moveDist;
-
-					Offset.x += moveDir;
-
-					// Tell GLib to render this sprite at our calculated location
-					//GLib::Render(*(player.GetSprite()), Offset, 0.0f, 0.0f);
-					GLib::Render(*MC.GetPlayer()->GetSprite(), Offset, 0.0f, 0.0f);
-				}
-				//if (pBadGuy)
-				//{
-				//	static float			moveDist = .02f;
-				//	static float			moveDir = -moveDist;
-
-				//	static GLib::Point2D	Offset = { 180.0f, -100.0f };
-
-				//	if (Offset.x > 200.0f)
-				//		moveDir = -moveDist;
-				//	else if (Offset.x < 160.0f)
-				//		moveDir = moveDist;
-
-				//	Offset.x += moveDir;
-
-				//	// Tell GLib to render this sprite at our calculated location
-				//	GLib::Render(*pBadGuy, Offset, 0.0f, 0.0f);
-				//}
-
-				// Tell GLib we're done rendering sprites
-				GLib::Sprites::EndRendering();
-				// IMPORTANT: Tell GLib we're done rendering
-				GLib::EndRendering();
+				MC->Render();
 			}
 		} while (bQuit == false);
 
-		//if (player.GetSprite())
-		//	GLib::Release(pGoodGuy);
-		//if (pBadGuy)
-		//	GLib::Release(pBadGuy);
-
+		MC->Destroy();
 		// IMPORTANT:  Tell GLib to shutdown, releasing resources.
 		GLib::Shutdown();
 
 	}
 
-//#if defined _DEBUG
+	//#if defined _DEBUG
 	_CrtDumpMemoryLeaks();
-//#endif // _DEBUG
+	//#endif // _DEBUG
 
 }
 

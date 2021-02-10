@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "Engine/EngineUtils.h"
 
 #include "Console/ConsolePrint.h"
 
@@ -11,7 +12,9 @@
 
 Actor::Actor(const char* name, const Engine::Math::Vector2& i_InitialPosition) :
 	name_(_strdup(name ? name : "Unnamed")),
-	position_(i_InitialPosition)
+	position_(i_InitialPosition),
+	sprite_(EngineUtils::CreateSprite("data\\GoodGuy.dds"))
+
 
 {
 #ifdef _DEBUG_ACTOR_CONSTRUCTORS
@@ -57,19 +60,28 @@ void Actor::Move(const Engine::Math::Vector2& movement)
 	position_ += movement;
 }
 
-void Actor::Output() const
+void Actor::Print() const
 {
 	assert(name_);
 	printf("%s is at [%4d,%4d]\n", name_, position_.x(), position_.y());
 }
 
-void Actor::SetSprite(GLib::Sprite* sprite)
+void Actor::Render()
 {
-	sprite_ = sprite;
+	if (sprite_)
+	{
+		static GLib::Point2D Offset = { -180.0f, -100.0f };
+		GLib::Render(*sprite_, Offset, 0.0f, 0.0f);
+	}
 }
 
-const GLib::Sprite* Actor::GetSprite()
-{
-	return sprite_;
-}
+//void Actor::SetSprite(GLib::Sprite* sprite)
+//{
+//	sprite_ = sprite;
+//}
+//
+//const GLib::Sprite* Actor::GetSprite()
+//{
+//	return sprite_;
+//}
 
