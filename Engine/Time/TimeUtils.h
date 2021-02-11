@@ -2,8 +2,9 @@
 #ifndef TIME_UTILS_
 #define TIME_UTILS_
 #include <Windows.h>
+#include <stdint.h>
 
-	//typedef uint64_t	tick_t;
+	typedef uint64_t	tick_t;
 	static float GetLastFrameTime_ms();
 	static float CalculateLastFrameTime_ms();
 
@@ -12,10 +13,10 @@
 	static const float MAX_FRAMETIME_MS = 2 * DESIRED_FRAMETIME_MS;
 	
 	static LARGE_INTEGER PerformanceFrequency;
-	static double lastFrameStartTick_;
+	static tick_t lastFrameStartTick_;
 	static float lastFrameTime_ms_;
 
-	static double GetCurrentTickCounter();
+	static tick_t GetCurrentTickCounter();
 	static void GetPerformanceFrequency();
 
 

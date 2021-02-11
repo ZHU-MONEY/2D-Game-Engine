@@ -18,11 +18,11 @@ float GetLastFrameTime_ms()
 float CalculateLastFrameTime_ms()
 {
 	// grab the CPU tick counter
-	double currentTick = GetCurrentTickCounter();
+	tick_t currentTick = GetCurrentTickCounter();
 
 	if (lastFrameStartTick_)
 	{
-		double elapsedTicks = currentTick - lastFrameStartTick_;
+		tick_t elapsedTicks = currentTick - lastFrameStartTick_;
 		lastFrameTime_ms_ = 1000.0f*float(elapsedTicks / (float)PerformanceFrequency.QuadPart);
 	}
 	else
@@ -35,7 +35,7 @@ float CalculateLastFrameTime_ms()
 	return lastFrameTime_ms_;
 }
 
-double GetCurrentTickCounter()
+tick_t GetCurrentTickCounter()
 {
 	LARGE_INTEGER CurrentFrameCounter;
 	QueryPerformanceCounter(&CurrentFrameCounter);
