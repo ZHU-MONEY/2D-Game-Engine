@@ -31,6 +31,9 @@
     <Filter Include="Source Files\Game">
       <UniqueIdentifier>{49b29e53-c046-422b-989a-718462193296}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Time">
+      <UniqueIdentifier>{c1259132-9bcc-4b6e-baeb-fe76fa8631e3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -50,6 +53,12 @@
     </ClCompile>
     <ClCompile Include="Game\MonsterChaseGame.cpp">
       <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Time\TimeUtils.cpp">
+      <Filter>Source Files\Engine\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Time\TimeUtils.Win.cpp">
+      <Filter>Source Files\Engine\Time</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="Game\MonsterChaseGame.h">
       <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Time\TimeUtils.h">
+      <Filter>Source Files\Engine\Time</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

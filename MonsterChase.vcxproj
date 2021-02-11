@@ -105,7 +105,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>d3d11.lib;GLib\GLib_$(PlatformTarget)-$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -151,6 +151,8 @@
     <ClCompile Include="Actor\Actor.cpp" />
     <ClCompile Include="Console\ConsolePrint.Win32.cpp" />
     <ClCompile Include="Engine\EngineUtils.cpp" />
+    <ClCompile Include="Engine\Time\TimeUtils.cpp" />
+    <ClCompile Include="Engine\Time\TimeUtils.Win.cpp" />
     <ClCompile Include="Game\MonsterChaseGame.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine\Math\Vector2.cpp" />
@@ -163,6 +165,7 @@
     <ClInclude Include="Engine\EngineUtils.h" />
     <ClInclude Include="Engine\Math\Vector2-inl.h" />
     <ClInclude Include="Engine\Math\Vector2.h" />
+    <ClInclude Include="Engine\Time\TimeUtils.h" />
     <ClInclude Include="Game\MonsterChaseGame.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
