@@ -1,35 +1,5 @@
 #include "MonsterChaseGame.h"
 
-//void AcceptKey(unsigned int i_VKeyID, bool bWentDown)
-//{
-//#ifdef _DEBUG
-//	const size_t	lenBuffer = 65;
-//	char			Buffer[lenBuffer];
-//
-//	sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
-//	OutputDebugStringA(Buffer);
-//#endif // __DEBUG
-//
-//	switch (i_VKeyID)
-//	{
-//		//W
-//	case 57:
-//		MonsterChaseGame::isKey_W_Down = bWentDown;
-//		break;
-//		//A
-//	case 41:
-//		MonsterChaseGame::isKey_A_Down = bWentDown;
-//		break;
-//		//S
-//	case 53:
-//		MonsterChaseGame::isKey_S_Down = bWentDown;
-//		break;
-//		//D
-//	case 44:
-//		MonsterChaseGame::isKey_D_Down = bWentDown;
-//		break;
-//	}
-//}
 namespace Game {
 
 	bool StartUp()
@@ -51,14 +21,54 @@ namespace Game {
 		MonsterChaseGame::Destroy();
 	}
 
+	void AcceptKey(unsigned int i_VKeyID, bool bWentDown)
+	{
+#ifdef _DEBUG
+		const size_t	lenBuffer = 65;
+		char			Buffer[lenBuffer];
+
+		//sprintf_s(Buffer, lenBuffer, "VKey %04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
+		sprintf_s(Buffer, lenBuffer, "HAHAHAHAHAH  %s\n", MonsterChaseGame::isKey_A_Down ? "A is downFUCK" : "A is upFUCK");
+		OutputDebugStringA(Buffer);
+#endif // __DEBUG
+		
+		switch (i_VKeyID)
+		{
+			//W 57---hexadecimal   87---decimal
+		case 87:
+			MonsterChaseGame::isKey_W_Down = bWentDown;
+			break;
+
+			//A 41---hexadecimal	65---decimal
+		case 65:
+			MonsterChaseGame::isKey_A_Down = bWentDown;
+			break;
+
+			//S  53---hexadecimal   83---decimal
+		case 83:
+			MonsterChaseGame::isKey_S_Down = bWentDown;
+			break;
+
+			//D   44---hexadecimal  68---decimal
+		case 68:
+			MonsterChaseGame::isKey_D_Down = bWentDown;
+			break;
+		}
+	}
+
+
 	// static member initialization
 	MonsterChaseGame* MonsterChaseGame::instance_ = nullptr;
+	bool MonsterChaseGame::isKey_W_Down = false;
+	bool MonsterChaseGame::isKey_A_Down = false;
+	bool MonsterChaseGame::isKey_S_Down = false;
+	bool MonsterChaseGame::isKey_D_Down = false;
 
 	MonsterChaseGame::MonsterChaseGame()
 	{
 		player_ = nullptr;
 
-		//GLib::SetKeyStateChangeCallback(AcceptKey);
+		GLib::SetKeyStateChangeCallback(AcceptKey);
 
 		//GLib::Sprite* pGoodGuy = EngineUtils::CreateSprite("data\\GoodGuy.dds");
 		//player_ = new Actor("zhu", Vector2(0, 0));
@@ -96,6 +106,25 @@ namespace Game {
 
 	void MonsterChaseGame::Update()
 	{
+
+		//for debug
+		const size_t	lenBuffer = 65;
+		char			Buffer[lenBuffer];	
+		sprintf_s(Buffer, lenBuffer, "HAHAHAHAHAH  %s\n", MonsterChaseGame::isKey_A_Down ? "A is down TRUE" : "A is up FALSE");
+		OutputDebugStringA(Buffer);
+
+		Vector2 speed = Vector2(0.01f, 0);
+		Vector2 speed2 = Vector2(-0.01f, 0);
+		if (isKey_D_Down) {
+
+
+			player_->Move(speed);
+		}
+
+		if (isKey_A_Down) {
+			player_->Move(speed2);
+		}
+
 		bool quit = false;
 		GLib::Service(quit);
 
@@ -113,6 +142,7 @@ namespace Game {
 		GLib::Sprites::BeginRendering();
 
 		player_->Render();
+		
 		// Tell GLib we're done rendering sprites
 		GLib::Sprites::EndRendering();
 		// Tell GLib we're done rendering

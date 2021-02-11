@@ -71,7 +71,18 @@ void Actor::Render()
 	if (sprite_)
 	{
 		static GLib::Point2D Offset = { -180.0f, -100.0f };
-		GLib::Render(*sprite_, Offset, 0.0f, 0.0f);
+		GLib::Point2D Offset2 = { -180.0f, -100.0f };
+		//static float			moveDist = .01f;
+		//static float			moveDir = moveDist;
+		/*if (Offset.x < -220.0f)
+			moveDir = moveDist;
+		else if (Offset.x > -140.0f)
+			moveDir = -moveDist;*/
+
+		Offset2.x = position_.x();
+		Offset2.y = position_.y();
+
+		GLib::Render(*sprite_, Offset2, 0.0f, 0.0f);
 	}
 }
 

@@ -268,13 +268,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 		bool bQuit = false;
 		do
 		{
-			// IMPORTANT: We need to let GLib do it's thing. 
-			GLib::Service(bQuit);
-
-			if (!bQuit)
-			{
-				MC->Render();
-			}
+			MC->Update();
 		} while (bQuit == false);
 
 		MC->Destroy();

@@ -10,7 +10,7 @@ class Vector2
 {
 public:
 	// standard constructor
-	inline Vector2(int i_x, int i_y);
+	inline Vector2(float i_x, float i_y);
 	// copy constructor - for completeness
 	inline Vector2(const Vector2 & i_other);
 	// assignment operator
@@ -18,12 +18,12 @@ public:
 
 	// element accessors
 	// - get individual element
-	inline int x(void) const;
-	inline int y(void) const;
+	inline float x(void) const;
+	inline float y(void) const;
 	// - set individual element
-	inline void x(int i_x);
-	inline void y(int i_y);
-	inline void z(int i_z);
+	inline void x(float i_x);
+	inline void y(float i_y);
+	inline void z(float i_z);
 
 	// modifying operators
 	inline Vector2 & operator+=(const Vector2 & i_rhs);
@@ -50,7 +50,7 @@ public:
 	static const Vector2 Zero;
 
 private:
-	int	x_, y_;
+	float	x_, y_;
 
 } ;
 

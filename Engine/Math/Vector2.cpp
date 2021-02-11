@@ -5,7 +5,7 @@ namespace Engine
 namespace Math
 {
 	
-const Vector2 Vector2::Zero(0, 0);
+const Vector2 Vector2::Zero(0.0f, 0.0f);
 
 Vector2 Vector2::Normalized() const
 {

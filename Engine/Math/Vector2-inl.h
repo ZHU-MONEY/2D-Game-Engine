@@ -5,7 +5,7 @@ namespace Engine
 namespace Math
 {
 	
-inline Vector2::Vector2(int i_x, int i_y) :
+inline Vector2::Vector2(float i_x, float i_y) :
 	x_(i_x),
 	y_(i_y)
 {
@@ -27,22 +27,22 @@ inline Vector2 & Vector2::operator=(const Vector2 & i_other)
 }
 
 // accessors
-inline int Vector2::x(void) const
+inline float Vector2::x(void) const
 {
 	return x_;
 }
 
-inline int Vector2::y(void) const
+inline float Vector2::y(void) const
 {
 	return y_;
 }
 
-inline void Vector2::x(int i_x)
+inline void Vector2::x(float i_x)
 {
 	x_ = i_x;
 }
 
-inline void Vector2::y(int i_y)
+inline void Vector2::y(float i_y)
 {
 	y_ = i_y;
 }
