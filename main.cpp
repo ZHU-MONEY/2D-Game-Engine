@@ -19,6 +19,11 @@
 #include "Engine\EngineUtils.h"
 #include "Game/MonsterChaseGame.h"
 #include <iostream>
+#include "Engine/Time/TimeUtils.h"
+#include "Game/PlayerController.h"
+//#include "Engine/Time/TimeUtils.Win.cpp"
+
+#include "Engine/Physics/PhysicsSystem.h"
 using namespace Engine::Math;
 
 // create a random number in a range
@@ -260,14 +265,35 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 {
 
 	// IMPORTANT: first we need to initialize GLib
-	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "MonsterChaseGame", -1, 800, 600, true);
+	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "MonsterChaseGame", -1, 1920, 1080, true);
 	if (bSuccess)
 	{
 		Game::StartUp();
 		Game::MonsterChaseGame* MC = Game::MonsterChaseGame::GetInstance();
+
+		//calculate dt
+		//float dt = CalculateLastFrameTime_ms();
+		/*float dt = 16.6f;
+		PhysicsSystem::Create();
+		PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
+
+		PhysicsObject* po = new PhysicsObject(MC->player_, PhysicsObject::DEFAULT_MASS, PhysicsObject::DEFAULT_COEFFICIENT_DRAG);
+
+		physicsSystemInstance->AddPhysicsObject(po);
+		physicsSystemInstance->Run(dt);*/
+
+		
+
+		//PlayerController pController = PlayerController(po, MC);
+
+	
+
+
+
 		bool bQuit = false;
 		do
 		{
+
 			MC->Update();
 		} while (bQuit == false);
 

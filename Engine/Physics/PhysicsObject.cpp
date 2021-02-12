@@ -1,7 +1,7 @@
 #include "PhysicsObject.h"
 
-const float PhysicsObject::DEFAULT_MASS = 1.0f;
-const float PhysicsObject::DEFAULT_COEFFICIENT_DRAG = 0.1f;
+const float PhysicsObject::DEFAULT_MASS = 10.0f;
+const float PhysicsObject::DEFAULT_COEFFICIENT_DRAG = 1.0f;
 
 PhysicsObject::PhysicsObject() :
 	gameObject_(nullptr),
@@ -39,20 +39,22 @@ void PhysicsObject::Update(float dt)
 	Vector2 previousVelocity = currentVelocity_;
 	Vector2 previousPosition = gameObject_->GetPosition();
 	Vector2 previousForce = currentForce_;
-	//How do I get the new current velocity???
+	
+	//midpoint method
 
 	// calculate drag force, ------IMPORTANT: this force is NEGATIVE
 	Vector2 dragForce = (currentVelocity_ * currentVelocity_) * (-coefficientDrag_);
-
 	currentForce_ = previousForce + dragForce;
-
 	Vector2 acceleration = currentForce_ * (1.0f/ mass_);
-
 	currentVelocity_ = previousVelocity + (acceleration * dt);
-
 	// Midpoint method, use *0.5 instead of /2
 	Vector2 currentPosition = previousPosition + ((previousVelocity + currentVelocity_) * 0.5f) * dt;
 
 	// update game object
 	gameObject_->SetPosition(currentPosition);
+}
+
+void PhysicsObject::ApplyForce(const Vector2& inputForce)
+{
+	currentForce_ = currentForce_ + inputForce;
 }

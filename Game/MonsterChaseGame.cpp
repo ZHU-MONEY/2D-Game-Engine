@@ -1,5 +1,6 @@
 #include "MonsterChaseGame.h"
 
+
 namespace Game {
 
 	bool StartUp()
@@ -77,7 +78,8 @@ namespace Game {
 
 	MonsterChaseGame::~MonsterChaseGame()
 	{
-		delete player_;
+		/*delete player_;
+		player_ = nullptr;*/
 	}
 
 	MonsterChaseGame* MonsterChaseGame::Create()
@@ -96,15 +98,24 @@ namespace Game {
 
 	void MonsterChaseGame::Destroy()
 	{
-		if (instance_) {
+		/*if (instance_) {
 			delete instance_;
 			instance_ = nullptr;
-		}
+		}*/
 	}
 
 	void MonsterChaseGame::Initialize()
 	{
-		player_ = new Actor("zhu", Vector2(0, 0));
+		//player_ = new Actor("zhu", Vector2(0, 0));
+		player_ = new GameObject();
+
+		PhysicsSystem::Create();
+		physicsSystemInstance = PhysicsSystem::GetInstance();
+
+		po_ = new PhysicsObject(player_, PhysicsObject::DEFAULT_MASS, PhysicsObject::DEFAULT_COEFFICIENT_DRAG);
+
+		physicsSystemInstance->AddPhysicsObject(po_);
+		
 	}
 
 	void MonsterChaseGame::Update()
@@ -116,7 +127,14 @@ namespace Game {
 		sprintf_s(Buffer, lenBuffer, "HAHAHAHAHAH  %s\n", MonsterChaseGame::isKey_A_Down ? "A is down TRUE" : "A is up FALSE");
 		OutputDebugStringA(Buffer);
 
-		Vector2 speed = Vector2(0.01f, 0);
+		if (isKey_D_Down)
+			po_->ApplyForce(Vector2(0.1f, 0.0f));
+		if (isKey_A_Down)
+			po_->ApplyForce(Vector2(-0.1f, 0.0f));
+
+		physicsSystemInstance->Run(16.6f);
+
+		/*Vector2 speed = Vector2(0.01f, 0);
 		Vector2 speed2 = Vector2(-0.01f, 0);
 		if (isKey_D_Down) {
 
@@ -126,7 +144,7 @@ namespace Game {
 
 		if (isKey_A_Down) {
 			player_->Move(speed2);
-		}
+		}*/
 
 		bool quit = false;
 		GLib::Service(quit);

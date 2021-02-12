@@ -154,9 +154,9 @@
     <ClCompile Include="Engine\GameObject\GameObject.cpp" />
     <ClCompile Include="Engine\Physics\PhysicsObject.cpp" />
     <ClCompile Include="Engine\Physics\PhysicsSystem.cpp" />
-    <ClCompile Include="Engine\Time\TimeUtils.cpp" />
     <ClCompile Include="Engine\Time\TimeUtils.Win.cpp" />
     <ClCompile Include="Game\MonsterChaseGame.cpp" />
+    <ClCompile Include="Game\PlayerController.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine\Math\Vector2.cpp" />
   </ItemGroup>
@@ -173,6 +173,7 @@
     <ClInclude Include="Engine\Physics\PhysicsSystem.h" />
     <ClInclude Include="Engine\Time\TimeUtils.h" />
     <ClInclude Include="Game\MonsterChaseGame.h" />
+    <ClInclude Include="Game\PlayerController.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

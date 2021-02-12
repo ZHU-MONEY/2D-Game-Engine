@@ -5,6 +5,8 @@
 #include "Actor\Actor.h"
 #include "Engine\EngineUtils.h"
 #include <DirectXColors.h>
+#include "Engine/GameObject/GameObject.h"
+#include <Engine\Physics\PhysicsSystem.h>
 using namespace Engine::Math;
 
 namespace Game {
@@ -15,12 +17,18 @@ namespace Game {
 	class MonsterChaseGame
 	{
 	private:
-		Actor* player_;
+		//Actor* player_;
+		
 		MonsterChaseGame();
 		~MonsterChaseGame();
 		static MonsterChaseGame* instance_;
 
 	public:
+		//move the palyer back to private
+		PhysicsSystem* physicsSystemInstance;
+		PhysicsObject* po_;
+		GameObject* player_;
+		
 		static MonsterChaseGame* Create();
 		static MonsterChaseGame* GetInstance();
 		static void Destroy();

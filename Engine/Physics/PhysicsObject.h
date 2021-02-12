@@ -14,6 +14,7 @@ public:
 	~PhysicsObject();
 
 	void Update(float dt);
+	void ApplyForce(const Vector2& inputForce);
 
 	// setter getter
 	inline GameObject* GetGameObject() const { return gameObject_; };
