@@ -47,11 +47,10 @@ void GetPerformanceFrequency()
 	QueryPerformanceFrequency(&PerformanceFrequency);
 }
 
-int main() {
-	GetPerformanceFrequency();
-	while (1) {
-		std::cout << CalculateLastFrameTime_ms() << std::endl;
-		//std::cout << PerformanceFrequency.QuadPart << std::endl;
-
-	}
-}
+//int main() {
+//	GetPerformanceFrequency();
+//	while (1) {
+//		std::cout << CalculateLastFrameTime_ms() << std::endl;
+//		//std::cout << PerformanceFrequency.QuadPart << std::endl;
+//	}
+//}

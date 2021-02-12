@@ -1,78 +1,71 @@
 #ifndef __VECTOR2_H
 #define __VECTOR2_H
 
-namespace Engine
-{
-namespace Math
-{
+namespace Engine {
+	namespace Math {
 
-class Vector2
-{
-public:
-	// standard constructor
-	inline Vector2(float i_x, float i_y);
-	// copy constructor - for completeness
-	inline Vector2(const Vector2 & i_other);
-	// assignment operator
-	inline Vector2 & operator=(const Vector2 & i_rhs);
+		/*
+			Vector2
+			- A class that represents a 2D vector
+			- Overloads basic arithmetic operators, validates against bad floats
+		*/
 
-	// element accessors
-	// - get individual element
-	inline float x(void) const;
-	inline float y(void) const;
-	// - set individual element
-	inline void x(float i_x);
-	inline void y(float i_y);
-	inline void z(float i_z);
+		class Vector2
+		{
+		public:
+			Vector2(float i_x = 0.0f, float i_y = 0.0f);
+			Vector2(const Vector2& i_copy);
 
-	// modifying operators
-	inline Vector2 & operator+=(const Vector2 & i_rhs);
-	inline Vector2 & operator-=(const Vector2 & i_rhs);
+			~Vector2()
+			{}
 
-	inline Vector2 & operator*=(const Vector2 & i_other);
-	inline Vector2 & operator*=(int i_val);
-	inline Vector2 & operator*=(float i_val);
+			// accessors and mutators
+			inline float x() const;
+			inline void x(float i_x);
+			inline float y() const;
+			inline void y(float i_y);
+			inline void set(float i_x = 0.0f, float i_y = 0.0f);
 
-	inline Vector2 & operator/=(const Vector2 & i_other);
-	inline Vector2 & operator/=(int i_val);
-	inline Vector2 & operator/=(float i_val);
+			// assignment
+			inline Vector2& operator=(const Vector2& i_vec);
 
-	// negate
-	inline Vector2 operator-(void);
+			// arithmetic
+			inline Vector2 operator+(const Vector2& i_vec) const;
+			inline Vector2& operator+=(const Vector2& i_vec);
+			inline Vector2 operator-(const Vector2& i_vec) const;
+			inline Vector2& operator-=(const Vector2& i_vec);
+			inline Vector2 operator*(float i_scale) const;
+			inline Vector2& operator*=(float i_scale);
 
-	inline Vector2 & Normalize();
-	inline Vector2 Normalized() const;
+			// relational
+			inline bool operator==(const Vector2& i_vec) const;
+			inline bool operator!=(const Vector2& i_vec) const;
 
-	inline float Length() const;
-	inline int LengthSq() const;
-	
-	// - ( 0.0f, 0.0f, 0.0f )
-	static const Vector2 Zero;
+			// unary
+			inline Vector2 operator-() const;
 
-private:
-	float	x_, y_;
+			// functions
+			inline bool IsZero() const;
+			inline bool IsOne() const;
+			inline float LengthSquared() const;
+			float Length() const;
+			void Normalize();
+			Vector2 Normalize() const;
 
-} ;
+			// constants
+			static const Vector2 ZERO;
+			static const Vector2 UNIT;
+			static const Vector2 UNIT_X;
+			static const Vector2 UNIT_Y;
 
-inline Vector2 Normalized(const Vector2 & i_vec);
+		protected:
+			float x_;
+			float y_;
+		}; // class Vector2
 
-inline Vector2 operator+(const Vector2 & i_lhs, const Vector2 & i_rhs);
-inline Vector2 operator-(const Vector2 & i_lhs, const Vector2 & i_rhs);
-
-inline Vector2 operator*(const Vector2 & i_lhs, int i_rhs);
-inline Vector2 operator*(const Vector2 & i_lhs, float i_rhs);
-
-inline Vector2 operator/(const Vector2 & i_lhs, const Vector2 & i_rhs);
-inline Vector2 operator/(const Vector2 & i_lhs, int i_rhs);
-inline Vector2 operator/(const Vector2 & i_lhs, float i_rhs);
-
-inline bool operator==(const Vector2 & i_lhs, const Vector2 & i_rhs);
-inline bool operator!=(const Vector2 & i_lhs, const Vector2 & i_rhs);
-
-inline int dot(const Vector2 & i_lhs, const Vector2 & i_rhs);
-
-} // namespace Math
-} // namespace Engine
+	} // namespace math
+} // namespace engine
 
 #include "Vector2-inl.h"
-#endif // __VECTOR2_H
+
+#endif

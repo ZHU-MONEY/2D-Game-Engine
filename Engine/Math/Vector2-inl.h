@@ -1,198 +1,112 @@
 #include <math.h>
+#include "Vector2.h"
 
-namespace Engine
-{
-namespace Math
-{
-	
-inline Vector2::Vector2(float i_x, float i_y) :
-	x_(i_x),
-	y_(i_y)
-{
-}
+namespace Engine {
+	namespace Math {
 
-inline Vector2::Vector2(const Vector2 & i_other) :
-	x_(i_other.x_),
-	y_(i_other.y_)
-{
-}
+		inline float Vector2::x() const
+		{
+			return x_;
+		}
 
-// operators
-inline Vector2 & Vector2::operator=(const Vector2 & i_other)
-{
-	x_ = i_other.x_;
-	y_ = i_other.y_;
+		inline void Vector2::x(float i_x)
+		{
+			x_ = i_x;
+		}
 
-	return *this;
-}
+		inline float Vector2::y() const
+		{
+			return y_;
+		}
 
-// accessors
-inline float Vector2::x(void) const
-{
-	return x_;
-}
+		inline void Vector2::y(float i_y)
+		{
+			y_ = i_y;
+		}
 
-inline float Vector2::y(void) const
-{
-	return y_;
-}
+		inline void Vector2::set(float i_x, float i_y)
+		{
+			x_ = i_x;
+			y_ = i_y;
+		}
 
-inline void Vector2::x(float i_x)
-{
-	x_ = i_x;
-}
+		inline Vector2& Vector2::operator=(const Vector2& i_vec)
+		{
+			// check for self assignment
+			if (this != &i_vec)
+			{
+				x_ = i_vec.x_;
+				y_ = i_vec.y_;
+			}
 
-inline void Vector2::y(float i_y)
-{
-	y_ = i_y;
-}
+			return *this;
+		}
 
-inline Vector2 & Vector2::operator+=(const Vector2 & i_other)
-{
-	x_ += i_other.x_;
-	y_ += i_other.y_;
+		inline Vector2 Vector2::operator+(const Vector2& i_vec) const
+		{
+			return Vector2(x_ + i_vec.x(), y_ + i_vec.y());
+		}
 
-	return *this;
-}
+		inline Vector2& Vector2::operator+=(const Vector2& i_vec)
+		{
+			x(x_ + i_vec.x());
+			y(y_ + i_vec.y());
+			return *this;
+		}
 
-inline Vector2 & Vector2::operator-=(const Vector2 & i_other)
-{
-	x_ -= i_other.x_;
-	y_ -= i_other.y_;
+		inline Vector2 Vector2::operator-(const Vector2& i_vec) const
+		{
+			return Vector2(x_ - i_vec.x(), y_ - i_vec.y());
+		}
 
-	return *this;
-}
+		inline Vector2& Vector2::operator-=(const Vector2& i_vec)
+		{
+			x(x_ - i_vec.x());
+			y(y_ - i_vec.y());
+			return *this;
+		}
 
-inline Vector2 & Vector2::operator*=(const Vector2 & i_other)
-{
-	x_ *= i_other.x_;
-	y_ *= i_other.y_;
+		inline Vector2 Vector2::operator*(float i_scale) const
+		{
+			return Vector2(x_ * i_scale, y_ * i_scale);
+		}
 
-	return *this;
-}
+		inline Vector2& Vector2::operator*=(float i_scale)
+		{
+			x(x_ * i_scale);
+			y(y_ * i_scale);
+			return *this;
+		}
 
-inline Vector2 & Vector2::operator*=(int i_other)
-{
-	x_ *= i_other;
-	y_ *= i_other;
+		inline bool Vector2::operator==(const Vector2& i_vec) const
+		{
+			return (x_== i_vec.x()) && (y_== i_vec.y());
+		}
 
-	return *this;
-}
+		inline bool Vector2::operator!=(const Vector2& i_vec) const
+		{
+			return (x_ != i_vec.x() || y_ != i_vec.y());
+		}
 
-inline Vector2 & Vector2::operator*=(float i_other)
-{
-	x_ *= int(i_other * x_);
-	y_ *= int(i_other * y_);
+		inline Vector2 Vector2::operator-() const
+		{
+			return Vector2(-x(), -y());
+		}
 
-	return *this;
-}
+		inline bool Vector2::IsZero() const
+		{
+			return (x_==0.0f) && (y_== 0.0f);
+		}
 
-inline Vector2 & Vector2::operator/=(const Vector2 & i_other)
-{
-	x_ /= i_other.x_;
-	y_ /= i_other.y_;
+		inline bool Vector2::IsOne() const
+		{
+			return (x_==1.0f) && (y_== 1.0f);
+		}
 
-	return *this;
-}
+		inline float Vector2::LengthSquared() const
+		{
+			return (x_ * x_ + y_ * y_);
+		}
 
-inline Vector2 & Vector2::operator/=(int i_other)
-{
-	x_ /= i_other;
-	y_ /= i_other;
-
-	return *this;
-}
-
-inline Vector2 & Vector2::operator/=(float i_other)
-{
-	x_ = int( (float) x_ / i_other);
-	y_ = int( (float) y_ / i_other);
-
-	return *this;
-}
-
-inline Vector2 Vector2::operator-(void)
-{
-	return Vector2(-x_, -y_);
-}
-
-inline int Vector2::LengthSq() const
-{
-	return (x_ * x_) + (y_ * y_);
-}
-
-inline float Vector2::Length() const
-{
-	return static_cast<float>( sqrt(LengthSq()));
-}
-
-inline Vector2 & Vector2::Normalize()
-{
-	*this = Normalized();
-
-	return *this;
-}
-
-// stand alone operators
-inline Vector2 operator+( const Vector2 & i_lhs, const Vector2 & i_rhs )
-{
-	return Vector2( i_lhs.x() + i_rhs.x(), i_lhs.y() + i_rhs.y() );
-}
-
-inline Vector2 operator-( const Vector2 & i_lhs, const Vector2 & i_rhs )
-{
-	return Vector2( i_lhs.x() - i_rhs.x(), i_lhs.y() - i_rhs.y() );
-}
-
-inline Vector2 operator*( const Vector2 & i_lhs, const Vector2 & i_rhs )
-{
-	return Vector2( i_lhs.x() * i_rhs.x(), i_lhs.y() * i_rhs.x() );
-}
-
-inline Vector2 operator*( const Vector2 & i_lhs, int i_rhs )
-{
-	return Vector2( i_lhs.x() * i_rhs, i_lhs.y() * i_rhs );
-}
-
-inline Vector2 operator*(const Vector2 & i_lhs, float i_rhs)
-{
-	return Vector2(int( i_rhs * i_lhs.x()), int( i_rhs * i_lhs.y()));
-}
-
-inline Vector2 operator*( int i_lhs, const Vector2 & i_rhs )
-{
-	return Vector2( i_lhs * i_rhs.x(), i_lhs * i_rhs.y() );
-}
-
-inline Vector2 operator/( const Vector2 & i_lhs, const Vector2 & i_rhs )
-{
-	return Vector2( i_lhs.x() / i_rhs.x(), i_lhs.y() / i_rhs.y() );
-}
-
-inline Vector2 operator/( const Vector2 & i_lhs, int i_rhs )
-{
-	return Vector2( i_lhs.x() / i_rhs, i_lhs.y() / i_rhs );
-}
-
-inline Vector2 operator/(const Vector2 & i_lhs, float i_rhs)
-{
-	return Vector2(int( (float) i_lhs.x() / i_rhs), int( (float) i_lhs.y() / i_rhs));
-}
-
-inline bool operator==( const Vector2 & i_lhs, const Vector2 & i_rhs )
-{
-	return (i_lhs.x() == i_rhs.x()) && (i_lhs.y() == i_rhs.y() ); 
-}
-
-inline bool operator!=( const Vector2 & i_lhs, const Vector2 & i_rhs )
-{
-	return !operator==(i_lhs, i_rhs);
-}
-
-inline int dot( const Vector2 & i_lhs, const Vector2 & i_rhs )
-{
-	return i_lhs.x() * i_rhs.x() + i_lhs.y() * i_rhs.y();
-}
-
-} // namespace Math
-} // namespace Engine
+	} // namespace math
+} // namespace engine

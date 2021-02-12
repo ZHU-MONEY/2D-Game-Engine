@@ -1,39 +1,51 @@
 #include "Vector2.h"
 
-namespace Engine
-{
-namespace Math
-{
-	
-const Vector2 Vector2::Zero(0.0f, 0.0f);
+#include <cmath>
 
-Vector2 Vector2::Normalized() const
-{
-	float length = Length();
+namespace Engine {
+	namespace Math {
 
-	if (length == 0.0f)
-		return Zero;
-	else
-	{
-		float inv_length = 1.0f / length;
+		const Vector2 Vector2::ZERO(0.0f, 0.0f);
+		const Vector2 Vector2::UNIT(1.0f, 1.0f);
+		const Vector2 Vector2::UNIT_X(1.0f, 0.0f);
+		const Vector2 Vector2::UNIT_Y(0.0f, 1.0f);
 
-		return *this * inv_length;
-	}
-}
+		Vector2::Vector2(float i_x, float i_y) : x_(i_x),
+			y_(i_y)
+		{}
 
-Vector2 Normalized(const Vector2 & i_vec)
-{
-	float length = i_vec.Length();
+		Vector2::Vector2(const Vector2& i_copy) : x_(i_copy.x_),
+			y_(i_copy.y_)
+		{}
 
-	if (length == 0.0f)
-		return Vector2::Zero;
-	else
-	{
-		float inv_length = 1.0f / length;
+		float Vector2::Length() const
+		{
+			return std::sqrtf(LengthSquared());
+		}
 
-		return i_vec * inv_length;
-	}
-}
+		void Vector2::Normalize()
+		{
+			float length_squared = x_ * x_ + y_ * y_;
 
-} // namespace Math
-} // namespace Engine
+			// return if already normalized
+			if (length_squared== 1.0f)
+			{
+				return;
+			}
+
+			float length = std::sqrtf(length_squared);
+			length = 1.0f / length;
+
+			x_ *= length;
+			y_ *= length;
+		}
+
+		Vector2 Vector2::Normalize() const
+		{
+			Vector2 v(*this);
+			v.Normalize();
+			return v;
+		}
+
+	} // namespace math
+} // namespace engine
