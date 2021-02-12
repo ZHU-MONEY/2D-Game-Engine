@@ -2,14 +2,7 @@
 #define __VECTOR2_H
 
 namespace Engine {
-	namespace Math {
-
-		/*
-			Vector2
-			- A class that represents a 2D vector
-			- Overloads basic arithmetic operators, validates against bad floats
-		*/
-
+namespace Math {
 		class Vector2
 		{
 		public:
@@ -63,7 +56,7 @@ namespace Engine {
 			float y_;
 		}; // class Vector2
 
-	} // namespace math
+} // namespace math
 } // namespace engine
 
 #include "Vector2-inl.h"

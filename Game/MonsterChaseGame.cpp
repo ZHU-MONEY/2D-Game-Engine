@@ -96,7 +96,10 @@ namespace Game {
 
 	void MonsterChaseGame::Destroy()
 	{
-		delete instance_;
+		if (instance_) {
+			delete instance_;
+			instance_ = nullptr;
+		}
 	}
 
 	void MonsterChaseGame::Initialize()

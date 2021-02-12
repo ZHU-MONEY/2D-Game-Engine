@@ -6,7 +6,7 @@ GameObject::GameObject() : position_()
 
 GameObject::GameObject(const GameObject& other)
 {
-	position_ = other.GetPosition();
+	position_ = other.position_;
 }
 
 

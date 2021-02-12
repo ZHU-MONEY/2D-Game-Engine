@@ -37,6 +37,9 @@
     <Filter Include="Source Files\Engine\GameObject">
       <UniqueIdentifier>{afb34c72-a674-4565-997e-6ec7d7e3fb3e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Physics">
+      <UniqueIdentifier>{98c2e049-8854-446c-8729-5ceb0a5a5fe0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -65,6 +68,12 @@
     </ClCompile>
     <ClCompile Include="Engine\GameObject\GameObject.cpp">
       <Filter>Source Files\Engine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Physics\PhysicsSystem.cpp">
+      <Filter>Source Files\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Physics\PhysicsObject.cpp">
+      <Filter>Source Files\Engine\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +109,12 @@
     </ClInclude>
     <ClInclude Include="Engine\GameObject\GameObject.h">
       <Filter>Source Files\Engine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Physics\PhysicsSystem.h">
+      <Filter>Source Files\Engine\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Physics\PhysicsObject.h">
+      <Filter>Source Files\Engine\Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

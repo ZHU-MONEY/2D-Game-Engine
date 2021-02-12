@@ -80,7 +80,7 @@ namespace Engine {
 
 		inline bool Vector2::operator==(const Vector2& i_vec) const
 		{
-			return (x_== i_vec.x()) && (y_== i_vec.y());
+			return (x_ == i_vec.x()) && (y_ == i_vec.y());
 		}
 
 		inline bool Vector2::operator!=(const Vector2& i_vec) const
@@ -95,12 +95,12 @@ namespace Engine {
 
 		inline bool Vector2::IsZero() const
 		{
-			return (x_==0.0f) && (y_== 0.0f);
+			return (x_ == 0.0f) && (y_ == 0.0f);
 		}
 
 		inline bool Vector2::IsOne() const
 		{
-			return (x_==1.0f) && (y_== 1.0f);
+			return (x_ == 1.0f) && (y_ == 1.0f);
 		}
 
 		inline float Vector2::LengthSquared() const

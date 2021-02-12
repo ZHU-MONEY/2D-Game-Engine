@@ -152,6 +152,8 @@
     <ClCompile Include="Console\ConsolePrint.Win32.cpp" />
     <ClCompile Include="Engine\EngineUtils.cpp" />
     <ClCompile Include="Engine\GameObject\GameObject.cpp" />
+    <ClCompile Include="Engine\Physics\PhysicsObject.cpp" />
+    <ClCompile Include="Engine\Physics\PhysicsSystem.cpp" />
     <ClCompile Include="Engine\Time\TimeUtils.cpp" />
     <ClCompile Include="Engine\Time\TimeUtils.Win.cpp" />
     <ClCompile Include="Game\MonsterChaseGame.cpp" />
@@ -167,6 +169,8 @@
     <ClInclude Include="Engine\GameObject\GameObject.h" />
     <ClInclude Include="Engine\Math\Vector2-inl.h" />
     <ClInclude Include="Engine\Math\Vector2.h" />
+    <ClInclude Include="Engine\Physics\PhysicsObject.h" />
+    <ClInclude Include="Engine\Physics\PhysicsSystem.h" />
     <ClInclude Include="Engine\Time\TimeUtils.h" />
     <ClInclude Include="Game\MonsterChaseGame.h" />
     <ClInclude Include="resource.h" />
