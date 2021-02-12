@@ -14,7 +14,7 @@ public:
 	inline void SetPosition(const Vector2& position) { position_ = position; };
 	inline Vector2 GetPosition() const { return position_; };
 
-private:
+protected:
 	Vector2 position_;
 };
 
