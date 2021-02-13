@@ -265,7 +265,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 {
 
 	// IMPORTANT: first we need to initialize GLib
-	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "MonsterChaseGame", -1, 1920, 1080, true);
+	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "MonsterChaseGame", -1, 1000, 800, true);
 	if (bSuccess)
 	{
 		Game::StartUp();

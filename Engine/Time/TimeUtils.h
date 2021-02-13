@@ -8,7 +8,7 @@
 	static float GetLastFrameTime_ms();
 	static float CalculateLastFrameTime_ms();
 
-	static const float DESIRED_FPS=60.0f;
+	static const float DESIRED_FPS = 60.0f;
 	static const float DESIRED_FRAMETIME_MS = 1000.0f / DESIRED_FPS;
 	static const float MAX_FRAMETIME_MS = 2 * DESIRED_FRAMETIME_MS;
 	

@@ -1,5 +1,6 @@
 #include "TimeUtils.h"
 #include <iostream>
+#include <cassert>
 
 
 //static const float DESIRED_FPS = 60.0f;
@@ -18,16 +19,17 @@ float GetLastFrameTime_ms()
 float CalculateLastFrameTime_ms()
 {
 	// grab the CPU tick counter
-	tick_t currentTick = GetCurrentTickCounter();
+	tick_t currentTick = tick_t(GetCurrentTickCounter());
 
 	if (lastFrameStartTick_)
 	{
-		tick_t elapsedTicks = currentTick - lastFrameStartTick_;
-		lastFrameTime_ms_ = 1000.0f*float(elapsedTicks / (float)PerformanceFrequency.QuadPart);
+		//tick_t elapsedTicks = currentTick - lastFrameStartTick_;
+		assert(PerformanceFrequency.QuadPart != 0);
+		lastFrameTime_ms_ =(1000.0* static_cast<float>(currentTick - lastFrameStartTick_)) / PerformanceFrequency.QuadPart;
 	}
 	else
 	{
-		lastFrameTime_ms_ = DESIRED_FRAMETIME_MS;
+		lastFrameTime_ms_ = 16.6f;
 	}
 	// save current frame tick
 	lastFrameStartTick_ = currentTick;

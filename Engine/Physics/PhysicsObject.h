@@ -9,6 +9,8 @@ public:
 	//default mass and drag coeffcient 
 	static const float	DEFAULT_MASS;
 	static const float	DEFAULT_COEFFICIENT_DRAG;
+	static const float  MAX_SPEED;
+	static const float  MIN_SPEED;
 	PhysicsObject();
 	PhysicsObject(GameObject* gameObject,float mass, float drag);
 	~PhysicsObject();
