@@ -1,6 +1,6 @@
 #include "PhysicsObject.h"
 
-const float PhysicsObject::DEFAULT_MASS = 5.0f;
+const float PhysicsObject::DEFAULT_MASS = 2.0f;
 const float PhysicsObject::DEFAULT_COEFFICIENT_DRAG = 0.5f;
 const float PhysicsObject::MAX_SPEED = 2.0f;
 const float PhysicsObject::MIN_SPEED = 0.0001f;
@@ -42,14 +42,14 @@ void PhysicsObject::Update(float dt)
 	Vector2 previousVelocity = currentVelocity_;
 	Vector2 previousPosition = gameObject_->GetPosition();
 	Vector2 previousForce = currentForce_;
-	
+
 
 	//midpoint method
 
 	// calculate drag force
 	Vector2 dragForce = (currentVelocity_ * currentVelocity_) * (coefficientDrag_);
 
-	//black magic
+	//make sure the drag is the opposite of velocity direction
 	if ((currentVelocity_.x() < 0 && dragForce.x() > 0) || (currentVelocity_.x() > 0 && dragForce.x() < 0) ){
 		dragForce.x(dragForce.x() * -1);
 	}
@@ -58,12 +58,11 @@ void PhysicsObject::Update(float dt)
 	}
 
 	currentForce_ = previousForce - dragForce;
-	Vector2 acceleration = currentForce_ * (1.0f/ mass_);
+
+	float inverseMass = 1.0f / mass_;
+	Vector2 acceleration = currentForce_ * (inverseMass);
 	currentVelocity_ = previousVelocity + (acceleration * dt);
-
 	currentForce_ = Vector2::ZERO;
-
-
 
 	//stop it, otherwise it will go to the other side
 	//this is very very broken
@@ -87,12 +86,10 @@ void PhysicsObject::Update(float dt)
 
 void PhysicsObject::ApplyForce(const Vector2& inputForce)
 {
-	const size_t	lenBuffer = 65;
-	char			Buffer[lenBuffer];
-	sprintf_s(Buffer, lenBuffer, "input force y %f\n", inputForce.y());
-	OutputDebugStringA(Buffer);
+	
 
-	currentForce_ = currentForce_ + inputForce;
-	//currentForce_.x(currentForce_.x() + inputForce.x());
-	//currentForce_.y(currentForce_.y() + inputForce.y());
+	//currentForce_ += inputForce;
+	currentForce_.x(currentForce_.x() + inputForce.x());
+	currentForce_.y(currentForce_.y() + inputForce.y());
+
 }

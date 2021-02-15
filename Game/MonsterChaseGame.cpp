@@ -132,12 +132,10 @@ namespace Game {
 
 		float speed = 0.2f;
 
-		if (isKey_W_Down) {
-			po_->ApplyForce(Vector2(0.0f, speed));
-		}
-		if (isKey_S_Down) {
-			po_->ApplyForce(Vector2(0.0f, -speed));
-		}
+		if (isKey_W_Down)
+			po_->ApplyForce(Vector2(0.0f, speed));		
+		if (isKey_S_Down)
+			po_->ApplyForce(Vector2(0.0f, -speed));		
 		if (isKey_D_Down)
 			po_->ApplyForce(Vector2(speed, 0.0f));
 		if (isKey_A_Down)

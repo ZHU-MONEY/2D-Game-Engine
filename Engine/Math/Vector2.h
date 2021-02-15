@@ -27,7 +27,7 @@ namespace Math {
 			inline Vector2& operator+=(const Vector2& i_vec);
 			inline Vector2 operator-(const Vector2& i_vec) const;
 			inline Vector2& operator-=(const Vector2& i_vec);
-			//inline Vector2 operator*(float i_scale, Vector2& i_vec) const;
+			inline Vector2 operator*(float i_scale);
 
 
 			//Vector * Vector
@@ -36,6 +36,7 @@ namespace Math {
 
 
 			inline Vector2& operator*=(float i_scale);
+
 
 			// relational
 			inline bool operator==(const Vector2& i_vec) const;

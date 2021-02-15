@@ -66,10 +66,10 @@ namespace Engine {
 			return *this;
 		}
 
-		/*inline Vector2 Vector2::operator*(float i_scale,Vector2& i_vec) const
+		inline Vector2 Vector2::operator*(float i_scale)
 		{
-			return Vector2(i_vec.x() * i_scale, i_vec.y() * i_scale);
-		}*/
+			return Vector2(x_* i_scale, y_ * i_scale);
+		}
 
 		inline Vector2& Vector2::operator*=(float i_scale)
 		{
@@ -77,6 +77,7 @@ namespace Engine {
 			y(y_ * i_scale);
 			return *this;
 		}
+
 
 		inline Vector2 Vector2::operator*(const Vector2& i_vec)
 		{
