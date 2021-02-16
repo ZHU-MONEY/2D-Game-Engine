@@ -119,5 +119,14 @@
     <ClInclude Include="Game\PlayerController.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\GameObject\ReferenceCounter.h">
+      <Filter>Source Files\Engine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\GameObject\GameObjectStrongPtr.h">
+      <Filter>Source Files\Engine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\GameObject\GameObjectWeakPtr.h">
+      <Filter>Source Files\Engine\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

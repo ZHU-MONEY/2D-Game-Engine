@@ -167,11 +167,14 @@
     <ClInclude Include="Containers\List.h" />
     <ClInclude Include="Engine\EngineUtils.h" />
     <ClInclude Include="Engine\GameObject\GameObject.h" />
+    <ClInclude Include="Engine\GameObject\GameObjectWeakPtr.h" />
+    <ClInclude Include="Engine\GameObject\ReferenceCounter.h" />
     <ClInclude Include="Engine\Math\Vector2-inl.h" />
     <ClInclude Include="Engine\Math\Vector2.h" />
     <ClInclude Include="Engine\Physics\PhysicsObject.h" />
     <ClInclude Include="Engine\Physics\PhysicsSystem.h" />
     <ClInclude Include="Engine\Time\TimeUtils.h" />
+    <ClInclude Include="Engine\GameObject\GameObjectStrongPtr.h" />
     <ClInclude Include="Game\MonsterChaseGame.h" />
     <ClInclude Include="Game\PlayerController.h" />
     <ClInclude Include="resource.h" />
