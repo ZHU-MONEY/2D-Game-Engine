@@ -1,6 +1,5 @@
 #pragma once
-//#include "Engine/GameObject/ReferenceCounter.h"
-//#include "Engine/GameObject/StrongPtr.h"
+#include "Engine/GameObject/ReferenceCounter.h"
 
 template<class T>
 class StrongPtr;
