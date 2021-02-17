@@ -7,6 +7,7 @@
 #include <DirectXColors.h>
 #include "Engine/GameObject/GameObject.h"
 #include <Engine\Physics\PhysicsSystem.h>
+#include "Engine/GameObject/StrongPtr.h"
 
 namespace Game {
 	bool StartUp();
@@ -15,19 +16,12 @@ namespace Game {
 
 	class MonsterChaseGame
 	{
-	private:
-		//Actor* player_;
-		
+		StrongPtr<GameObject> player_;
 		MonsterChaseGame();
 		~MonsterChaseGame();
 		static MonsterChaseGame* instance_;
 
-	public:
-		//move the palyer back to private
-		PhysicsSystem* physicsSystemInstance;
-		PhysicsObject* po_;
-		GameObject* player_;
-		
+	public:	
 		static MonsterChaseGame* Create();
 		static MonsterChaseGame* GetInstance();
 		static void Destroy();
@@ -39,10 +33,7 @@ namespace Game {
 		static bool	isKey_W_Down;
 		static bool isKey_A_Down;
 		static bool	isKey_S_Down;
-		static bool	isKey_D_Down;
-
-		//Actor* GetPlayer();
-		
+		static bool	isKey_D_Down;		
 	};
 }//end Game namespace
 #endif

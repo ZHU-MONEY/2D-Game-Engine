@@ -7,12 +7,13 @@ class StrongPtr
 {
 public:
 
+
 	inline StrongPtr() :
 		objectPtr_(nullptr),
 		referenceCounter_(nullptr)
 	{}
 
-	inline StrongPtr(GameObject* go) :
+	inline StrongPtr(T* go) :
 		objectPtr_(go),
 		referenceCounter_(go ? new ReferenceCounter(1, 0) : nullptr)
 	{}
@@ -72,6 +73,8 @@ public:
 	inline bool operator==(const StrongPtr& other) const { return objectPtr_ == other.objectPtr_ };
 	inline bool operator!=(const StrongPtr& other) const { return objectPtr_ != other.objectPtr_ };
 	inline operator bool() const { return objectPtr_ != nullptr; };
+
+
 
 	inline T* GetObjectPtr() const { return objectPtr_; };
 	inline ReferenceCounter* GetReferenceCounter() const { return referenceCounter_; };

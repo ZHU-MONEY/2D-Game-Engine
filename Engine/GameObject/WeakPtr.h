@@ -1,7 +1,10 @@
 #pragma once
-#include "Engine/GameObject/GameObject.h"
-#include "Engine/GameObject/ReferenceCounter.h"
-#include "Engine/GameObject/StrongPtr.h"
+//#include "Engine/GameObject/ReferenceCounter.h"
+//#include "Engine/GameObject/StrongPtr.h"
+
+template<class T>
+class StrongPtr;
+
 template<class T>
 class WeakPtr
 {
@@ -11,9 +14,10 @@ public:
 		objectPtr_(nullptr),
 		referenceCounter_(nullptr)
 	{}
+
 	// create from strong pointer
-	inline WeakPtr(const StrongPtr& otherStrongPointer) :
-		objectPtr_(otherStrongPointer.GetGameObject()),
+	inline WeakPtr(const StrongPtr<T>& otherStrongPointer) :
+		objectPtr_(otherStrongPointer.GetObjectPtr()),
 		referenceCounter_(otherStrongPointer.GetReferenceCounter())
 	{
 		referenceCounter_->weakPtrCount++;
@@ -48,6 +52,33 @@ public:
 		copy.objectPtr_ = nullptr;
 		copy.referenceCounter_ = nullptr;
 	}
+
+	inline WeakPtr& operator=(const WeakPtr& copy) {
+		// check for self assignment
+		if (this != &copy)
+		{
+			if (referenceCounter_)
+			{
+				if (--(referenceCounter_->weakPtrCount) <= 0 && referenceCounter_->strongPtrCount <= 0)
+				{
+					if (referenceCounter_)
+					{
+						delete referenceCounter_;
+						referenceCounter_ = nullptr;
+					}
+				}
+			}
+
+			objectPtr_ = copy.objectPtr_;
+			referenceCounter_ = copy.referenceCounter_;
+
+			if (referenceCounter_)
+			{
+				referenceCounter_->weakPtrCount++;
+			}
+		}
+		return *this;
+	};
 
 
 	inline bool operator==(const WeakPtr& other) const { return objectPtr_ == other.objectPtr_ };

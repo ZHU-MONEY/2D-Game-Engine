@@ -2,12 +2,16 @@
 #define GAME_OBJECT_
 #include "Engine/Math/Vector2.h"
 #include "GLib/GLib.h"
+#include "Engine/GameObject/StrongPtr.h"
+
+
 
 class GameObject
 {
 public:
 	GameObject();
 	~GameObject();
+
 
 	GameObject(const GameObject& other);
 	GameObject& operator=(const GameObject& other);

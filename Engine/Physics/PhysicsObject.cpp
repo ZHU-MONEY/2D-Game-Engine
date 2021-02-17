@@ -15,7 +15,7 @@ PhysicsObject::PhysicsObject() :
 {
 }
 
-PhysicsObject::PhysicsObject(GameObject* gameObject,float mass, float drag):
+PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject,float mass, float drag):
 	objectPtr_(gameObject),
 	mass_(mass),
 	coefficientDrag_(drag),
@@ -28,15 +28,16 @@ PhysicsObject::PhysicsObject(GameObject* gameObject,float mass, float drag):
 PhysicsObject::~PhysicsObject()
 {
 	//Probably just need to remove pointer, if call delete on gameobject then the gameobject mightget deleted
-	if (objectPtr_) {
-		//delete objectPtr_;
-		objectPtr_ = nullptr;
-	}
+	//if (objectPtr_) {
+	//	
+	//	objectPtr_ = nullptr;
+	//}
 	
 }
 
 void PhysicsObject::Update(float dt)
 {
+	StrongPtr<GameObject> objectPtr_(objectPtr_);
 
 	// save previous velocity and position
 	Vector2 previousVelocity = currentVelocity_;

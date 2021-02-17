@@ -7,6 +7,7 @@ GameObject::GameObject() :
 {
 }
 
+
 GameObject::GameObject(const GameObject& other)
 {
 	position_ = other.position_;
@@ -36,3 +37,4 @@ void GameObject::Render()
 		GLib::Render(*sprite_, Offset2, 0.0f, 0.0f);
 	}
 }
+
