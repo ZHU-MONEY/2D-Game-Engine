@@ -2,8 +2,6 @@
 
 #include <cmath>
 
-namespace Engine {
-	namespace Math {
 
 		const Vector2 Vector2::ZERO(0.0f, 0.0f);
 		const Vector2 Vector2::UNIT(1.0f, 1.0f);
@@ -46,6 +44,3 @@ namespace Engine {
 			v.Normalize();
 			return v;
 		}
-
-	} // namespace math
-} // namespace engine

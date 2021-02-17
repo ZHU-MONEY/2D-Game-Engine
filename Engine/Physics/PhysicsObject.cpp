@@ -6,7 +6,7 @@ const float PhysicsObject::MAX_SPEED = 2.0f;
 const float PhysicsObject::MIN_SPEED = 0.0001f;
 
 PhysicsObject::PhysicsObject() :
-	gameObject_(nullptr),
+	objectPtr_(nullptr),
 	mass_(DEFAULT_MASS),
 	coefficientDrag_(DEFAULT_COEFFICIENT_DRAG),
 	currentVelocity_(Vector2::ZERO),
@@ -16,7 +16,7 @@ PhysicsObject::PhysicsObject() :
 }
 
 PhysicsObject::PhysicsObject(GameObject* gameObject,float mass, float drag):
-	gameObject_(gameObject),
+	objectPtr_(gameObject),
 	mass_(mass),
 	coefficientDrag_(drag),
 	currentVelocity_(Vector2::ZERO),
@@ -28,9 +28,9 @@ PhysicsObject::PhysicsObject(GameObject* gameObject,float mass, float drag):
 PhysicsObject::~PhysicsObject()
 {
 	//Probably just need to remove pointer, if call delete on gameobject then the gameobject mightget deleted
-	if (gameObject_) {
-		//delete gameObject_;
-		gameObject_ = nullptr;
+	if (objectPtr_) {
+		//delete objectPtr_;
+		objectPtr_ = nullptr;
 	}
 	
 }
@@ -40,7 +40,7 @@ void PhysicsObject::Update(float dt)
 
 	// save previous velocity and position
 	Vector2 previousVelocity = currentVelocity_;
-	Vector2 previousPosition = gameObject_->GetPosition();
+	Vector2 previousPosition = objectPtr_->GetPosition();
 	Vector2 previousForce = currentForce_;
 
 
@@ -81,7 +81,7 @@ void PhysicsObject::Update(float dt)
 	Vector2 currentPosition = previousPosition + (((previousVelocity + currentVelocity_) * 0.5f) * dt);
 
 	// update game object
-	gameObject_->SetPosition(currentPosition);
+	objectPtr_->SetPosition(currentPosition);
 }
 
 void PhysicsObject::ApplyForce(const Vector2& inputForce)

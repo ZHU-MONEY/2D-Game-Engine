@@ -3,8 +3,7 @@
 #include <stdio.h>		// for vsprintf_s()
 #include <Windows.h>	// for OutputDebugStringA(). Uggh.. this pulls in a lot of Windows specific stuff
 
-namespace Engine
-{
+
 
 void ConsolePrint( const char * i_fmt, ... ) 
 {
@@ -34,5 +33,3 @@ void ConsolePrint( const char * i_fmt, ... )
 
 	OutputDebugStringA(strOutput);
 }
-
-} // namespace Engine

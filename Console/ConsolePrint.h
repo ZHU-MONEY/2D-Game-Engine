@@ -1,10 +1,9 @@
 #ifndef __CONSOLE_PRINT_H
 #define __CONSOLE_PRINT_H
 
-namespace Engine
-{
+
 void ConsolePrint(const char * i_fmt, ...);
-} // Namespace Engine
+
 
 // This is how we handle variable argument pre-processor macros
 // This is only supported by compilers that support the C99 standard

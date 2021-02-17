@@ -1,8 +1,6 @@
 #ifndef __VECTOR2_H
 #define __VECTOR2_H
 
-namespace Engine {
-namespace Math {
 		class Vector2
 		{
 		public:
@@ -64,8 +62,6 @@ namespace Math {
 			float y_;
 		}; // class Vector2
 
-} // namespace math
-} // namespace engine
 
 #include "Vector2-inl.h"
 

@@ -4,7 +4,6 @@
 #include "Engine/Math/Vector2.h"
 #include "Glib\GLib.h"
 #include "Engine/GameObject/GameObject.h"
-using namespace Engine::Math;
 
 class Actor
 {

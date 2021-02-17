@@ -10,7 +10,7 @@
 
 
 
-Actor::Actor(const char* name, const Engine::Math::Vector2& i_InitialPosition) :
+Actor::Actor(const char* name, const Vector2& i_InitialPosition) :
 	name_(_strdup(name ? name : "Unnamed")),
 	position_(i_InitialPosition),
 	sprite_(EngineUtils::CreateSprite("data\\GoodGuy.dds"))
@@ -55,7 +55,7 @@ Actor& Actor::operator=(const Actor& other)
 	return *this;
 }
 
-void Actor::Move(const Engine::Math::Vector2& movement)
+void Actor::Move(const Vector2& movement)
 {
 	position_ += movement;
 }

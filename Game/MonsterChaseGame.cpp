@@ -122,13 +122,7 @@ namespace Game {
 
 	void MonsterChaseGame::Update()
 	{
-		GetPerformanceFrequency();
-		CalculateLastFrameTime_ms();
-		float dt = GetLastFrameTime_ms();
-		//float dt = 0.1f;
-		physicsSystemInstance->Run(dt);
 
-		//for debug
 
 		float speed = 0.2f;
 

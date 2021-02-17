@@ -1,8 +1,6 @@
 #include <math.h>
 #include "Vector2.h"
 
-namespace Engine {
-	namespace Math {
 
 		inline float Vector2::x() const
 		{
@@ -114,6 +112,3 @@ namespace Engine {
 		{
 			return (x_ * x_ + y_ * y_);
 		}
-
-	} // namespace math
-} // namespace engine

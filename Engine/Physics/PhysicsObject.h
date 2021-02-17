@@ -1,7 +1,6 @@
 #pragma once
 #include "Engine/GameObject/GameObject.h"
-
-using namespace Engine::Math;
+#include "Engine/GameObject/WeakPtr.h"
 class PhysicsObject
 {
 public:
@@ -19,8 +18,8 @@ public:
 	void ApplyForce(const Vector2& inputForce);
 
 	// setter getter
-	inline GameObject* GetGameObject() const { return gameObject_; };
-	inline void SetGameObject(GameObject* gameObject) { gameObject_ = gameObject; };
+	inline GameObject* GetGameObject() const { return objectPtr_; };
+	inline void SetGameObject(GameObject* gameObject) { objectPtr_ = gameObject; };
 	inline float GetMass() const { return mass_; };
 	inline void SetMass(const float mass) { mass_ = mass; };
 	inline float GetCoefficientDrag() const { return coefficientDrag_; };
@@ -34,7 +33,7 @@ public:
 
 private:
 
-	GameObject* gameObject_;
+	GameObject* objectPtr_;
 	float mass_;
 	float coefficientDrag_;
 	Vector2 currentVelocity_;

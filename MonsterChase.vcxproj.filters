@@ -75,6 +75,9 @@
     <ClCompile Include="Game\PlayerController.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Engine.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h">
@@ -122,10 +125,13 @@
     <ClInclude Include="Engine\GameObject\ReferenceCounter.h">
       <Filter>Source Files\Engine\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\GameObject\GameObjectStrongPtr.h">
+    <ClInclude Include="Engine\Engine.h">
+      <Filter>Source Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\GameObject\WeakPtr.h">
       <Filter>Source Files\Engine\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\GameObject\GameObjectWeakPtr.h">
+    <ClInclude Include="Engine\GameObject\StrongPtr.h">
       <Filter>Source Files\Engine\GameObject</Filter>
     </ClInclude>
   </ItemGroup>

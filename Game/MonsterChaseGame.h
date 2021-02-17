@@ -7,7 +7,6 @@
 #include <DirectXColors.h>
 #include "Engine/GameObject/GameObject.h"
 #include <Engine\Physics\PhysicsSystem.h>
-using namespace Engine::Math;
 
 namespace Game {
 	bool StartUp();

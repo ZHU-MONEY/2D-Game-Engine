@@ -2,7 +2,7 @@
 #define GAME_OBJECT_
 #include "Engine/Math/Vector2.h"
 #include "GLib/GLib.h"
-using namespace Engine::Math;
+
 class GameObject
 {
 public:
