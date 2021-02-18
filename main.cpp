@@ -23,7 +23,7 @@
 #include "Game/PlayerController.h"
 #include "Engine/Engine.h"
 //#include "Engine/Time/TimeUtils.Win.cpp"
-
+#include "Engine/GameObject/WeakPtr.h"
 #include "Engine/Physics/PhysicsSystem.h"
 
 // create a random number in a range
@@ -263,30 +263,43 @@ void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)
 int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow)
 {
 
-	//if (Engine::StartUp())
-	//{
-	//	// IMPORTANT: first we need to initialize GLib
-	//	bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "MonsterChaseGame", -1, 1000, 800, true);
-	//	if (bSuccess)
-	//	{
-	//		Game::StartUp();
-	//		Game::MonsterChaseGame* MC = Game::MonsterChaseGame::GetInstance();
-	//		PhysicsObject* po = new PhysicsObject(MC->player_, PhysicsObject::DEFAULT_MASS,PhysicsObject::DEFAULT_COEFFICIENT_DRAG);
-	//		//can probably add this code into the PhysicsObject constructor
-	//		PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
-	//		physicsSystemInstance->AddPhysicsObject(po);
-	//		
-	//		bool quit = false;
-	//		while (!quit) {
-	//			Engine::Run();
-	//			MC->Update();
-	//		}
+	if (Engine::StartUp())
+	{
+		// IMPORTANT: first we need to initialize GLib
+		bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "MonsterChaseGame", -1, 1000, 800, true);
+		if (bSuccess)
+		{
+			Game::StartUp();
+			Game::MonsterChaseGame* MC = Game::MonsterChaseGame::GetInstance();
 
-	//		MC->Destroy();
-	//		// IMPORTANT:  Tell GLib to shutdown, releasing resources.
-	//		GLib::Shutdown();
-	//	}
-	//}
+			PhysicsObject* po = new PhysicsObject(WeakPtr<GameObject>(MC->GetPlayer()), PhysicsObject::DEFAULT_MASS,PhysicsObject::DEFAULT_COEFFICIENT_DRAG);
+			//can probably add this code into the PhysicsObject constructor
+			PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
+			physicsSystemInstance->AddPhysicsObject(po);
+			
+			bool quit = false;
+			while (!quit) {
+
+
+				float speed = 0.2f;
+				if (MC->isKey_W_Down)
+					po->ApplyForce(Vector2(0.0f, speed));
+				if (MC->isKey_S_Down)
+					po->ApplyForce(Vector2(0.0f, -speed));
+				if (MC->isKey_D_Down)
+					po->ApplyForce(Vector2(speed, 0.0f));
+				if (MC->isKey_A_Down)
+					po->ApplyForce(Vector2(-speed, 0.0f));
+
+				Engine::Run();
+				MC->Update();
+			}
+
+			MC->Destroy();
+			// IMPORTANT:  Tell GLib to shutdown, releasing resources.
+			GLib::Shutdown();
+		}
+	}
 
 	//#if defined _DEBUG
 	_CrtDumpMemoryLeaks();

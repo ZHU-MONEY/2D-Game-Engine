@@ -24,6 +24,7 @@ namespace Game {
 	public:	
 		static MonsterChaseGame* Create();
 		static MonsterChaseGame* GetInstance();
+		StrongPtr<GameObject> GetPlayer();
 		static void Destroy();
 
 		void Initialize();

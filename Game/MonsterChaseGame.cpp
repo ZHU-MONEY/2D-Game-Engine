@@ -69,7 +69,7 @@ namespace Game {
 
 	MonsterChaseGame::MonsterChaseGame()
 	{
-		//player_ = nullptr;
+		player_ = nullptr;
 
 		GLib::SetKeyStateChangeCallback(AcceptKey);
 
@@ -95,6 +95,11 @@ namespace Game {
 		return instance_;
 	}
 
+	StrongPtr<GameObject> MonsterChaseGame::GetPlayer()
+	{
+		return player_;
+	}
+
 	void MonsterChaseGame::Destroy()
 	{
 		/*if (instance_) {
@@ -105,57 +110,43 @@ namespace Game {
 
 	void MonsterChaseGame::Initialize()
 	{
-		//player_ = new GameObject();
+		player_ = GameObject::Create();
 
 		
 	}
 
-	//void MonsterChaseGame::Update()
-	//{
-
-
-	//	float speed = 0.2f;
-
-	//	if (isKey_W_Down)
-	//		po_->ApplyForce(Vector2(0.0f, speed));		
-	//	if (isKey_S_Down)
-	//		po_->ApplyForce(Vector2(0.0f, -speed));		
-	//	if (isKey_D_Down)
-	//		po_->ApplyForce(Vector2(speed, 0.0f));
-	//	if (isKey_A_Down)
-	//		po_->ApplyForce(Vector2(-speed, 0.0f));
-
-	//	const size_t	lenBuffer = 65;
-	//	char			Buffer[lenBuffer];
-	//	sprintf_s(Buffer, lenBuffer, "player y %f\n", player_->GetPosition().y());
-	//	OutputDebugStringA(Buffer);
-
-	//	
-	//		
-
-
-	//	/*Vector2 speed = Vector2(0.01f, 0);
-	//	Vector2 speed2 = Vector2(-0.01f, 0);
-	//	if (isKey_D_Down) {
-
-
-	//		player_->Move(speed);
-	//	}
-
-	//	if (isKey_A_Down) {
-	//		player_->Move(speed2);
-	//	}*/
-
-
-
-	//	bool quit = false;
-	//	GLib::Service(quit);
-
-	//	if (!quit)
-	//	{
-	//		Render();
-	//	}
-	//}
+	void MonsterChaseGame::Update()
+	{
+	/*	float speed = 0.2f;
+		if (isKey_W_Down)
+			po_->ApplyForce(Vector2(0.0f, speed));
+		if (isKey_S_Down)
+			po_->ApplyForce(Vector2(0.0f, -speed));
+		if (isKey_D_Down)
+			po_->ApplyForce(Vector2(speed, 0.0f));
+		if (isKey_A_Down)
+			po_->ApplyForce(Vector2(-speed, 0.0f));*/
+		const size_t	lenBuffer = 65;
+		char			Buffer[lenBuffer];
+		sprintf_s(Buffer, lenBuffer, "player y %f\n", player_->GetPosition().y());
+		OutputDebugStringA(Buffer);
+		
+			
+		/*Vector2 speed = Vector2(0.01f, 0);
+		Vector2 speed2 = Vector2(-0.01f, 0);
+		if (isKey_D_Down) {
+			player_->Move(speed);
+		}
+		if (isKey_A_Down) {
+			player_->Move(speed2);
+		}*/
+		bool quit = false;
+		GLib::Service(quit);
+		if (!quit)
+		{
+			Render();
+		}
+	}
 
 	void MonsterChaseGame::Render()
 	{

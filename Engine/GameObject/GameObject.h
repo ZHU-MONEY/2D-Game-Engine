@@ -1,14 +1,11 @@
-#ifndef GAME_OBJECT_
-#define GAME_OBJECT_
+#pragma once
 #include "Engine/Math/Vector2.h"
 #include "GLib/GLib.h"
 #include "Engine/GameObject/StrongPtr.h"
-
-
-
 class GameObject
 {
 public:
+	static StrongPtr<GameObject> Create();
 	GameObject();
 	~GameObject();
 
@@ -29,6 +26,5 @@ protected:
 };
 
 
-#endif // !GAME_OBJECT_
 
 

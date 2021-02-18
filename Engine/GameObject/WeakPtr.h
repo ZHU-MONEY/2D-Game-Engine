@@ -1,12 +1,13 @@
 #pragma once
 #include "Engine/GameObject/ReferenceCounter.h"
-
-template<class T>
-class StrongPtr;
+#include "Engine/GameObject/StrongPtr.h"
+//template<class T>
+//class StrongPtr;
 
 template<class T>
 class WeakPtr
 {
+	template <typename T> friend class StrongPtr;
 public:
 	//is default constructor really needed for this one?
 	inline WeakPtr() :
