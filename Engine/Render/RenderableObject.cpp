@@ -25,15 +25,3 @@ RenderableObject::~RenderableObject()
 		sprite_ = nullptr;
 	}
 }
-
-void RenderableObject::Render()
-{
-	if (objectPtr_) {
-		StrongPtr<GameObject> objectPtr_(objectPtr_);
-		position_ = { objectPtr_->GetPosition().x(), objectPtr_->GetPosition().y()};
-	}
-
-	GLib::Render(*sprite_, position_, 0.0f, 0.0f);
-}
-
-
