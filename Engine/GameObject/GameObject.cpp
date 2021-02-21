@@ -29,10 +29,6 @@ GameObject& GameObject::operator=(const GameObject& other)
 	return *this;
 }
 
-void GameObject::Move(const Vector2& movement)
-{
-
-}
 
 void GameObject::Render()
 {

@@ -40,6 +40,9 @@
     <Filter Include="Source Files\Engine\Physics">
       <UniqueIdentifier>{98c2e049-8854-446c-8729-5ceb0a5a5fe0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Renderer">
+      <UniqueIdentifier>{dd097469-d060-4582-a883-a4dfcf6aab75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -77,6 +80,12 @@
     </ClCompile>
     <ClCompile Include="Engine\Engine.cpp">
       <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\RenderableObject.cpp">
+      <Filter>Source Files\Engine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Render\Renderer.cpp">
+      <Filter>Source Files\Engine\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +142,12 @@
     </ClInclude>
     <ClInclude Include="Engine\GameObject\StrongPtr.h">
       <Filter>Source Files\Engine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\RenderableObject.h">
+      <Filter>Source Files\Engine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Render\Renderer.h">
+      <Filter>Source Files\Engine\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

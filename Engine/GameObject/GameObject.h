@@ -16,8 +16,6 @@ public:
 	inline void SetPosition(const Vector2& position) { position_ = position; };
 	inline Vector2 GetPosition() const { return position_; };
 
-	void Move(const Vector2& movement);
-
 	void Render();
 
 protected:

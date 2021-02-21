@@ -14,8 +14,6 @@ Actor::Actor(const char* name, const Vector2& i_InitialPosition) :
 	name_(_strdup(name ? name : "Unnamed")),
 	position_(i_InitialPosition),
 	sprite_(EngineUtils::CreateSprite("data\\GoodGuy.dds"))
-
-
 {
 #ifdef _DEBUG_ACTOR_CONSTRUCTORS
 	DEBUG_PRINT("Creating actor named %s using standard constructor.", pName ? pName : "Unnamed");

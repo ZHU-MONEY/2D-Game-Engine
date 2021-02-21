@@ -37,7 +37,18 @@ PhysicsObject::~PhysicsObject()
 
 void PhysicsObject::Update(float dt)
 {
+
+	const size_t	lenBuffer = 65;
+	char			Buffer[lenBuffer];
+	sprintf_s(Buffer, lenBuffer, "strongPtr Counter BEFORE temporary creation: %d\n", GetGameObject().GetReferenceCounter()->strongPtrCount);
+	OutputDebugStringA(Buffer);
+
 	StrongPtr<GameObject> objectPtr_(objectPtr_);
+
+	//const size_t	lenBuffer = 65;
+	//char			Buffer[lenBuffer];
+	sprintf_s(Buffer, lenBuffer, "strongPtr Counter AFTER temporary creation:   %d\n", objectPtr_.GetReferenceCounter()->strongPtrCount);
+	OutputDebugStringA(Buffer);
 
 	// save previous velocity and position
 	Vector2 previousVelocity = currentVelocity_;
