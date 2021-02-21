@@ -1,8 +1,14 @@
 #include "RenderableObject.h"
 
-RenderableObject::RenderableObject()
+RenderableObject::RenderableObject() :
+
+	objectPtr_(nullptr),
+	sprite_(nullptr)
 {
+	position_ = { 0.0f, 0.0f };
 }
+
+
 
 RenderableObject::RenderableObject(Sprite* sprite) :
 	objectPtr_(nullptr),
@@ -28,9 +34,9 @@ RenderableObject::~RenderableObject()
 
 void RenderableObject::Render()
 {
-	if (objectPtr_) {
-		StrongPtr<GameObject> objectPtr_(objectPtr_);
-		position_ = { objectPtr_->GetPosition().x(), objectPtr_->GetPosition().y()};
+	if (this->objectPtr_) {
+		StrongPtr<GameObject> objectPtr_(this->objectPtr_);
+		position_ = { objectPtr_->GetPosition().x(), objectPtr_->GetPosition().y() };
 	}
 
 	GLib::Render(*sprite_, position_, 0.0f, 0.0f);

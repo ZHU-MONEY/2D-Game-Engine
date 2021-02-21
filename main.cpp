@@ -279,12 +279,26 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 			physicsSystemInstance->AddPhysicsObject(po);
 
 
+<<<<<<< Updated upstream
 			//render part 
 			Renderer* rendererInstance = Renderer::GetInstance();
 
 			RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(MC->GetPlayer()), MC->GetPlayer().GetObjectPtr()->GetSprite());
 			
 			rendererInstance->AddRenderableObject(ro);
+=======
+			//get the image
+			GLib::Sprite* sssss = EngineUtils::CreateSprite("data\\GoodGuy.dds");
+
+			//render part 
+			//-----Renderer* rendererInstance = Renderer::GetInstance();
+
+			/*RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(MC->GetPlayer()), MC->GetPlayer().GetObjectPtr()->GetSprite());*/
+
+			//----RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(MC->GetPlayer()), sssss);
+			
+			//----rendererInstance->AddRenderableObject(ro);
+>>>>>>> Stashed changes
 
 
 			
@@ -303,7 +317,7 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 					po->ApplyForce(Vector2(-speed, 0.0f));
 
 				Engine::Run();
-				MC->Update();
+				//MC->Update();
 			}
 
 			MC->Destroy();
