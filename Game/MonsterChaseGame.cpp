@@ -123,12 +123,21 @@ namespace Game {
 		//sprintf_s(Buffer, lenBuffer, "player y %f\n", player_->GetPosition().y());
 		//OutputDebugStringA(Buffer);
 
+<<<<<<< Updated upstream
 		bool quit = false;
 		GLib::Service(quit);
 		if (!quit)
 		{
 			//Render();
 		}
+=======
+		//bool quit = false;
+		//GLib::Service(quit);
+		//if (!quit)
+		//{
+		//	//Render();
+		//}
+>>>>>>> Stashed changes
 	}
 
 	//void MonsterChaseGame::Render()
