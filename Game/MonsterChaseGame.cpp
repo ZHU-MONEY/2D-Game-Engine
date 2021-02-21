@@ -127,24 +127,24 @@ namespace Game {
 		GLib::Service(quit);
 		if (!quit)
 		{
-			Render();
+			//Render();
 		}
 	}
 
-	void MonsterChaseGame::Render()
-	{
-		// Tell GLib that we want to start rendering
-		GLib::BeginRendering(DirectX::Colors::Blue);
-		// Tell GLib that we want to render some sprites
-		GLib::Sprites::BeginRendering();
+	//void MonsterChaseGame::Render()
+	//{
+	//	// Tell GLib that we want to start rendering
+	//	GLib::BeginRendering(DirectX::Colors::Blue);
+	//	// Tell GLib that we want to render some sprites
+	//	GLib::Sprites::BeginRendering();
 
-		player_->Render();
-		
-		// Tell GLib we're done rendering sprites
-		GLib::Sprites::EndRendering();
-		// Tell GLib we're done rendering
-		GLib::EndRendering();
-	}
+	//	player_->Render();
+	//	
+	//	// Tell GLib we're done rendering sprites
+	//	GLib::Sprites::EndRendering();
+	//	// Tell GLib we're done rendering
+	//	GLib::EndRendering();
+	//}
 }
 
 //Actor* MonsterChaseGame::GetPlayer()

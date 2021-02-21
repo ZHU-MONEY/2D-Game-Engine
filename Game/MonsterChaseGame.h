@@ -29,7 +29,7 @@ namespace Game {
 
 		void Initialize();
 		void Update();
-		void Render();
+		//void Render();
 
 		static bool	isKey_W_Down;
 		static bool isKey_A_Down;
