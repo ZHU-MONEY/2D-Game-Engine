@@ -9,13 +9,15 @@ class RenderableObject
 public:
 	//default constructor
 	RenderableObject();
-
 	//constructor
 	RenderableObject(Sprite* sprite);
 	RenderableObject(WeakPtr<GameObject>& gameObject, Sprite* sprite);
-
 	//destructor
 	~RenderableObject();
+
+	void Render();
+
+
 private:
 	WeakPtr<GameObject> objectPtr_;
 	Sprite* sprite_;

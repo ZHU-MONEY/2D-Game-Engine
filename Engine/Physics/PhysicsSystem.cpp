@@ -11,6 +11,7 @@ PhysicsSystem::PhysicsSystem()
 //destructor
 PhysicsSystem::~PhysicsSystem()
 {
+	physicsObjects_.clear();
 }
 
 PhysicsSystem* PhysicsSystem::Create()
