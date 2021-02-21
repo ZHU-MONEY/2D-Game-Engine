@@ -25,6 +25,7 @@
 //#include "Engine/Time/TimeUtils.Win.cpp"
 #include "Engine/GameObject/WeakPtr.h"
 #include "Engine/Physics/PhysicsSystem.h"
+#include "Engine/Render/Renderer.h"
 
 // create a random number in a range
 // not a very robust solution tends to bias toward the low end
@@ -276,6 +277,16 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 			//can probably add this code into the PhysicsObject constructor
 			PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
 			physicsSystemInstance->AddPhysicsObject(po);
+
+
+			//render part 
+			Renderer* rendererInstance = Renderer::GetInstance();
+
+			RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(MC->GetPlayer()), MC->GetPlayer().GetObjectPtr()->GetSprite());
+			
+			rendererInstance->AddRenderableObject(ro);
+
+
 			
 			bool quit = false;
 			while (!quit) {
