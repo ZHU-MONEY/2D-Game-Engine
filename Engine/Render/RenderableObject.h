@@ -1,5 +1,6 @@
 #pragma once
 #include "GLib/GLib.h"
+#include "Engine/GameObject/GameObject.h"
 #include "Engine/GameObject/WeakPtr.h"
 #include "Engine/GameObject/StrongPtr.h"
 
