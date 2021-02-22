@@ -18,7 +18,7 @@ public:
 	
 	inline GLib::Sprite* GetSprite() const { return sprite_; };
 	//void Render();
-
+	
 protected:
 	//GLib::Sprite* sprite_;
 	GLib::Sprite* sprite_;

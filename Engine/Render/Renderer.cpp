@@ -1,5 +1,10 @@
 #include "Renderer.h"
 
+//static member initialize
+Renderer* Renderer::instance_ = nullptr;
+
+
+
 Renderer* Renderer::Create()
 {
 	if (!instance_)
@@ -59,6 +64,10 @@ void Renderer::RemoveRenderableObject(RenderableObject* ro)
 	else {
 		renderableObjects_.erase(it);
 	}
+}
+
+Renderer::Renderer()
+{
 }
 
 Renderer::~Renderer()
