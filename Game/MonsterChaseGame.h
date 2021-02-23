@@ -12,7 +12,7 @@
 namespace Game {
 	bool StartUp();
 	void Shutdown();
-	void AcceptKey(unsigned int i_VKeyID, bool bWentDown);
+	//void AcceptKey(unsigned int i_VKeyID, bool bWentDown);
 
 	class MonsterChaseGame
 	{
@@ -31,10 +31,10 @@ namespace Game {
 		void Update();
 		//void Render();
 
-		static bool	isKey_W_Down;
+/*		static bool	isKey_W_Down;
 		static bool isKey_A_Down;
 		static bool	isKey_S_Down;
-		static bool	isKey_D_Down;		
+		static bool	isKey_D_Down;	*/	
 	};
 }//end Game namespace
 #endif

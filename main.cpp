@@ -309,15 +309,15 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 			while (!quit) {
 
 
-				float speed = 0.2f;
-				if (MC->isKey_W_Down)
-					po->ApplyForce(Vector2(0.0f, speed));
-				if (MC->isKey_S_Down)
-					po->ApplyForce(Vector2(0.0f, -speed));
-				if (MC->isKey_D_Down)
-					po->ApplyForce(Vector2(speed, 0.0f));
-				if (MC->isKey_A_Down)
-					po->ApplyForce(Vector2(-speed, 0.0f));
+				//float speed = 0.2f;
+				//if (MC->isKey_W_Down)
+				//	po->ApplyForce(Vector2(0.0f, speed));
+				//if (MC->isKey_S_Down)
+				//	po->ApplyForce(Vector2(0.0f, -speed));
+				//if (MC->isKey_D_Down)
+				//	po->ApplyForce(Vector2(speed, 0.0f));
+				//if (MC->isKey_A_Down)
+				//	po->ApplyForce(Vector2(-speed, 0.0f));
 
 				Engine::Run();
 				//MC->Update();
