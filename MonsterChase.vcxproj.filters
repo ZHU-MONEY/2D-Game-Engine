@@ -43,6 +43,9 @@
     <Filter Include="Source Files\Engine\Renderer">
       <UniqueIdentifier>{dd097469-d060-4582-a883-a4dfcf6aab75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Input">
+      <UniqueIdentifier>{edc868b1-40c4-4421-810a-1690a1e336f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -86,6 +89,9 @@
     </ClCompile>
     <ClCompile Include="Engine\Render\Renderer.cpp">
       <Filter>Source Files\Engine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Input\InputReader.cpp">
+      <Filter>Source Files\Engine\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Render\Renderer.h">
       <Filter>Source Files\Engine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Input\InputReader.h">
+      <Filter>Source Files\Engine\Input</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

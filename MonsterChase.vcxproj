@@ -153,6 +153,7 @@
     <ClCompile Include="Engine\Engine.cpp" />
     <ClCompile Include="Engine\EngineUtils.cpp" />
     <ClCompile Include="Engine\GameObject\GameObject.cpp" />
+    <ClCompile Include="Engine\Input\InputReader.cpp" />
     <ClCompile Include="Engine\Physics\PhysicsObject.cpp" />
     <ClCompile Include="Engine\Physics\PhysicsSystem.cpp" />
     <ClCompile Include="Engine\Render\RenderableObject.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="Engine\GameObject\GameObject.h" />
     <ClInclude Include="Engine\GameObject\WeakPtr.h" />
     <ClInclude Include="Engine\GameObject\ReferenceCounter.h" />
+    <ClInclude Include="Engine\Input\InputReader.h" />
     <ClInclude Include="Engine\Math\Vector2-inl.h" />
     <ClInclude Include="Engine\Math\Vector2.h" />
     <ClInclude Include="Engine\Physics\PhysicsObject.h" />
