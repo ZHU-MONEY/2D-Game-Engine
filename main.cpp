@@ -282,12 +282,16 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 			//render part 
 			Renderer* rendererInstance = Renderer::GetInstance();
 
-			RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(MC->GetPlayer()), MC->GetPlayer().GetObjectPtr()->GetSprite());
+			//get the image
+			GLib::Sprite* sssss = EngineUtils::CreateSprite("data\\BadGuy.dds");
+
+			//RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(MC->GetPlayer()), MC->GetPlayer().GetObjectPtr()->GetSprite());
+
+			RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(MC->GetPlayer()), sssss);
 			
 			rendererInstance->AddRenderableObject(ro);
 
-			//get the image
-			GLib::Sprite* sssss = EngineUtils::CreateSprite("data\\GoodGuy.dds");
+			
 
 			//render part 
 			//-----Renderer* rendererInstance = Renderer::GetInstance();
