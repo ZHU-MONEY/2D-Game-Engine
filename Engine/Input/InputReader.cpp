@@ -2,6 +2,14 @@
 
 InputReader* InputReader::instance_ = nullptr;
 
+InputReader::InputReader()
+{
+}
+
+InputReader::~InputReader()
+{
+}
+
 InputReader* InputReader::Create()
 {
 	if (!instance_)
