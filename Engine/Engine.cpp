@@ -1,31 +1,36 @@
 #include "Engine.h"
 #include "Engine/Time/TimeUtils.Win.cpp"
 #include "Engine/Time/TimeUtils.h"
+#include "Glib/GLib.h"
 
 namespace Engine {
-    bool StartUp()
-    {
-        PhysicsSystem::Create();
-        Renderer::Create();
-        
-        GetPerformanceFrequency();
+	static bool requestQuit = false;
+	bool StartUp()
+	{
+		PhysicsSystem::Create();
+		Renderer::Create();
 
-        return true;
-    }
+		GetPerformanceFrequency();
 
-    void Run()
-    {
-        CalculateLastFrameTime_ms();
-        float dt = GetLastFrameTime_ms();
+		requestQuit = false;
 
-        PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
-        Renderer* rendererInstance = Renderer::GetInstance();
-       
-        physicsSystemInstance->Run(dt);
-        rendererInstance->Run();
-    }
+		return true;
+	}
 
-    void Shutdown()
-    {
-    }
+	void Run()
+	{
+		GLib::Service(requestQuit);
+		CalculateLastFrameTime_ms();
+		float dt = GetLastFrameTime_ms();
+
+		PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
+		Renderer* rendererInstance = Renderer::GetInstance();
+
+		physicsSystemInstance->Run(dt);
+		rendererInstance->Run();
+	}
+
+	void Shutdown()
+	{
+	}
 }
