@@ -27,6 +27,8 @@
 #include "Engine/Physics/PhysicsSystem.h"
 #include "Engine/Render/Renderer.h"
 
+#include "Engine/Input/InputReader.h"
+
 // create a random number in a range
 // not a very robust solution tends to bias toward the low end
 template<typename T>
@@ -291,17 +293,9 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 			
 			rendererInstance->AddRenderableObject(ro);
 
-			
 
-			//render part 
-			//-----Renderer* rendererInstance = Renderer::GetInstance();
-
-			/*RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(MC->GetPlayer()), MC->GetPlayer().GetObjectPtr()->GetSprite());*/
-
-			//----RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(MC->GetPlayer()), sssss);
-			
-			//----rendererInstance->AddRenderableObject(ro);
-
+			//get the input reader associated with Engine
+			InputReader* inputReaderInstance = InputReader::GetInstance();
 
 
 			
@@ -309,15 +303,16 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 			while (!quit) {
 
 
-				//float speed = 0.2f;
-				//if (MC->isKey_W_Down)
-				//	po->ApplyForce(Vector2(0.0f, speed));
-				//if (MC->isKey_S_Down)
-				//	po->ApplyForce(Vector2(0.0f, -speed));
-				//if (MC->isKey_D_Down)
-				//	po->ApplyForce(Vector2(speed, 0.0f));
-				//if (MC->isKey_A_Down)
-				//	po->ApplyForce(Vector2(-speed, 0.0f));
+
+				float speed = 0.2f;
+				if (inputReaderInstance->isKey_W_Down)
+					po->ApplyForce(Vector2(0.0f, speed));
+				if (inputReaderInstance->isKey_S_Down)
+					po->ApplyForce(Vector2(0.0f, -speed));
+				if (inputReaderInstance->isKey_D_Down)
+					po->ApplyForce(Vector2(speed, 0.0f));
+				if (inputReaderInstance->isKey_A_Down)
+					po->ApplyForce(Vector2(-speed, 0.0f));
 
 				Engine::Run();
 				//MC->Update();

@@ -1,6 +1,7 @@
 #include "MonsterChaseGame.h"
 #include "Engine/Time/TimeUtils.Win.cpp"
 #include "Engine/Time/TimeUtils.h"
+#include <Engine\Input\InputReader.h>
 
 
 namespace Game {
@@ -9,6 +10,7 @@ namespace Game {
 	{
 		// create an instance of the game
 		MonsterChaseGame* mc_instance = MonsterChaseGame::Create();
+
 		if (mc_instance == nullptr)
 		{
 			return false;
@@ -118,47 +120,9 @@ namespace Game {
 	void MonsterChaseGame::Update()
 	{
 
-		//const size_t	lenBuffer = 65;
-		//char			Buffer[lenBuffer];
-		//sprintf_s(Buffer, lenBuffer, "player y %f\n", player_->GetPosition().y());
-		//OutputDebugStringA(Buffer);
-
-
-		bool quit = false;
-		GLib::Service(quit);
-		if (!quit)
-		{
-			//Render();
-		}
-
-		//bool quit = false;
-		//GLib::Service(quit);
-		//if (!quit)
-		//{
-		//	//Render();
-		//}
-
 	}
 
-	//void MonsterChaseGame::Render()
-	//{
-	//	// Tell GLib that we want to start rendering
-	//	GLib::BeginRendering(DirectX::Colors::Blue);
-	//	// Tell GLib that we want to render some sprites
-	//	GLib::Sprites::BeginRendering();
-
-	//	player_->Render();
-	//	
-	//	// Tell GLib we're done rendering sprites
-	//	GLib::Sprites::EndRendering();
-	//	// Tell GLib we're done rendering
-	//	GLib::EndRendering();
-	//}
 }
 
-//Actor* MonsterChaseGame::GetPlayer()
-//{
-//	//return player_;
-//}
 
 

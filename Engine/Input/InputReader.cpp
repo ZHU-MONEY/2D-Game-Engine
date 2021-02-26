@@ -9,12 +9,10 @@ bool InputReader::isKey_D_Down = false;
 
 void AcceptKey2(unsigned int i_VKeyID, bool bWentDown)
 {
-		const size_t	lenBuffer = 65;
-		char			Buffer[lenBuffer];
-
-		//sprintf_s(Buffer, lenBuffer, "VKey %04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
-		sprintf_s(Buffer, lenBuffer, "HAHAHAHAHAH  %s\n", InputReader::isKey_A_Down ? "A is downFUCK" : "A is upFUCK");
-		OutputDebugStringA(Buffer);
+		//const size_t	lenBuffer = 65;
+		//char			Buffer[lenBuffer];
+		//sprintf_s(Buffer, lenBuffer, "000  %s\n", InputReader::isKey_A_Down ? "A is downFUCK" : "A is upFUCK");
+		//OutputDebugStringA(Buffer);
 
 	switch (i_VKeyID)
 	{
