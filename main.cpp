@@ -275,47 +275,10 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 			Game::StartUp();
 			Game::MonsterChaseGame* MC = Game::MonsterChaseGame::GetInstance();
 
-			PhysicsObject* po = new PhysicsObject(WeakPtr<GameObject>(MC->GetPlayer()), PhysicsObject::DEFAULT_MASS,PhysicsObject::DEFAULT_COEFFICIENT_DRAG);
-			//can probably add this code into the PhysicsObject constructor
-			PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
-			physicsSystemInstance->AddPhysicsObject(po);
-
-
-			//render part 
-			Renderer* rendererInstance = Renderer::GetInstance();
-
-			//get the image
-			GLib::Sprite* sssss = EngineUtils::CreateSprite("data\\BadGuy.dds");
-
-			//RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(MC->GetPlayer()), MC->GetPlayer().GetObjectPtr()->GetSprite());
-
-			RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(MC->GetPlayer()), sssss);
-			
-			rendererInstance->AddRenderableObject(ro);
-
-
-			//get the input reader associated with Engine
-			InputReader* inputReaderInstance = InputReader::GetInstance();
-
-
-			
 			bool quit = false;
 			while (!quit) {
-
-
-
-				float speed = 0.2f;
-				if (inputReaderInstance->isKey_W_Down)
-					po->ApplyForce(Vector2(0.0f, speed));
-				if (inputReaderInstance->isKey_S_Down)
-					po->ApplyForce(Vector2(0.0f, -speed));
-				if (inputReaderInstance->isKey_D_Down)
-					po->ApplyForce(Vector2(speed, 0.0f));
-				if (inputReaderInstance->isKey_A_Down)
-					po->ApplyForce(Vector2(-speed, 0.0f));
-
 				Engine::Run();
-				//MC->Update();
+				MC->Update();
 			}
 
 			MC->Destroy();

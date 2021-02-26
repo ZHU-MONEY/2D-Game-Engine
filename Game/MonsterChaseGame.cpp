@@ -2,7 +2,8 @@
 #include "Engine/Time/TimeUtils.Win.cpp"
 #include "Engine/Time/TimeUtils.h"
 #include <Engine\Input\InputReader.h>
-
+#include "Engine/Physics/PhysicsObject.h"
+#include "Engine/Render/Renderer.h"
 
 namespace Game {
 
@@ -114,12 +115,36 @@ namespace Game {
 	{
 		player_ = GameObject::Create();
 
-		
+		//physics part
+		PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
+		PhysicsObject* po = new PhysicsObject(WeakPtr<GameObject>(player_), PhysicsObject::DEFAULT_MASS, PhysicsObject::DEFAULT_COEFFICIENT_DRAG);
+		physicsSystemInstance->AddPhysicsObject(po);
+
+		//render part
+		Renderer* rendererInstance = Renderer::GetInstance();
+		RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(player_), player_.GetObjectPtr()->GetSprite());
+		rendererInstance->AddRenderableObject(ro);
 	}
 
 	void MonsterChaseGame::Update()
 	{
+		//get the input reader associated with Engine
+		InputReader* inputReaderInstance = InputReader::GetInstance();
+		PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
+		float speed = 0.2f;
 
+		for each (PhysicsObject * po in physicsSystemInstance->GetPhysicsObjects())
+		{
+			if (inputReaderInstance->isKey_W_Down)
+				po->ApplyForce(Vector2(0.0f, speed));
+			if (inputReaderInstance->isKey_S_Down)
+				po->ApplyForce(Vector2(0.0f, -speed));
+			if (inputReaderInstance->isKey_D_Down)
+				po->ApplyForce(Vector2(speed, 0.0f));
+			if (inputReaderInstance->isKey_A_Down)
+				po->ApplyForce(Vector2(-speed, 0.0f));
+		}
+		
 	}
 
 }

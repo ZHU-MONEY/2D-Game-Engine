@@ -15,6 +15,7 @@ private:
 public:
 	static PhysicsSystem* Create();
 	inline static PhysicsSystem* GetInstance() { return instance_; };
+	inline std::vector<PhysicsObject*> GetPhysicsObjects() { return physicsObjects_; };
 	static void Destroy();
 	void Run(float dt);
 
