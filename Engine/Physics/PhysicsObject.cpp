@@ -1,4 +1,5 @@
 #include "PhysicsObject.h"
+#include "Engine/Physics/PhysicsSystem.h"
 
 const float PhysicsObject::DEFAULT_MASS = 2.0f;
 const float PhysicsObject::DEFAULT_COEFFICIENT_DRAG = 0.5f;
@@ -13,6 +14,8 @@ PhysicsObject::PhysicsObject() :
 	currentForce_(Vector2::ZERO),
 	currentAcceleration_(Vector2::ZERO)
 {
+	PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
+	physicsSystemInstance->AddPhysicsObject(this);
 }
 
 PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject) :
@@ -23,6 +26,8 @@ PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject) :
 	currentForce_(Vector2::ZERO),
 	currentAcceleration_(Vector2::ZERO)
 {
+	PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
+	physicsSystemInstance->AddPhysicsObject(this);
 }
 
 PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject,float mass, float drag):
@@ -33,6 +38,8 @@ PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject,float mass, float d
 	currentForce_(Vector2::ZERO),
 	currentAcceleration_(Vector2::ZERO)
 {
+	PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
+	physicsSystemInstance->AddPhysicsObject(this);
 }
 
 PhysicsObject::~PhysicsObject()

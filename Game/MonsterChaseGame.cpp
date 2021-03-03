@@ -4,6 +4,7 @@
 #include <Engine\Input\InputReader.h>
 #include "Engine/Physics/PhysicsObject.h"
 #include "Engine/Render/Renderer.h"
+#include "Engine/GameObject/JsonGameObjectUtils.h"
 
 namespace Game {
 
@@ -73,20 +74,22 @@ namespace Game {
 		player_ = GameObject::Create();
 
 		//physics part
-		PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
-		PhysicsObject* po = new PhysicsObject(WeakPtr<GameObject>(player_), PhysicsObject::DEFAULT_MASS, PhysicsObject::DEFAULT_COEFFICIENT_DRAG);
-		physicsSystemInstance->AddPhysicsObject(po);
+		//PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
+		//---PhysicsObject* po = new PhysicsObject(WeakPtr<GameObject>(player_), PhysicsObject::DEFAULT_MASS, PhysicsObject::DEFAULT_COEFFICIENT_DRAG);
+		//physicsSystemInstance->AddPhysicsObject(po);
 
 		//render part
-		Renderer* rendererInstance = Renderer::GetInstance();
-		RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(player_), player_.GetObjectPtr()->GetSprite());
-		rendererInstance->AddRenderableObject(ro);
+		//Renderer* rendererInstance = Renderer::GetInstance();
+
+
+		//---RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(player_), player_.GetObjectPtr()->GetSprite());
+		//rendererInstance->AddRenderableObject(ro);
 
 		//testing purpose
-		GLib::Sprite* sssss = EngineUtils::CreateSprite("data\\BadGuy.dds");
-		ro->SetSprite(sssss);
+		//GLib::Sprite* sssss = EngineUtils::CreateSprite("data\\BadGuy.dds");
+		//ro->SetSprite(sssss);
 
-
+		player_ = JsonGameObjectUtils::CreateGameObjectFromJson("test data file.json");
 
 
 	}

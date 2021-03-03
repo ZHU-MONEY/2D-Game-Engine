@@ -1,12 +1,14 @@
 #include "JsonGameObjectUtils.h"
-#include "Engine/GameObject/GameObject.h"
-#include "Engine/Physics/PhysicsObject.h"
-#include "Engine/Render/RenderableObject.h"
-#include "Engine/EngineUtils.h"
 
-void JsonGameObjectUtils::CreateGameObjectFromJson(const char* filePath)
+#include <iostream>
+
+StrongPtr<GameObject> JsonGameObjectUtils::CreateGameObjectFromJson(const char* filePath)
 {
 	FILE* file = fopen(filePath, "r");
+
+	if (file == nullptr) {
+		std::cout << "file not found";
+	}
 
 	//json jsonObject = json::parse("xxx.json",nullptr,false);
 
@@ -20,6 +22,7 @@ void JsonGameObjectUtils::CreateGameObjectFromJson(const char* filePath)
 	}
 	else {
 		StrongPtr<GameObject> go = GameObject::Create();
+
 		if (jsonObject.contains("name"))
 		{
 			//set name
@@ -72,6 +75,9 @@ void JsonGameObjectUtils::CreateGameObjectFromJson(const char* filePath)
 		{
 
 		}
+
+		return go;
 	}
 	
+	//return nullptr;
 }

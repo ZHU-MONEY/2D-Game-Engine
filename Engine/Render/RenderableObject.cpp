@@ -1,4 +1,5 @@
 #include "RenderableObject.h"
+#include "Renderer.h"
 
 RenderableObject::RenderableObject() :
 
@@ -6,6 +7,8 @@ RenderableObject::RenderableObject() :
 	sprite_(nullptr)
 {
 	position_ = { 0.0f, 0.0f };
+	Renderer* rendererInstance = Renderer::GetInstance();
+	rendererInstance->AddRenderableObject(this);
 }
 
 
@@ -15,6 +18,8 @@ RenderableObject::RenderableObject(WeakPtr<GameObject>& gameObject) :
 	sprite_(nullptr)
 {
 	position_ = { 0.0f, 0.0f };
+	Renderer* rendererInstance = Renderer::GetInstance();
+	rendererInstance->AddRenderableObject(this);
 }
 
 RenderableObject::RenderableObject(Sprite* sprite) :
@@ -22,6 +27,8 @@ RenderableObject::RenderableObject(Sprite* sprite) :
 	sprite_(sprite)
 {
 	position_ = { 0.0f, 0.0f };
+	Renderer* rendererInstance = Renderer::GetInstance();
+	rendererInstance->AddRenderableObject(this);
 }
 
 RenderableObject::RenderableObject(WeakPtr<GameObject>& gameObject, Sprite* sprite) :
@@ -29,6 +36,8 @@ RenderableObject::RenderableObject(WeakPtr<GameObject>& gameObject, Sprite* spri
 	sprite_(sprite)
 {
 	position_ = { 0.0f, 0.0f };
+	Renderer* rendererInstance = Renderer::GetInstance();
+	rendererInstance->AddRenderableObject(this);
 }
 
 RenderableObject::~RenderableObject()
