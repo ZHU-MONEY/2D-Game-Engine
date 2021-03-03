@@ -8,10 +8,9 @@ void JsonGameObjectUtils::CreateGameObjectFromJson(const char* filePath)
 {
 	FILE* file = fopen(filePath, "r");
 
-	json jsonObject = json::parse("xxx.json",nullptr,false);
+	//json jsonObject = json::parse("xxx.json",nullptr,false);
 
-	//json jsonObject = json::parse<FILE*>(file, nullptr, false);
-
+	json jsonObject = json::parse(file, nullptr, false);
 
 	//this if needs to be paired with parse above
 	//check if parse failed
