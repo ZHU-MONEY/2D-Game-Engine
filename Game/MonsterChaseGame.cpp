@@ -71,7 +71,7 @@ namespace Game {
 
 	void MonsterChaseGame::Initialize()
 	{
-		player_ = GameObject::Create();
+		//player_ = GameObject::Create();
 
 		//physics part
 		//PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();

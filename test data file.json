@@ -1,5 +1,7 @@
 {
   "physics": null,
-  "render": null,
-  "sprite": "data\\BadGuy.dds"
+  "render": {
+    "sprite": "data\\BadGuy.dds"
+  }
+
 }

@@ -7,8 +7,7 @@ StrongPtr<GameObject> GameObject::Create()
 }
 
 GameObject::GameObject() :
-	position_(Vector2::ZERO),
-	sprite_(EngineUtils::CreateSprite("data\\GoodGuy.dds"))
+	position_(Vector2::ZERO)
 {
 }
 

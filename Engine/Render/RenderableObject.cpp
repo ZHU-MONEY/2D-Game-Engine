@@ -1,10 +1,12 @@
 #include "RenderableObject.h"
 #include "Renderer.h"
 
+//Sprite* DEFAULT_SPRITE = EngineUtils::CreateSprite("data\\default sprite.dds");
+
 RenderableObject::RenderableObject() :
 
 	objectPtr_(nullptr),
-	sprite_(nullptr)
+	sprite_(EngineUtils::CreateSprite("data\\default sprite.dds"))
 {
 	position_ = { 0.0f, 0.0f };
 	Renderer* rendererInstance = Renderer::GetInstance();
@@ -15,7 +17,7 @@ RenderableObject::RenderableObject() :
 
 RenderableObject::RenderableObject(WeakPtr<GameObject>& gameObject) :
 	objectPtr_(gameObject),
-	sprite_(nullptr)
+	sprite_(EngineUtils::CreateSprite("data\\default sprite.dds"))
 {
 	position_ = { 0.0f, 0.0f };
 	Renderer* rendererInstance = Renderer::GetInstance();

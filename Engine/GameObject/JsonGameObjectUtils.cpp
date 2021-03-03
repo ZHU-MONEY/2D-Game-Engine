@@ -54,7 +54,6 @@ StrongPtr<GameObject> JsonGameObjectUtils::CreateGameObjectFromJson(const char* 
 				po->SetCoefficientDrag(jsonObject["coefficient drag"]);
 			}
 
-			//add po to the physics system?????    How do I get a reference of physiscs syentem in here??
 		}
 
 		if (jsonObject.contains("render"))
@@ -62,12 +61,10 @@ StrongPtr<GameObject> JsonGameObjectUtils::CreateGameObjectFromJson(const char* 
 			//create a renderable object
 			RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(go));
 
-			if (jsonObject.contains("sprite"))
+			json jsonRenderableObject = jsonObject["render"];
+			if (jsonRenderableObject.contains("sprite"))
 			{
-				//const char* spriteFilePath = jsonObject["sprite"].get<std::string>().c_str();
-				//ro->SetSprite(EngineUtils::CreateSprite(spriteFilePath));
-
-				ro->SetSprite(EngineUtils::CreateSprite(jsonObject["sprite"].get<std::string>().c_str()));
+				ro->SetSprite(EngineUtils::CreateSprite(jsonRenderableObject["sprite"].get<std::string>().c_str()));
 			}
 		}
 
