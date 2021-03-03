@@ -153,6 +153,7 @@
     <ClCompile Include="Engine\Engine.cpp" />
     <ClCompile Include="Engine\EngineUtils.cpp" />
     <ClCompile Include="Engine\GameObject\GameObject.cpp" />
+    <ClCompile Include="Engine\GameObject\JsonGameObjectUtils.cpp" />
     <ClCompile Include="Engine\Input\InputReader.cpp" />
     <ClCompile Include="Engine\Physics\PhysicsObject.cpp" />
     <ClCompile Include="Engine\Physics\PhysicsSystem.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Engine\EngineUtils.h" />
     <ClInclude Include="Engine\GameObject\GameObject.h" />
+    <ClInclude Include="Engine\GameObject\JsonGameObjectUtils.h" />
     <ClInclude Include="Engine\GameObject\WeakPtr.h" />
     <ClInclude Include="Engine\GameObject\ReferenceCounter.h" />
     <ClInclude Include="Engine\Input\InputReader.h" />

@@ -27,55 +27,12 @@ namespace Game {
 		MonsterChaseGame::Destroy();
 	}
 
-//	void AcceptKey(unsigned int i_VKeyID, bool bWentDown)
-//	{
-////#ifdef _DEBUG
-////		const size_t	lenBuffer = 65;
-////		char			Buffer[lenBuffer];
-////
-////		//sprintf_s(Buffer, lenBuffer, "VKey %04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
-////		sprintf_s(Buffer, lenBuffer, "HAHAHAHAHAH  %s\n", MonsterChaseGame::isKey_A_Down ? "A is downFUCK" : "A is upFUCK");
-////		OutputDebugStringA(Buffer);
-////#endif // __DEBUG
-//		
-//		switch (i_VKeyID)
-//		{
-//			//W 57---hexadecimal   87---decimal
-//		case 87:
-//			MonsterChaseGame::isKey_W_Down = bWentDown;
-//			break;
-//
-//			//A 41---hexadecimal	65---decimal
-//		case 65:
-//			MonsterChaseGame::isKey_A_Down = bWentDown;
-//			break;
-//
-//			//S  53---hexadecimal   83---decimal
-//		case 83:
-//			MonsterChaseGame::isKey_S_Down = bWentDown;
-//			break;
-//
-//			//D   44---hexadecimal  68---decimal
-//		case 68:
-//			MonsterChaseGame::isKey_D_Down = bWentDown;
-//			break;
-//		}
-//	}
-
-
 	// static member initialization
 	MonsterChaseGame* MonsterChaseGame::instance_ = nullptr;
-	//bool MonsterChaseGame::isKey_W_Down = false;
-	//bool MonsterChaseGame::isKey_A_Down = false;
-	//bool MonsterChaseGame::isKey_S_Down = false;
-	//bool MonsterChaseGame::isKey_D_Down = false;
 
 	MonsterChaseGame::MonsterChaseGame()
 	{
 		player_ = nullptr;
-
-		//GLib::SetKeyStateChangeCallback(AcceptKey);
-
 	}
 
 	MonsterChaseGame::~MonsterChaseGame()
@@ -124,6 +81,14 @@ namespace Game {
 		Renderer* rendererInstance = Renderer::GetInstance();
 		RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(player_), player_.GetObjectPtr()->GetSprite());
 		rendererInstance->AddRenderableObject(ro);
+
+		//testing purpose
+		GLib::Sprite* sssss = EngineUtils::CreateSprite("data\\BadGuy.dds");
+		ro->SetSprite(sssss);
+
+
+
+
 	}
 
 	void MonsterChaseGame::Update()

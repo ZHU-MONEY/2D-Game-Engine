@@ -12,6 +12,7 @@ public:
 	static const float  MAX_SPEED;
 	static const float  MIN_SPEED;
 	PhysicsObject();
+	PhysicsObject(WeakPtr<GameObject>& gameObject);
 	PhysicsObject(WeakPtr<GameObject>& gameObject,float mass, float drag);
 	~PhysicsObject();
 

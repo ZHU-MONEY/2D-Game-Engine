@@ -15,6 +15,16 @@ PhysicsObject::PhysicsObject() :
 {
 }
 
+PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject) :
+	objectPtr_(gameObject),
+	mass_(DEFAULT_MASS),
+	coefficientDrag_(DEFAULT_COEFFICIENT_DRAG),
+	currentVelocity_(Vector2::ZERO),
+	currentForce_(Vector2::ZERO),
+	currentAcceleration_(Vector2::ZERO)
+{
+}
+
 PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject,float mass, float drag):
 	objectPtr_(gameObject),
 	mass_(mass),

@@ -10,6 +10,13 @@ RenderableObject::RenderableObject() :
 
 
 
+RenderableObject::RenderableObject(WeakPtr<GameObject>& gameObject) :
+	objectPtr_(gameObject),
+	sprite_(nullptr)
+{
+	position_ = { 0.0f, 0.0f };
+}
+
 RenderableObject::RenderableObject(Sprite* sprite) :
 	objectPtr_(nullptr),
 	sprite_(sprite)
@@ -31,6 +38,7 @@ RenderableObject::~RenderableObject()
 		sprite_ = nullptr;
 	}
 }
+
 
 void RenderableObject::Render()
 {

@@ -93,6 +93,9 @@
     <ClCompile Include="Engine\Input\InputReader.cpp">
       <Filter>Source Files\Engine\Input</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\GameObject\JsonGameObjectUtils.cpp">
+      <Filter>Source Files\Engine\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h">
@@ -157,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Input\InputReader.h">
       <Filter>Source Files\Engine\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\GameObject\JsonGameObjectUtils.h">
+      <Filter>Source Files\Engine\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -11,10 +11,14 @@ public:
 	//default constructor
 	RenderableObject();
 	//constructor
+	RenderableObject(WeakPtr<GameObject>& gameObject);
 	RenderableObject(Sprite* sprite);
 	RenderableObject(WeakPtr<GameObject>& gameObject, Sprite* sprite);
 	//destructor
 	~RenderableObject();
+
+	//testing
+	inline void SetSprite(Sprite* s) { sprite_ = s; };
 
 	void Render();
 
