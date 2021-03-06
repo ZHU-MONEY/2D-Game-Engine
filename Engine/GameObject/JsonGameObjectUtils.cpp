@@ -44,14 +44,15 @@ StrongPtr<GameObject> JsonGameObjectUtils::CreateGameObjectFromJson(const char* 
 			//create a phisics object
 			PhysicsObject* po = new PhysicsObject(WeakPtr<GameObject>(go));
 
-			if (jsonObject.contains("mass"))
+			json jsonPhysicsObject = jsonObject["physics"];
+			if (jsonPhysicsObject.contains("mass"))
 			{
-				po->SetMass(jsonObject["mass"]);
+				po->SetMass(jsonPhysicsObject["mass"]);
 			}
 
-			if (jsonObject.contains("coefficient drag"))
+			if (jsonPhysicsObject.contains("coefficient drag"))
 			{
-				po->SetCoefficientDrag(jsonObject["coefficient drag"]);
+				po->SetCoefficientDrag(jsonPhysicsObject["coefficient drag"]);
 			}
 
 		}
