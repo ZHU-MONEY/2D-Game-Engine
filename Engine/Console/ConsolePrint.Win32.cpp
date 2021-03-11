@@ -2,11 +2,8 @@
 #include <stdio.h>		// for vsprintf_s()
 #include <Windows.h>	// for OutputDebugStringA(). Uggh.. this pulls in a lot of Windows specific stuff
 
-//#include "..\Syncronization\Mutex.h"
-//#include "..\Syncronization\ScopeLock.h"
-
-#include "Engine/Syncronization/Mutex.h"
-#include "Engine/Syncronization/ScopeLock.h"
+#include "..\Syncronization\Mutex.h"
+#include "..\Syncronization\ScopeLock.h"
 
 namespace Engine
 {

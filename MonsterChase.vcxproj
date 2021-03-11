@@ -42,14 +42,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -154,11 +154,19 @@
     <ClCompile Include="Engine\EngineUtils.cpp" />
     <ClCompile Include="Engine\GameObject\GameObject.cpp" />
     <ClCompile Include="Engine\GameObject\JsonGameObjectUtils.cpp" />
+    <ClCompile Include="Engine\HashedString\HashedString.cpp" />
     <ClCompile Include="Engine\Input\InputReader.cpp" />
+    <ClCompile Include="Engine\JobSystem\JobRunner.cpp" />
+    <ClCompile Include="Engine\JobSystem\JobSystem.cpp" />
+    <ClCompile Include="Engine\JobSystem\SharedJobQueue.cpp" />
     <ClCompile Include="Engine\Physics\PhysicsObject.cpp" />
     <ClCompile Include="Engine\Physics\PhysicsSystem.cpp" />
     <ClCompile Include="Engine\Render\RenderableObject.cpp" />
     <ClCompile Include="Engine\Render\Renderer.cpp" />
+    <ClCompile Include="Engine\Syncronization\AtomicOperations.cpp" />
+    <ClCompile Include="Engine\Syncronization\Events.Win.cpp" />
+    <ClCompile Include="Engine\Syncronization\Mutex.Win.cpp" />
+    <ClCompile Include="Engine\Syncronization\Semaphore.Win.cpp" />
     <ClCompile Include="Engine\Time\TimeUtils.Win.cpp" />
     <ClCompile Include="Game\MonsterChaseGame.cpp" />
     <ClCompile Include="Game\PlayerController.cpp" />
@@ -176,15 +184,31 @@
     <ClInclude Include="Engine\GameObject\JsonGameObjectUtils.h" />
     <ClInclude Include="Engine\GameObject\WeakPtr.h" />
     <ClInclude Include="Engine\GameObject\ReferenceCounter.h" />
+    <ClInclude Include="Engine\HashedString\HashedString-inl.h" />
+    <ClInclude Include="Engine\HashedString\HashedString.h" />
     <ClInclude Include="Engine\Input\InputReader.h" />
+    <ClInclude Include="Engine\JobSystem\JobRunner.h" />
+    <ClInclude Include="Engine\JobSystem\JobStatus.h" />
+    <ClInclude Include="Engine\JobSystem\JobSystem.h" />
+    <ClInclude Include="Engine\JobSystem\SharedJobQueue.h" />
     <ClInclude Include="Engine\Math\Vector2-inl.h" />
     <ClInclude Include="Engine\Math\Vector2.h" />
     <ClInclude Include="Engine\Physics\PhysicsObject.h" />
     <ClInclude Include="Engine\Physics\PhysicsSystem.h" />
     <ClInclude Include="Engine\Render\RenderableObject.h" />
     <ClInclude Include="Engine\Render\Renderer.h" />
+    <ClInclude Include="Engine\Syncronization\AtomicOperations.h" />
+    <ClInclude Include="Engine\Syncronization\Events.h" />
+    <ClInclude Include="Engine\Syncronization\Mutex.h" />
+    <ClInclude Include="Engine\Syncronization\ScopeLock.h" />
+    <ClInclude Include="Engine\Syncronization\Semaphore.h" />
+    <ClInclude Include="Engine\Syncronization\SingleWriterMultipleReader.h" />
+    <ClInclude Include="Engine\Syncronization\SingleWriterMultipleReader.Win.h" />
+    <ClInclude Include="Engine\Syncronization\WaitableObject.h" />
+    <ClInclude Include="Engine\Syncronization\WaitableObject.Win.h" />
     <ClInclude Include="Engine\Time\TimeUtils.h" />
     <ClInclude Include="Engine\GameObject\StrongPtr.h" />
+    <ClInclude Include="Engine\Windows\WindowsHelpers.h" />
     <ClInclude Include="Game\MonsterChaseGame.h" />
     <ClInclude Include="Game\PlayerController.h" />
     <ClInclude Include="resource.h" />

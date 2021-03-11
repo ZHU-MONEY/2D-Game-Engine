@@ -46,6 +46,18 @@
     <Filter Include="Source Files\Engine\Input">
       <UniqueIdentifier>{edc868b1-40c4-4421-810a-1690a1e336f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\HashedString">
+      <UniqueIdentifier>{57dd72db-4469-41da-b999-d3412f7c571f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\JobSystem">
+      <UniqueIdentifier>{a5f99a58-7295-4772-978b-f6029a946940}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Windows">
+      <UniqueIdentifier>{a4badba8-e404-4901-a816-cf247fb5e23d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Syncronization">
+      <UniqueIdentifier>{f5c50524-c83b-4780-a880-60d4f77c0a88}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -95,6 +107,30 @@
     </ClCompile>
     <ClCompile Include="Engine\GameObject\JsonGameObjectUtils.cpp">
       <Filter>Source Files\Engine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\HashedString\HashedString.cpp">
+      <Filter>Source Files\Engine\HashedString</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Syncronization\AtomicOperations.cpp">
+      <Filter>Source Files\Engine\Syncronization</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Syncronization\Events.Win.cpp">
+      <Filter>Source Files\Engine\Syncronization</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Syncronization\Mutex.Win.cpp">
+      <Filter>Source Files\Engine\Syncronization</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Syncronization\Semaphore.Win.cpp">
+      <Filter>Source Files\Engine\Syncronization</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\JobSystem\JobRunner.cpp">
+      <Filter>Source Files\Engine\JobSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\JobSystem\JobSystem.cpp">
+      <Filter>Source Files\Engine\JobSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\JobSystem\SharedJobQueue.cpp">
+      <Filter>Source Files\Engine\JobSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +199,54 @@
     </ClInclude>
     <ClInclude Include="Engine\GameObject\JsonGameObjectUtils.h">
       <Filter>Source Files\Engine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\HashedString\HashedString-inl.h">
+      <Filter>Source Files\Engine\HashedString</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\HashedString\HashedString.h">
+      <Filter>Source Files\Engine\HashedString</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Syncronization\AtomicOperations.h">
+      <Filter>Source Files\Engine\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Syncronization\Events.h">
+      <Filter>Source Files\Engine\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Syncronization\Mutex.h">
+      <Filter>Source Files\Engine\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Syncronization\ScopeLock.h">
+      <Filter>Source Files\Engine\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Syncronization\Semaphore.h">
+      <Filter>Source Files\Engine\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Syncronization\SingleWriterMultipleReader.h">
+      <Filter>Source Files\Engine\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Syncronization\SingleWriterMultipleReader.Win.h">
+      <Filter>Source Files\Engine\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Syncronization\WaitableObject.h">
+      <Filter>Source Files\Engine\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Syncronization\WaitableObject.Win.h">
+      <Filter>Source Files\Engine\Syncronization</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\JobSystem\JobRunner.h">
+      <Filter>Source Files\Engine\JobSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\JobSystem\JobStatus.h">
+      <Filter>Source Files\Engine\JobSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\JobSystem\JobSystem.h">
+      <Filter>Source Files\Engine\JobSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\JobSystem\SharedJobQueue.h">
+      <Filter>Source Files\Engine\JobSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Windows\WindowsHelpers.h">
+      <Filter>Source Files\Engine\Windows</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

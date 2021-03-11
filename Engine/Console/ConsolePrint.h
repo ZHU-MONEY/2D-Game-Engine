@@ -3,7 +3,7 @@
 namespace Engine
 {
 
-	void ConsolePrint(const char* i_pFmt, const char* i_pFile, unsigned int i_Line, ...);
+void ConsolePrint( const char * i_pFmt, const char * i_pFile, unsigned int i_Line, ... );
 
 } // namespace Engine
 
