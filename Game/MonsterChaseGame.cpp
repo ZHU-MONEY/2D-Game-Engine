@@ -5,6 +5,9 @@
 #include "Engine/Physics/PhysicsObject.h"
 #include "Engine/Render/Renderer.h"
 #include "Engine/GameObject/JsonGameObjectUtils.h"
+#include <Engine\HashedString\HashedString.h>
+#include <Engine\JobSystem\JobSystem.h>
+#include "ProcessFile.h"
 
 namespace Game {
 
@@ -71,26 +74,14 @@ namespace Game {
 
 	void MonsterChaseGame::Initialize()
 	{
-		//player_ = GameObject::Create();
+		using namespace std::placeholders;
+		const char* CustomQueueName = "GameObjectLoader";
 
-		//physics part
-		//PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
-		//---PhysicsObject* po = new PhysicsObject(WeakPtr<GameObject>(player_), PhysicsObject::DEFAULT_MASS, PhysicsObject::DEFAULT_COEFFICIENT_DRAG);
-		//physicsSystemInstance->AddPhysicsObject(po);
+		Engine::HashedString QueueName = Engine::JobSystem::CreateQueue(CustomQueueName, 2);
 
-		//render part
-		//Renderer* rendererInstance = Renderer::GetInstance();
+		Engine::JobSystem::RunJob(QueueName, std::bind(ProcessFile("test data file.json", std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, _1))));
 
-
-		//---RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(player_), player_.GetObjectPtr()->GetSprite());
-		//rendererInstance->AddRenderableObject(ro);
-
-		//testing purpose
-		//GLib::Sprite* sssss = EngineUtils::CreateSprite("data\\BadGuy.dds");
-		//ro->SetSprite(sssss);
-
-		player_ = JsonGameObjectUtils::CreateGameObjectFromJson("test data file.json");
-
+		//player_ = JsonGameObjectUtils::CreateGameObjectFromJson("test data file.json");
 
 	}
 

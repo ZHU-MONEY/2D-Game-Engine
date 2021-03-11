@@ -132,6 +132,9 @@
     <ClCompile Include="Engine\JobSystem\SharedJobQueue.cpp">
       <Filter>Source Files\Engine\JobSystem</Filter>
     </ClCompile>
+    <ClCompile Include="ProcessFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h">
@@ -247,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="Engine\Windows\WindowsHelpers.h">
       <Filter>Source Files\Engine\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="ProcessFile.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
