@@ -159,6 +159,7 @@
     <ClCompile Include="Engine\JobSystem\JobRunner.cpp" />
     <ClCompile Include="Engine\JobSystem\JobSystem.cpp" />
     <ClCompile Include="Engine\JobSystem\SharedJobQueue.cpp" />
+    <ClCompile Include="Engine\Math\Vector4.cpp" />
     <ClCompile Include="Engine\Physics\PhysicsObject.cpp" />
     <ClCompile Include="Engine\Physics\PhysicsSystem.cpp" />
     <ClCompile Include="Engine\Render\RenderableObject.cpp" />
@@ -194,6 +195,8 @@
     <ClInclude Include="Engine\JobSystem\SharedJobQueue.h" />
     <ClInclude Include="Engine\Math\Vector2-inl.h" />
     <ClInclude Include="Engine\Math\Vector2.h" />
+    <ClInclude Include="Engine\Math\Vector4-inl.h" />
+    <ClInclude Include="Engine\Math\Vector4.h" />
     <ClInclude Include="Engine\Physics\PhysicsObject.h" />
     <ClInclude Include="Engine\Physics\PhysicsSystem.h" />
     <ClInclude Include="Engine\Render\RenderableObject.h" />

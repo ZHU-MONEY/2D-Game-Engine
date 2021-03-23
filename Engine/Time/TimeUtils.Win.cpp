@@ -1,3 +1,5 @@
+#pragma warning (disable: 4244)
+// loss data from converting uint64 to float warning
 #include "TimeUtils.h"
 #include <iostream>
 #include <cassert>
@@ -25,7 +27,7 @@ float CalculateLastFrameTime_ms()
 	{
 		//tick_t elapsedTicks = currentTick - lastFrameStartTick_;
 		assert(PerformanceFrequency.QuadPart != 0);
-		lastFrameTime_ms_ =(1000.0* static_cast<float>(currentTick - lastFrameStartTick_)) / PerformanceFrequency.QuadPart;
+		lastFrameTime_ms_ =(1000.0* (currentTick - lastFrameStartTick_)) / static_cast<float>(PerformanceFrequency.QuadPart);
 	}
 	else
 	{
@@ -48,11 +50,3 @@ void GetPerformanceFrequency()
 {
 	QueryPerformanceFrequency(&PerformanceFrequency);
 }
-
-//int main() {
-//	GetPerformanceFrequency();
-//	while (1) {
-//		std::cout << CalculateLastFrameTime_ms() << std::endl;
-//		//std::cout << PerformanceFrequency.QuadPart << std::endl;
-//	}
-//}

@@ -135,6 +135,9 @@
     <ClCompile Include="ProcessFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Math\Vector4.cpp">
+      <Filter>Source Files\Engine\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h">
@@ -253,6 +256,12 @@
     </ClInclude>
     <ClInclude Include="ProcessFile.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\Vector4.h">
+      <Filter>Source Files\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\Vector4-inl.h">
+      <Filter>Source Files\Engine\Math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

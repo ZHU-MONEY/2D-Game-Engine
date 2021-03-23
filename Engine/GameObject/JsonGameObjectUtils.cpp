@@ -1,3 +1,4 @@
+#pragma warning(suppress : 4996)
 #include "JsonGameObjectUtils.h"
 
 #include <iostream>
@@ -77,5 +78,5 @@ StrongPtr<GameObject> JsonGameObjectUtils::CreateGameObjectFromJson(const char* 
 		return go;
 	}
 	
-	//return nullptr;
+	return nullptr;
 }

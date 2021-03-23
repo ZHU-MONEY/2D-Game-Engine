@@ -1,16 +1,13 @@
 #include "JobSystem.h"
-
 #include <Windows.h>
 #include <map>
-
-
 #include "Engine/Console/ConsolePrint.h"
-
-
 #include "Engine/HashedString/HashedString.h"
+//#include "JobRunner.h"
+//#include "SharedJobQueue.h"
 
-#include "JobRunner.h"
-#include "SharedJobQueue.h"
+#include "Engine/JobSystem/JobRunner.h"
+#include "Engine/JobSystem/SharedJobQueue.h"
 
 namespace Engine
 {
