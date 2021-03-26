@@ -1,4 +1,4 @@
-#pragma warning(suppress : 4996)
+#pragma warning(disable : 4996)
 #include "JsonGameObjectUtils.h"
 
 #include <iostream>
