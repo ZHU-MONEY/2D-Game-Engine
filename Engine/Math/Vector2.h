@@ -1,5 +1,4 @@
-#ifndef __VECTOR2_H
-#define __VECTOR2_H
+#pragma once
 
 		class Vector2
 		{
@@ -51,6 +50,7 @@
 			void Normalize();
 			Vector2 Normalize() const;
 
+
 			// constants
 			static const Vector2 ZERO;
 			static const Vector2 UNIT;
@@ -65,4 +65,3 @@
 
 #include "Vector2-inl.h"
 
-#endif

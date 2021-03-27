@@ -8,26 +8,26 @@ const Vector4 Vector4::UNIT_Y(0.0f, 1.0f, 0.0f, 0.0f);
 const Vector4 Vector4::UNIT_Z(0.0f, 0.0f, 1.0f, 0.0f);
 const Vector4 Vector4::UNIT_W(0.0f, 0.0f, 0.0f, 1.0f);
 
-Vector4::Vector4(float i_x, float i_y, float i_z, float i_w) : 
-x_(i_x),
-y_(i_y),
-z_(i_z),
-w_(i_w)
+Vector4::Vector4(float x, float y, float z, float w) : 
+x_(x),
+y_(y),
+z_(z),
+w_(w)
 {
 }
 
-Vector4::Vector4(const Vector2& i_vec2, float i_z, float i_w) : 
-x_(i_vec2.x()),
-y_(i_vec2.y()),
-z_(i_z),
-w_(i_w)
+Vector4::Vector4(const Vector2& other, float z, float w) : 
+x_(other.x()),
+y_(other.y()),
+z_(z),
+w_(w)
 {}
 
-Vector4::Vector4(const Vector4& i_copy) :
-x_(i_copy.x_),
-y_(i_copy.y_),
-z_(i_copy.z_),
-w_(i_copy.w_)
+Vector4::Vector4(const Vector4& copy) :
+x_(copy.x_),
+y_(copy.y_),
+z_(copy.z_),
+w_(copy.w_)
 {}
 
 float Vector4::Length() const

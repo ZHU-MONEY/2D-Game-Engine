@@ -58,6 +58,9 @@
     <Filter Include="Source Files\Engine\Syncronization">
       <UniqueIdentifier>{f5c50524-c83b-4780-a880-60d4f77c0a88}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Engine\Test">
+      <UniqueIdentifier>{d3e0d7cd-d570-420d-bc30-ebdcf3ac14cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -139,6 +142,12 @@
       <Filter>Source Files\Engine\Math</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Math\Matrix4x4.cpp">
+      <Filter>Source Files\Engine\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Test\Matrix4x4Test.cpp">
+      <Filter>Source Files\Engine\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Math\MathUtils.cpp">
       <Filter>Source Files\Engine\Math</Filter>
     </ClCompile>
   </ItemGroup>
@@ -267,6 +276,9 @@
       <Filter>Source Files\Engine\Math</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Math\Matrix4x4.h">
+      <Filter>Source Files\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\MathUtils.h">
       <Filter>Source Files\Engine\Math</Filter>
     </ClInclude>
   </ItemGroup>

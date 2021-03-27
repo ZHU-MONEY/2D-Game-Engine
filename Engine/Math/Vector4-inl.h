@@ -1,13 +1,15 @@
 #pragma once
 #include "Vector4.h"
+#include "Engine/Math/MathUtils.h"
+
 inline float Vector4::x() const
 {
 	return x_;
 }
 
-inline void Vector4::x(float i_x)
+inline void Vector4::x(float x)
 {
-	x_ = i_x;
+	x_ = x;
 }
 
 inline float Vector4::y() const
@@ -15,9 +17,9 @@ inline float Vector4::y() const
 	return y_;
 }
 
-inline void Vector4::y(float i_y)
+inline void Vector4::y(float y)
 {
-	y_ = i_y;
+	y_ = y;
 }
 
 inline float Vector4::z() const
@@ -25,9 +27,9 @@ inline float Vector4::z() const
 	return z_;
 }
 
-inline void Vector4::z(float i_z)
+inline void Vector4::z(float z)
 {
-	z_ = i_z;
+	z_ = z;
 }
 
 inline float Vector4::w() const
@@ -35,83 +37,85 @@ inline float Vector4::w() const
 	return w_;
 }
 
-inline void Vector4::w(float i_w)
+inline void Vector4::w(float w)
 {
-	w_ = i_w;
+	w_ = w;
 }
 
-inline void Vector4::set(float i_x, float i_y, float i_z, float i_w)
+inline void Vector4::set(float x, float y, float z, float w)
 {
-	x_ = i_x;
-	y_ = i_y;
-	z_ = i_z;
-	w_ = i_w;
+	x_ = x;
+	y_ = y;
+	z_ = z;
+	w_ = w;
 }
 
-inline Vector4& Vector4::operator=(const Vector4& i_vec)
+inline Vector4& Vector4::operator=(const Vector4& other)
 {
 	// check for self assignment
-	if (this != &i_vec)
+	if (this != &other)
 	{
-		x_ = i_vec.x_;
-		y_ = i_vec.y_;
-		z_ = i_vec.z_;
-		w_ = i_vec.w_;
+		x_ = other.x_;
+		y_ = other.y_;
+		z_ = other.z_;
+		w_ = other.w_;
 	}
 
 	return *this;
 }
 
-inline Vector4 Vector4::operator+(const Vector4& i_vec) const
+inline Vector4 Vector4::operator+(const Vector4& other) const
 {
-	return Vector4(x_ + i_vec.x(), y_ + i_vec.y(), z_ + i_vec.z(), w_ + i_vec.w());
+	return Vector4(x_ + other.x(), y_ + other.y(), z_ + other.z(), w_ + other.w());
+
 }
 
-inline Vector4& Vector4::operator+=(const Vector4& i_vec)
+inline Vector4& Vector4::operator+=(const Vector4& other)
 {
-	x(x_ + i_vec.x());
-	y(y_ + i_vec.y());
-	z(z_ + i_vec.z());
-	w(w_ + i_vec.w());
+	x(x_ + other.x());
+	y(y_ + other.y());
+	z(z_ + other.z());
+	w(w_ + other.w());
 	return *this;
 }
 
-inline Vector4 Vector4::operator-(const Vector4& i_vec) const
+inline Vector4 Vector4::operator-(const Vector4& other) const
 {
-	return Vector4(x_ - i_vec.x(), y_ - i_vec.y(), z_ - i_vec.z(), w_ - i_vec.w());
+	return Vector4(x_ - other.x(), y_ - other.y(), z_ - other.z(), w_ - other.w());
 }
 
-inline Vector4& Vector4::operator-=(const Vector4& i_vec)
+inline Vector4& Vector4::operator-=(const Vector4& other)
 {
-	x(x_ - i_vec.x());
-	y(y_ - i_vec.y());
-	z(z_ - i_vec.z());
-	w(w_ - i_vec.w());
+	x(x_ - other.x());
+	y(y_ - other.y());
+	z(z_ - other.z());
+	w(w_ - other.w());
 	return *this;
 }
 
-inline Vector4 Vector4::operator*(float i_scale) const
+inline Vector4 Vector4::operator*(float scale) const
 {
-	return Vector4(x_ * i_scale, y_ * i_scale, z_ * i_scale, w_ * i_scale);
+	return Vector4(x_ * scale, y_ * scale, z_ * scale, w_ * scale);
 }
 
-inline Vector4& Vector4::operator*=(float i_scale)
+inline Vector4& Vector4::operator*=(float scale)
 {
-	x(x_ * i_scale);
-	y(y_ * i_scale);
-	z(z_ * i_scale);
-	w(w_ * i_scale);
+	x(x_ * scale);
+	y(y_ * scale);
+	z(z_ * scale);
+	w(w_ * scale);
 	return *this;
 }
 
-inline bool Vector4::operator==(const Vector4& i_vec) const
+inline bool Vector4::operator==(const Vector4& other) const
 {
-	return x_== i_vec.x() && y_== i_vec.y() && z_== i_vec.z() && w_== i_vec.w();
+	//return x_== other.x() && y_== other.y() && z_== other.z() && w_== other.w();
+	return (RoundedEqual(x_, other.x()) && RoundedEqual(y_, other.y()) && RoundedEqual(z_, other.z()) && RoundedEqual(w_, other.w()));
 }
 
-inline bool Vector4::operator!=(const Vector4& i_vec) const
+inline bool Vector4::operator!=(const Vector4& other) const
 {
-	return (x_ != i_vec.x() || y_ != i_vec.y() || z_ != i_vec.z() || w_ != i_vec.w());
+	return (x_ != other.x() || y_ != other.y() || z_ != other.z() || w_ != other.w());
 }
 
 inline Vector4 Vector4::operator-() const

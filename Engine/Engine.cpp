@@ -21,7 +21,7 @@ namespace Engine {
 
 	void Run()
 	{
-		GLib::Service(requestQuit);
+		//GLib::Service(requestQuit);
 		CalculateLastFrameTime_ms();
 		float dt = GetLastFrameTime_ms();
 

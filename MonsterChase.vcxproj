@@ -105,7 +105,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>d3d11.lib;GLib\GLib_$(PlatformTarget)-$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -140,7 +140,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -159,6 +159,7 @@
     <ClCompile Include="Engine\JobSystem\JobRunner.cpp" />
     <ClCompile Include="Engine\JobSystem\JobSystem.cpp" />
     <ClCompile Include="Engine\JobSystem\SharedJobQueue.cpp" />
+    <ClCompile Include="Engine\Math\MathUtils.cpp" />
     <ClCompile Include="Engine\Math\Matrix4x4.cpp" />
     <ClCompile Include="Engine\Math\Vector4.cpp" />
     <ClCompile Include="Engine\Physics\PhysicsObject.cpp" />
@@ -169,6 +170,7 @@
     <ClCompile Include="Engine\Syncronization\Events.Win.cpp" />
     <ClCompile Include="Engine\Syncronization\Mutex.Win.cpp" />
     <ClCompile Include="Engine\Syncronization\Semaphore.Win.cpp" />
+    <ClCompile Include="Engine\Test\Matrix4x4Test.cpp" />
     <ClCompile Include="Engine\Time\TimeUtils.Win.cpp" />
     <ClCompile Include="Game\MonsterChaseGame.cpp" />
     <ClCompile Include="Game\PlayerController.cpp" />
@@ -194,6 +196,7 @@
     <ClInclude Include="Engine\JobSystem\JobStatus.h" />
     <ClInclude Include="Engine\JobSystem\JobSystem.h" />
     <ClInclude Include="Engine\JobSystem\SharedJobQueue.h" />
+    <ClInclude Include="Engine\Math\MathUtils.h" />
     <ClInclude Include="Engine\Math\Matrix4x4.h" />
     <ClInclude Include="Engine\Math\Vector2-inl.h" />
     <ClInclude Include="Engine\Math\Vector2.h" />

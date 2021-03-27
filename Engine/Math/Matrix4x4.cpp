@@ -3,16 +3,15 @@
 
 #pragma warning (disable: 26495)
 
-
 const Matrix4x4 Matrix4x4::IDENTITY(1.0f, 0.0f, 0.0f, 0.0f,
-    0.0f, 1.0f, 0.0f, 0.0f,
-    0.0f, 0.0f, 1.0f, 0.0f,
-    0.0f, 0.0f, 0.0f, 1.0f);
+                                    0.0f, 1.0f, 0.0f, 0.0f,
+                                    0.0f, 0.0f, 1.0f, 0.0f,
+                                    0.0f, 0.0f, 0.0f, 1.0f);
 
 const Matrix4x4 Matrix4x4::ZERO(0.0f, 0.0f, 0.0f, 0.0f,
-    0.0f, 0.0f, 0.0f, 0.0f,
-    0.0f, 0.0f, 0.0f, 0.0f,
-    0.0f, 0.0f, 0.0f, 0.0f);
+                                0.0f, 0.0f, 0.0f, 0.0f,
+                                0.0f, 0.0f, 0.0f, 0.0f,
+                                0.0f, 0.0f, 0.0f, 0.0f);
 
 //do nothing
 Matrix4x4::Matrix4x4()
@@ -23,13 +22,13 @@ Matrix4x4::~Matrix4x4()
 {}
 
 Matrix4x4::Matrix4x4(float i_11, float i_12, float i_13, float i_14,
-    float i_21, float i_22, float i_23, float i_24,
-    float i_31, float i_32, float i_33, float i_34,
-    float i_41, float i_42, float i_43, float i_44) :
-    f11(i_11), f12(i_12), f13(i_13), f14(i_14),
-    f21(i_21), f22(i_22), f23(i_23), f24(i_24),
-    f31(i_31), f32(i_32), f33(i_33), f34(i_34),
-    f41(i_41), f42(i_42), f43(i_43), f44(i_44)
+                     float i_21, float i_22, float i_23, float i_24,
+                     float i_31, float i_32, float i_33, float i_34,
+                     float i_41, float i_42, float i_43, float i_44) :
+                     f11(i_11), f12(i_12), f13(i_13), f14(i_14),
+                     f21(i_21), f22(i_22), f23(i_23), f24(i_24),
+                     f31(i_31), f32(i_32), f33(i_33), f34(i_34),
+                     f41(i_41), f42(i_42), f43(i_43), f44(i_44)
 {
 }
 
@@ -128,35 +127,35 @@ void Matrix4x4::Invert()
 
     float det = a0 * b5 + a5 * b0 + a3 * b2 + a2 * b3 - a1 * b4 - a4 * b1;
 
-    if (det== 0.0f)
-    {
-        // this matrix is not invertable 
+    if (RoundedEqual(det, 0.0f))
+    {   
+        // this matrix is not invertable
         return;
     }
 
     Matrix4x4 adjoin;
-    adjoin.f11 = f22 * b5 - f23 * b4 + f24 * b3;
+    adjoin.f11 =  f22 * b5 - f23 * b4 + f24 * b3;
     adjoin.f12 = -f12 * b5 + f13 * b4 - f14 * b3;
-    adjoin.f13 = f42 * a5 - f43 * a4 + f44 * a3;
+    adjoin.f13 =  f42 * a5 - f43 * a4 + f44 * a3;
     adjoin.f14 = -f32 * a5 + f33 * a4 - f34 * a3;
 
     adjoin.f21 = -f21 * b5 + f23 * b2 - f24 * b1;
-    adjoin.f22 = f11 * b5 - f13 * b2 + f14 * b1;
+    adjoin.f22 =  f11 * b5 - f13 * b2 + f14 * b1;
     adjoin.f23 = -f41 * a5 + f43 * a2 - f44 * a1;
-    adjoin.f24 = f31 * a5 - f33 * a2 + f34 * a1;
+    adjoin.f24 =  f31 * a5 - f33 * a2 + f34 * a1;
 
-    adjoin.f31 = f21 * b4 - f22 * b2 + f24 * b0;
+    adjoin.f31 =  f21 * b4 - f22 * b2 + f24 * b0;
     adjoin.f32 = -f11 * b4 + f12 * b2 - f14 * b0;
-    adjoin.f33 = f41 * a4 - f42 * a2 + f44 * a0;
+    adjoin.f33 =  f41 * a4 - f42 * a2 + f44 * a0;
     adjoin.f34 = -f31 * a4 + f32 * a2 - f34 * a0;
 
     adjoin.f41 = -f21 * b3 + f22 * b1 - f23 * b0;
-    adjoin.f42 = f11 * b3 - f12 * b1 + f13 * b0;
+    adjoin.f42 =  f11 * b3 - f12 * b1 + f13 * b0;
     adjoin.f43 = -f41 * a3 + f42 * a1 - f43 * a0;
-    adjoin.f44 = f31 * a3 - f32 * a1 + f33 * a0;
+    adjoin.f44 =  f31 * a3 - f32 * a1 + f33 * a0;
 
     // only divide by determinant if determinant is not 1
-    if (det !=1.0f)
+    if (!RoundedEqual(det, 1.0f))
     {
         float inverse_det = 1.0f / det;
 
@@ -233,22 +232,22 @@ bool Matrix4x4::operator==(const Matrix4x4& other) const
     }
 
     return !(
-        (f11 != other.f11) ||
-        (f12 != other.f12) ||
-        (f13 != other.f13) ||
-        (f14 != other.f14) ||
-        (f21 != other.f21) ||
-        (f22 != other.f22) ||
-        (f23 != other.f23) ||
-        (f24 != other.f24) ||
-        (f31 != other.f31) ||
-        (f32 != other.f32) ||
-        (f33 != other.f33) ||
-        (f34 != other.f34) ||
-        (f41 != other.f41) ||
-        (f42 != other.f42) ||
-        (f43 != other.f43) ||
-        (f44 != other.f44)
+        !RoundedEqual(f11, other.f11) ||
+        !RoundedEqual(f12, other.f12) ||
+        !RoundedEqual(f13, other.f13) ||
+        !RoundedEqual(f14, other.f14) ||
+        !RoundedEqual(f21, other.f21) ||
+        !RoundedEqual(f22, other.f22) ||
+        !RoundedEqual(f23, other.f23) ||
+        !RoundedEqual(f24, other.f24) ||
+        !RoundedEqual(f31, other.f31) ||
+        !RoundedEqual(f32, other.f32) ||
+        !RoundedEqual(f33, other.f33) ||
+        !RoundedEqual(f34, other.f34) ||
+        !RoundedEqual(f41, other.f41) ||
+        !RoundedEqual(f42, other.f42) ||
+        !RoundedEqual(f43, other.f43) ||
+        !RoundedEqual(f44, other.f44)
         );
 }
 
@@ -317,31 +316,31 @@ Matrix4x4 Matrix4x4::GetTranslation(const Vector2& translation)
 Matrix4x4 Matrix4x4::GetRotationX(const float radians)
 {
     return Matrix4x4(1.0f, 0.0f, 0.0f, 0.0f,
-        0.0f, cosf(radians), -sinf(radians), 0.0f,
-        0.0f, sinf(radians), cosf(radians), 0.0f,
-        0.0f, 0.0f, 0.0f, 1.0f);
+                    0.0f, cosf(radians), -sinf(radians), 0.0f,
+                    0.0f, sinf(radians), cosf(radians), 0.0f,
+                    0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 Matrix4x4 Matrix4x4::GetRotationY(const float radians)
 {
     return Matrix4x4(cosf(radians), 0, sinf(radians), 0.0f,
-        0.0f, 1.0f, 0.0f, 0.0f,
-        -sinf(radians), 0.0f, cosf(radians), 0.0f,
-        0.0f, 0.0f, 0.0f, 1.0f);
+                    0.0f, 1.0f, 0.0f, 0.0f,
+                    -sinf(radians), 0.0f, cosf(radians), 0.0f,
+                    0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 Matrix4x4 Matrix4x4::GetRotationZ(const float radians)
 {
     return Matrix4x4(cosf(radians), -sinf(radians), 0.0f, 0.0f,
-        sinf(radians), cosf(radians), 0.0f, 0.0f,
-        0.0f, 0.0f, 1.0f, 0.0f,
-        0.0f, 0.0f, 0.0f, 1.0f);
+                    sinf(radians), cosf(radians), 0.0f, 0.0f,
+                    0.0f, 0.0f, 1.0f, 0.0f,
+                    0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 Matrix4x4 Matrix4x4::GetScale(const float scale)
 {
     return Matrix4x4(scale, 0.0f, 0.0f, 0.0f,
-        0.0f, scale, 0.0f, 0.0f,
-        0.0f, 0.0f, scale, 0.0f,
-        0.0f, 0.0f, 0.0f, 1.0f);
+                    0.0f, scale, 0.0f, 0.0f,
+                    0.0f, 0.0f, scale, 0.0f,
+                    0.0f, 0.0f, 0.0f, 1.0f);
 }

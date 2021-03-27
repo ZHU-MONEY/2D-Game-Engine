@@ -1,4 +1,6 @@
+#pragma warning( disable : 28251 )
 #include <stdlib.h>
+
 
 #ifdef _DEBUG
 #define _CRTDBG_MAP_ALLOC
@@ -30,6 +32,7 @@
 #include "Engine/Input/InputReader.h"
 
 
+
 void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)
 {
 #ifdef _DEBUG
@@ -44,7 +47,7 @@ void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)
 #endif // __DEBUG
 }
 
-int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow)
+int WINAPI wWinMain( HINSTANCE i_hInstance,  HINSTANCE i_hPrevInstance,  LPWSTR i_lpCmdLine,  int i_nCmdShow)
 {
 
 	if (Engine::StartUp())
@@ -58,10 +61,11 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 
 			bool quit = false;
 			while (!quit) {
+				GLib::Service(quit);
 				Engine::Run();
 				MC->Update();
 			}
-
+			
 			MC->Destroy();
 			// IMPORTANT:  Tell GLib to shutdown, releasing resources.
 			GLib::Shutdown();
