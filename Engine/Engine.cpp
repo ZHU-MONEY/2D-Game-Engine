@@ -9,6 +9,7 @@ namespace Engine {
 	bool StartUp()
 	{
 		PhysicsSystem::Create();
+		ColliderSystem::Create();
 		Renderer::Create();
 		InputReader::Create();
 
@@ -26,18 +27,20 @@ namespace Engine {
 		float dt = GetLastFrameTime_ms();
 
 		PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
+		ColliderSystem* colliderSystemInstance = ColliderSystem::GetInstance();
 		Renderer* rendererInstance = Renderer::GetInstance();
 		InputReader* inputReaderInstance = InputReader::GetInstance();
 
-		const size_t	lenBuffer = 65;
-		char			Buffer[lenBuffer];
-
-		//sprintf_s(Buffer, lenBuffer, "VKey %04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
-		sprintf_s(Buffer, lenBuffer, "AAA  %s\n", InputReader::isKey_A_Down ? "A is DOWN" : "A is UP");
-		OutputDebugStringA(Buffer);
+		//const size_t	lenBuffer = 65;
+		//char			Buffer[lenBuffer];
+		//sprintf_s(Buffer, lenBuffer, "AAA  %s\n", InputReader::isKey_A_Down ? "A is DOWN" : "A is UP");
+		//OutputDebugStringA(Buffer);
 
 		physicsSystemInstance->Run(dt);
+		colliderSystemInstance->Run(dt);
 		rendererInstance->Run();
+
+
 	}
 
 	void Shutdown()

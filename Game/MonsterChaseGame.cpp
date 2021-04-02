@@ -74,20 +74,16 @@ namespace Game {
 
 	void MonsterChaseGame::Initialize()
 	{
-		using namespace std::placeholders;
-		const char* CustomQueueName = "GameObjectLoader";
+		//using namespace std::placeholders;
+		//const char* CustomQueueName = "GameObjectLoader";
+		//Engine::HashedString QueueName = Engine::JobSystem::CreateQueue(CustomQueueName, 1);
+		//Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "test data file.json"));
+		//Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "test data file - Copy.json"));
 
-		Engine::HashedString QueueName = Engine::JobSystem::CreateQueue(CustomQueueName, 1);
+		
 
-		//Engine::JobSystem::RunJob(QueueName, std::bind(ProcessFile("test data file.json", std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, _1))));
-
-
-		Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "test data file.json"));
-
-		//GameObject::CheckForNewGameObjects();
-
-		//player_ = JsonGameObjectUtils::CreateGameObjectFromJson("test data file.json");
-
+		player_ = JsonGameObjectUtils::CreateGameObjectFromJson("test data file.json");
+		GameObject::CheckForNewGameObjects();
 
 	}
 
@@ -98,16 +94,19 @@ namespace Game {
 		PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
 		float speed = 0.2f;
 
-		for each (PhysicsObject * po in physicsSystemInstance->GetPhysicsObjects())
+		for each (StrongPtr<PhysicsObject> po in physicsSystemInstance->GetPhysicsObjects())
 		{
-			if (inputReaderInstance->isKey_W_Down)
-				po->ApplyForce(Vector2(0.0f, speed));
-			if (inputReaderInstance->isKey_S_Down)
-				po->ApplyForce(Vector2(0.0f, -speed));
-			if (inputReaderInstance->isKey_D_Down)
-				po->ApplyForce(Vector2(speed, 0.0f));
-			if (inputReaderInstance->isKey_A_Down)
-				po->ApplyForce(Vector2(-speed, 0.0f));
+			//this is temporary solution, gotta fix later
+			if (po->GetControllable()) {
+				if (inputReaderInstance->isKey_W_Down)
+					po->ApplyForce(Vector2(0.0f, speed));
+				if (inputReaderInstance->isKey_S_Down)
+					po->ApplyForce(Vector2(0.0f, -speed));
+				if (inputReaderInstance->isKey_D_Down)
+					po->ApplyForce(Vector2(speed, 0.0f));
+				if (inputReaderInstance->isKey_A_Down)
+					po->ApplyForce(Vector2(-speed, 0.0f));
+			}
 		}
 		
 	}

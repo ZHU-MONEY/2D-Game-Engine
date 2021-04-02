@@ -69,6 +69,11 @@
 			return Vector2(x_* i_scale, y_ * i_scale);
 		}
 
+		inline Vector2 Vector2::operator*(float i_scale) const
+		{
+			return Vector2(x_ * i_scale, y_ * i_scale);
+		}
+
 		inline Vector2& Vector2::operator*=(float i_scale)
 		{
 			x(x_ * i_scale);

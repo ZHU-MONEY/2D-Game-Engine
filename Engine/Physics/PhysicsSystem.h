@@ -10,15 +10,16 @@ private:
 	~PhysicsSystem();
 
 	static PhysicsSystem* instance_;
-	std::vector<PhysicsObject*> physicsObjects_;
+	//std::vector<PhysicsObject*> physicsObjects_;
+	std::vector<StrongPtr<PhysicsObject>> physicsObjects_;
 
 public:
 	static PhysicsSystem* Create();
 	inline static PhysicsSystem* GetInstance() { return instance_; };
-	inline std::vector<PhysicsObject*> GetPhysicsObjects() { return physicsObjects_; };
+	inline std::vector<StrongPtr<PhysicsObject>> GetPhysicsObjects() { return physicsObjects_; };
 	static void Destroy();
 	void Run(float dt);
 
-	void AddPhysicsObject(PhysicsObject* po);
-	void RemovePhysicsObject(PhysicsObject* po);
+	void AddPhysicsObject(StrongPtr<PhysicsObject> po);
+	void RemovePhysicsObject(StrongPtr<PhysicsObject> po);
 };

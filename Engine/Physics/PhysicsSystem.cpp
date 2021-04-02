@@ -34,13 +34,13 @@ void PhysicsSystem::Destroy()
 
 void PhysicsSystem::Run(float dt)
 {
-	for each (PhysicsObject * po in physicsObjects_)
+	for each (StrongPtr<PhysicsObject> po in physicsObjects_)
 	{
 		po->Update(dt);
 	}
 }
 
-void PhysicsSystem::AddPhysicsObject(PhysicsObject* po)
+void PhysicsSystem::AddPhysicsObject(StrongPtr<PhysicsObject> po)
 {
 	if (std::find(physicsObjects_.begin(), physicsObjects_.end(), po) != physicsObjects_.end())
 	{
@@ -49,10 +49,11 @@ void PhysicsSystem::AddPhysicsObject(PhysicsObject* po)
 	}
 	else {
 		physicsObjects_.push_back(po);
+
 	}
 }
 
-void PhysicsSystem::RemovePhysicsObject(PhysicsObject* po)
+void PhysicsSystem::RemovePhysicsObject(StrongPtr<PhysicsObject> po)
 {
 	auto it = std::find(physicsObjects_.begin(), physicsObjects_.end(), po);
 	if (it == physicsObjects_.end())

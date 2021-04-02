@@ -9,7 +9,6 @@ using namespace GLib;
 class RenderableObject
 {
 public:
-	//static const Sprite* DEFAULT_SPRITE;
 
 	//default constructor
 	RenderableObject();
@@ -19,6 +18,8 @@ public:
 	RenderableObject(WeakPtr<GameObject>& gameObject, Sprite* sprite);
 	//destructor
 	~RenderableObject();
+
+	StrongPtr<RenderableObject> CreateROStrongPtr(RenderableObject* ro);
 
 	//testing
 	inline void SetSprite(Sprite* s) { sprite_ = s; };

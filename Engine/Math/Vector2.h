@@ -25,6 +25,7 @@
 			inline Vector2 operator-(const Vector2& i_vec) const;
 			inline Vector2& operator-=(const Vector2& i_vec);
 			inline Vector2 operator*(float i_scale);
+			inline Vector2 operator*(float i_scale) const;
 
 
 			//Vector * Vector

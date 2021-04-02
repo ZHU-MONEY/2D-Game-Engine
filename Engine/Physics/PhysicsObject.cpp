@@ -1,5 +1,6 @@
 #include "PhysicsObject.h"
 #include "Engine/Physics/PhysicsSystem.h"
+#include "Engine/Physics/ColliderSystem.h"
 
 const float PhysicsObject::DEFAULT_MASS = 2.0f;
 const float PhysicsObject::DEFAULT_COEFFICIENT_DRAG = 0.5f;
@@ -8,38 +9,41 @@ const float PhysicsObject::MIN_SPEED = 0.0001f;
 
 PhysicsObject::PhysicsObject() :
 	objectPtr_(nullptr),
+	controllable_(false),
 	mass_(DEFAULT_MASS),
 	coefficientDrag_(DEFAULT_COEFFICIENT_DRAG),
 	currentVelocity_(Vector2::ZERO),
 	currentForce_(Vector2::ZERO),
 	currentAcceleration_(Vector2::ZERO)
 {
-	PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
-	physicsSystemInstance->AddPhysicsObject(this);
+	//PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
+	//physicsSystemInstance->AddPhysicsObject(this);
 }
 
 PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject) :
 	objectPtr_(gameObject),
+	controllable_(false),
 	mass_(DEFAULT_MASS),
 	coefficientDrag_(DEFAULT_COEFFICIENT_DRAG),
 	currentVelocity_(Vector2::ZERO),
 	currentForce_(Vector2::ZERO),
 	currentAcceleration_(Vector2::ZERO)
 {
-	PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
-	physicsSystemInstance->AddPhysicsObject(this);
+	//PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
+	//physicsSystemInstance->AddPhysicsObject(this);
 }
 
 PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject,float mass, float drag):
 	objectPtr_(gameObject),
+	controllable_(false),
 	mass_(mass),
 	coefficientDrag_(drag),
 	currentVelocity_(Vector2::ZERO),
 	currentForce_(Vector2::ZERO),
 	currentAcceleration_(Vector2::ZERO)
 {
-	PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
-	physicsSystemInstance->AddPhysicsObject(this);
+	//PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
+	//physicsSystemInstance->AddPhysicsObject(this);
 }
 
 PhysicsObject::~PhysicsObject()
@@ -50,6 +54,22 @@ PhysicsObject::~PhysicsObject()
 	//	objectPtr_ = nullptr;
 	//}
 	
+}
+
+StrongPtr<PhysicsObject> PhysicsObject::CreatePOStrongPtr(PhysicsObject* po)
+{
+	StrongPtr<PhysicsObject> POStrongPtr = StrongPtr<PhysicsObject>(po);
+	PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
+	physicsSystemInstance->AddPhysicsObject(POStrongPtr);
+
+	ColliderSystem* colliderSystemInstance = ColliderSystem::GetInstance();
+	colliderSystemInstance->AddPhysicsObject(WeakPtr<PhysicsObject>(POStrongPtr));
+	///
+	//ColliderSystem::GetInstance()->AddPhysicsObject(WeakPtr<PhysicsObject>(POStrongPtr));
+	//
+
+
+	return POStrongPtr;
 }
 
 void PhysicsObject::Update(float dt)

@@ -16,12 +16,16 @@ public:
 	PhysicsObject(WeakPtr<GameObject>& gameObject,float mass, float drag);
 	~PhysicsObject();
 
+	StrongPtr<PhysicsObject> CreatePOStrongPtr(PhysicsObject* po);
+
 	void Update(float dt);
 	void ApplyForce(const Vector2& inputForce);
 
 	// setter getter
 	inline WeakPtr<GameObject> GetGameObject() const { return objectPtr_; };
 	inline void SetGameObject(const WeakPtr<GameObject>& gameObject) { objectPtr_ = gameObject; };
+	inline bool GetControllable() const { return controllable_; };
+	inline void SetControllable(bool b) { controllable_ = b; };
 	inline float GetMass() const { return mass_; };
 	inline void SetMass(const float mass) { mass_ = mass; };
 	inline float GetCoefficientDrag() const { return coefficientDrag_; };
@@ -36,6 +40,7 @@ public:
 private:
 
 	WeakPtr<GameObject> objectPtr_;
+	bool controllable_;
 	float mass_;
 	float coefficientDrag_;
 	Vector2 currentVelocity_;

@@ -63,8 +63,6 @@ public:
 
 	//create fron weak pointer
 	inline StrongPtr(const WeakPtr<T>& otherWeakPointer) :
-		//objectPtr_(otherWeakPointer.GetObjectPtr()),
-		//referenceCounter_(otherWeakPointer.GetReferenceCounter())
 		objectPtr_(otherWeakPointer.objectPtr_),
 		referenceCounter_(otherWeakPointer.referenceCounter_)
 	{
@@ -107,8 +105,8 @@ public:
 		return *this;
 	};
 
-	inline bool operator==(const StrongPtr& other) const { return objectPtr_ == other.objectPtr_ };
-	inline bool operator!=(const StrongPtr& other) const { return objectPtr_ != other.objectPtr_ };
+	inline bool operator==(const StrongPtr& other) const { return objectPtr_ == other.objectPtr_; };
+	inline bool operator!=(const StrongPtr& other) const { return objectPtr_ != other.objectPtr_; };
 	inline operator bool() const { return objectPtr_ != nullptr; };
 
 

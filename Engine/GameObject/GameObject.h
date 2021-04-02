@@ -5,6 +5,7 @@
 #include <vector>
 #include "Engine/Syncronization/ScopeLock.h"
 #include "Engine/Syncronization/Mutex.h"
+#include "Engine/Math/AABB.h"
 class GameObject
 {
 public:
@@ -19,6 +20,12 @@ public:
 
 	inline void SetPosition(const Vector2& position) { position_ = position; };
 	inline Vector2 GetPosition() const { return position_; };
+
+	inline void SetRotation(const float& rotation) { rotation_ = rotation; };
+	inline float GetRotation() const { return rotation_; };
+
+	inline void SetAABB(const AABB& aabb) { aabb_ = aabb; };
+	inline AABB GetAABB() const { return aabb_; };
 	
 	// This will move GameObjects from NewGameObjects -> AllGameObjects
 	static void CheckForNewGameObjects();
@@ -31,6 +38,8 @@ public:
 
 protected:
 	Vector2 position_;
+	float rotation_;
+	AABB aabb_;
 
 private:
 	// this is our master list of GameObjects

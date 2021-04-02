@@ -30,7 +30,12 @@ void Renderer::Run()
 	// Tell GLib that we want to render some sprites
 	GLib::Sprites::BeginRendering();
 
-	for each (RenderableObject * ro in renderableObjects_)
+	//for each (RenderableObject * ro in renderableObjects_)
+	//{
+	//	ro->Render();
+	//}
+
+	for each (StrongPtr<RenderableObject>  ro in renderableObjects_)
 	{
 		ro->Render();
 	}
@@ -41,7 +46,7 @@ void Renderer::Run()
 	GLib::EndRendering();
 }
 
-void Renderer::AddRenderableObject(RenderableObject* ro)
+void Renderer::AddRenderableObject(StrongPtr<RenderableObject> ro)
 {
 	if (std::find(renderableObjects_.begin(), renderableObjects_.end(), ro) != renderableObjects_.end())
 	{
@@ -53,7 +58,7 @@ void Renderer::AddRenderableObject(RenderableObject* ro)
 	}
 }
 
-void Renderer::RemoveRenderableObject(RenderableObject* ro)
+void Renderer::RemoveRenderableObject(StrongPtr<RenderableObject> ro)
 {
 	auto it = std::find(renderableObjects_.begin(), renderableObjects_.end(), ro);
 	if (it == renderableObjects_.end())

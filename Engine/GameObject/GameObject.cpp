@@ -14,7 +14,9 @@ StrongPtr<GameObject> GameObject::Create()
 }
 
 GameObject::GameObject() :
-	position_(Vector2::ZERO)
+	position_(Vector2::ZERO),
+	aabb_(AABB::ZERO),
+	rotation_(0.0f)
 {
 
 }
@@ -27,12 +29,14 @@ GameObject::~GameObject()
 GameObject::GameObject(const GameObject& other)
 {
 	position_ = other.position_;
+	aabb_ = other.aabb_;
 }
 
 
 GameObject& GameObject::operator=(const GameObject& other)
 {
 	position_ = other.GetPosition();
+	aabb_ = other.GetAABB();
 	return *this;
 }
 

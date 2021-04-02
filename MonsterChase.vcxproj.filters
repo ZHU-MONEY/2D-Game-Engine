@@ -150,6 +150,12 @@
     <ClCompile Include="Engine\Math\MathUtils.cpp">
       <Filter>Source Files\Engine\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Physics\ColliderSystem.cpp">
+      <Filter>Source Files\Engine\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Math\AABB.cpp">
+      <Filter>Source Files\Engine\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h">
@@ -280,6 +286,12 @@
     </ClInclude>
     <ClInclude Include="Engine\Math\MathUtils.h">
       <Filter>Source Files\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Math\AABB.h">
+      <Filter>Source Files\Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Physics\ColliderSystem.h">
+      <Filter>Source Files\Engine\Physics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
