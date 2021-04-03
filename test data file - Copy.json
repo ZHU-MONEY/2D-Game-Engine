@@ -1,5 +1,5 @@
 {
-  "position": [400,0.0],
+  "position": [0.0,0.0],
   "physics": {
     "mass": 2.2,
     "coefficient drag": 3.0

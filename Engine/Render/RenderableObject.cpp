@@ -64,9 +64,10 @@ void RenderableObject::Render()
 	if (this->objectPtr_) {
 		StrongPtr<GameObject> objectPtr_(this->objectPtr_);
 		position_ = { objectPtr_->GetPosition().x(), objectPtr_->GetPosition().y() };
+		rotation_ = objectPtr_->GetRotation();
 	}
 
-	GLib::Render(*sprite_, position_, 0.0f, 0.0f);
+	GLib::Render(*sprite_, position_, 0.0f, rotation_);
 }
 
 

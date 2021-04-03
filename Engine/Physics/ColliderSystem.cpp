@@ -1,7 +1,34 @@
 #include "Engine/Physics/ColliderSystem.h"
 #include <cassert>
 
+bool ColliderSystem::CheckSeparationForAxis(const float i_relative_vel_WtoA, const float i_a_aabb_center, const float i_a_aabb_extents, const float i_B_center_in_A, const float i_B_extents_in_a, const float i_dt, float& o_t_close, float& o_t_open)
+{
+	// treat zero velocities differently
+	if (RoundedEqual(i_relative_vel_WtoA, 0.0f))
+	{
+		// separation check without velocities
+		return (fabs(i_a_aabb_center - i_B_center_in_A) > i_a_aabb_extents + i_B_extents_in_a);
+	}
+	else
+	{
+		// calculate separation close and open times
+		o_t_close = (i_a_aabb_center - i_a_aabb_extents - i_B_center_in_A - i_B_extents_in_a) / i_relative_vel_WtoA;
+		o_t_open = (i_a_aabb_center + i_a_aabb_extents - i_B_center_in_A + i_B_extents_in_a) / i_relative_vel_WtoA;
 
+		// t_close must be less than t_open
+		// if not, swap them
+		if (o_t_open < o_t_close)
+		{
+			float t_swap = o_t_open;
+			o_t_open = o_t_close;
+			o_t_close = t_swap;
+		}
+
+		// if t_open < 0, the separation occurred in the past
+		// if t_close > i_dt, the separation will occur in the future
+		return (o_t_open < 0 || o_t_close > i_dt);
+	}
+}
 // static member initialization
 ColliderSystem* ColliderSystem::instance_ = nullptr;
 
@@ -37,12 +64,9 @@ void ColliderSystem::Run(float dt)
 	for (size_t i = 0; i < num_physics_objects_; i++)
 	{
 		// get physics object A
-
-		//StrongPtr<PhysicsObject> physicsObjectA = StrongPtr<PhysicsObject>(collideableObjects_[i]);
-		PhysicsObject* physicsObjectA = collideableObjects_[i].GetObjectPtr();
-
+		StrongPtr<PhysicsObject> physicsObjectA = StrongPtr<PhysicsObject>(collideableObjects_[i]);
 		// get game object A
-		const StrongPtr<GameObject> gameObjectA = physicsObjectA->GetGameObject().GetObjectPtr();
+		StrongPtr<GameObject>gameObjectA(physicsObjectA->GetGameObject());
 		// get A's AABB
 		const AABB aAABB = gameObjectA->GetAABB();
 
@@ -52,7 +76,6 @@ void ColliderSystem::Run(float dt)
 		Matrix4x4 matARotation = Matrix4x4::GetRotationZ(gameObjectA.GetObjectPtr()->GetRotation());
 		Matrix4x4 matATranslation = Matrix4x4::GetTranslation(gameObjectA.GetObjectPtr()->GetPosition());
 		Matrix4x4 matAToWorld = matATranslation * matARotation;
-
 		// calculate transform to convert world to object A coordinates
 		Matrix4x4 matWorldToA(matAToWorld.GetInverse());
 
@@ -60,26 +83,18 @@ void ColliderSystem::Run(float dt)
 		{
 			// don't compute collisions with self
 			if (collideableObjects_[i] == collideableObjects_[j])
-			{
-				continue;
-			}
+			{continue;}
 
 			// get physics object B
-			///////////////////////////////////////////////PhysicsObject* physicsObjectB = collideableObjects_[j];
-
-			//StrongPtr<PhysicsObject> physicsObjectB = StrongPtr<PhysicsObject>(collideableObjects_[j]);
-			PhysicsObject* physicsObjectB = collideableObjects_[j].GetObjectPtr();
+			StrongPtr<PhysicsObject> physicsObjectB = StrongPtr<PhysicsObject>(collideableObjects_[j]);
 			// get game object B
-			const StrongPtr<GameObject> gameObjectB = physicsObjectB->GetGameObject().GetObjectPtr();
+			const StrongPtr<GameObject> gameObjectB(physicsObjectB->GetGameObject());
 			// get B's AABB
 			const AABB bAABB = gameObjectB->GetAABB();
-
 			// calculate transform to convert object B to world coordinates
-
 			Matrix4x4 matBRotation = Matrix4x4::GetRotationZ(gameObjectB.GetObjectPtr()->GetRotation());
 			Matrix4x4 matBTranslation = Matrix4x4::GetTranslation(gameObjectB.GetObjectPtr()->GetPosition());
 			Matrix4x4 matBToWorld = matBTranslation * matBRotation;
-
 			// calculate transform to convert world to object B coordinates
 			Matrix4x4 matWorldtoB(matBToWorld.GetInverse());
 
@@ -117,7 +132,21 @@ void ColliderSystem::Run(float dt)
 					{
 						// separation check without velocities
 						//isXSeparatedInB = fabs(ACenterInB.x() - bAABB.center.x()) > AXExtentInB.x() + bAABB.extents.x();
-						isXSeparatedInB = fabs(ACenterInB.x() - bAABB.center.x()) > AExtentsInB.x() + bAABB.extents.x();
+						isXSeparatedInB = fabs(
+							gameObjectA.GetObjectPtr()->GetPosition().x()+
+							ACenterInB.x()
+							- 
+							bAABB.center.x() 
+							+ gameObjectB.GetObjectPtr()->GetPosition().x()
+						) > AExtentsInB.x() + bAABB.extents.x();
+
+						if (isXSeparatedInB) {
+							const size_t	lenBuffer = 65;
+							char			Buffer[lenBuffer];
+							sprintf_s(Buffer, lenBuffer, "NOT COLLIDING \n\n\n");
+							OutputDebugStringA(Buffer);
+							return;
+						}
 					}
 					else
 					{
@@ -137,6 +166,7 @@ void ColliderSystem::Run(float dt)
 						// if open < 0, the separation occurred in the past
 						// if close > dt, the separation will occur in the future
 						isXSeparatedInB = openXinB < 0 || closeXinB > dt;
+
 					}
 
 				} // for X axis
@@ -148,7 +178,21 @@ void ColliderSystem::Run(float dt)
 					if (RoundedEqual(relativeVelocityWorldToB.y(), 0.0f))
 					{
 						// separation check without velocities
-						isYSeparatedInB = fabs(ACenterInB.y() - bAABB.center.y()) > AExtentsInB.y() + bAABB.extents.y();
+						isYSeparatedInB = fabs(
+							gameObjectA.GetObjectPtr()->GetPosition().y() + 
+							ACenterInB.y() - bAABB.center.y()
+							+ gameObjectB.GetObjectPtr()->GetPosition().y()
+						) > AExtentsInB.y() + bAABB.extents.y();
+
+						if (isYSeparatedInB) {
+							const size_t	lenBuffer = 65;
+							char			Buffer[lenBuffer];
+							sprintf_s(Buffer, lenBuffer, "NOT COLLIDING \n\n\n");
+							OutputDebugStringA(Buffer);
+							return;
+						}
+
+
 					}
 					else
 					{
@@ -202,7 +246,21 @@ void ColliderSystem::Run(float dt)
 					if (RoundedEqual(relativeVelocityWorldToA.x(), 0.0f))
 					{
 						// separation check without velocities
-						isXSeparatedInA = fabs(aAABB.center.x() - BCenterInA.x()) > aAABB.extents.x() + BExtentsInA.x();
+						isXSeparatedInA = fabs(
+							gameObjectB.GetObjectPtr()->GetPosition().x()+
+							aAABB.center.x() - BCenterInA.x()
+							+ gameObjectA.GetObjectPtr()->GetPosition().x()
+						) > aAABB.extents.x() + BExtentsInA.x();
+
+						if (isXSeparatedInA) {
+							const size_t	lenBuffer = 65;
+							char			Buffer[lenBuffer];
+							sprintf_s(Buffer, lenBuffer, "NOT COLLIDING \n\n\n");
+							OutputDebugStringA(Buffer);
+							return;
+						}
+
+
 					}
 					else
 					{
@@ -210,7 +268,7 @@ void ColliderSystem::Run(float dt)
 						closeXInA = (aAABB.center.x() - aAABB.extents.x() - BCenterInA.x() - BExtentsInA.x()) / relativeVelocityWorldToA.x();
 						openXInA = (aAABB.center.x() + aAABB.extents.x() - BCenterInA.x() + BExtentsInA.x()) / relativeVelocityWorldToA.x();
 
-						// close must be less than t_open
+						// close must be less than open
 						// if not, swap them
 						if (openXInA < closeXInA)
 						{
@@ -232,10 +290,34 @@ void ColliderSystem::Run(float dt)
 					if (RoundedEqual(relativeVelocityWorldToA.y(), 0.0f))
 					{
 						// separation check without velocities
-						isYSeparatedInA = fabs(aAABB.center.y() - BCenterInA.y()) > aAABB.extents.y() + BExtentsInA.y();
+						isYSeparatedInA = fabs(
+							gameObjectB.GetObjectPtr()->GetPosition().y() + 
+							aAABB.center.y() - BCenterInA.y()
+							+gameObjectA.GetObjectPtr()->GetPosition().y()
+						) > aAABB.extents.y() + BExtentsInA.y();
+
+
+						if (isYSeparatedInA) {
+							const size_t	lenBuffer = 65;
+							char			Buffer[lenBuffer];
+							sprintf_s(Buffer, lenBuffer, "NOT COLLIDING \n\n\n");
+							OutputDebugStringA(Buffer);
+							return;
+						}
 					}
 					else
 					{
+
+
+
+						const size_t	lenBuffer = 65;
+						char			Buffer[lenBuffer];
+						sprintf_s(Buffer, lenBuffer, "COLLIDING \n\n\n");
+						OutputDebugStringA(Buffer);
+						return;
+
+
+
 						// calculate separation close and open times
 						closeYInA = (aAABB.center.y() - aAABB.extents.y() - BCenterInA.y() - BExtentsInA.y()) / relativeVelocityWorldToA.y();
 						openYInA = (aAABB.center.y() + aAABB.extents.y() - BCenterInA.y() + BExtentsInA.y()) / relativeVelocityWorldToA.y();
@@ -258,8 +340,10 @@ void ColliderSystem::Run(float dt)
 
 			} // check for B in A's coordinate system
 
+			///**
 			// if separation
 			if (!(isXSeparatedInB || isYSeparatedInB || isXSeparatedInA || isYSeparatedInA))
+			//if (!(isXSeparatedInB == true && isYSeparatedInB == true && isXSeparatedInA == true && isYSeparatedInA == true))
 			{
 				// find the latest t_close and the earliest t_open
 				float closeLatest = GetMaxOfFour(closeXinB, closeYinB, closeXInA, closeYInA);
@@ -270,21 +354,30 @@ void ColliderSystem::Run(float dt)
 				if (closeLatest > openEarliest)
 				{
 					//no collision
+					const size_t	lenBuffer = 65;
+					char			Buffer[lenBuffer];
+					sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING \n\n\n");
+					OutputDebugStringA(Buffer);
 				}
 				else
 				{
 					//collision
+					const size_t	lenBuffer = 65;
+					char			Buffer[lenBuffer];
+					sprintf_s(Buffer, lenBuffer, "COLLIDING \n\n\n");
+					OutputDebugStringA(Buffer);
 
-					physicsObjectA->ApplyForce(physicsObjectA->GetVelocity() * -5.0f);
-					physicsObjectB->ApplyForce(physicsObjectB->GetVelocity() * -5.0f);
 
 				}
 			}
 			else
 			{
-				//no collision
+					const size_t	lenBuffer = 65;
+					char			Buffer[lenBuffer];
+					sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING \n\n\n");
+					OutputDebugStringA(Buffer);
 			}
-
+			//**/
 		}
 
 	}

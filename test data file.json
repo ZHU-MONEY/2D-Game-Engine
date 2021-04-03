@@ -1,11 +1,11 @@
 {
-  "position": [133.0,122.0],
+  "position": [140.0,170.0],
   "physics": {
     "controllable":true,
     "mass": 2.2,
     "coefficient drag": 3.0
   },
   "render": {
-    "sprite": "data\\BadGuy.dds"
+    "sprite": "data\\GoodGuy.dds"
   }
 }

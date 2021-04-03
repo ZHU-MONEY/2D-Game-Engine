@@ -31,5 +31,6 @@ private:
 	WeakPtr<GameObject> objectPtr_;
 	Sprite* sprite_;
 	Point2D position_;
+	float rotation_;
 };
 
