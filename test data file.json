@@ -1,11 +1,13 @@
 {
   "position": [140.0,170.0],
+  "rotation": 100,
+  "size": [64.0,64.0],
   "physics": {
     "controllable":true,
     "mass": 2.2,
     "coefficient drag": 3.0
   },
   "render": {
-    "sprite": "data\\GoodGuy.dds"
+    "sprite": "data\\default sprite.dds"
   }
 }

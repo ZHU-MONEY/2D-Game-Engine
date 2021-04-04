@@ -18,12 +18,11 @@ class PhysicsObject;
 class ColliderSystem
 {
 private:
-	bool CheckSeparationForAxis(const float i_relative_vel_WtoA, const float i_a_aabb_center, const float i_a_aabb_extents, const float i_B_center_in_A, const float i_B_extents_in_a, const float i_dt, float& o_t_close, float& o_t_open);
 	ColliderSystem();
 	~ColliderSystem();
 
 	static ColliderSystem* instance_;
-	size_t num_physics_objects_;
+	size_t collideableObjectsAmount_;
 	//std::vector<PhysicsObject*> collideableObjects_;
 	std::vector<WeakPtr<PhysicsObject>> collideableObjects_;
 	std::mutex colliderMutex_;

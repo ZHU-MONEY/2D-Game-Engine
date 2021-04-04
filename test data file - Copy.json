@@ -1,10 +1,11 @@
 {
   "position": [0.0,0.0],
+  "size": [64.0,64.0],
   "physics": {
     "mass": 2.2,
     "coefficient drag": 3.0
   },
   "render": {
-    "sprite": "data\\GoodGuy.dds"
+    "sprite": "data\\default sprite.dds"
   }
 }

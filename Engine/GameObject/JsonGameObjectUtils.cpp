@@ -40,6 +40,21 @@ StrongPtr<GameObject> JsonGameObjectUtils::CreateGameObjectFromJson(const char* 
 			go->SetPosition(Vector2(pos[0], pos[1]));
 		}
 
+		if (jsonObject.contains("rotation"))
+		{
+			//json rot = jsonObject["rotation"];
+
+			go->SetRotation(jsonObject["rotation"]);
+		}
+
+		//this will determine how big is the AABB
+		if (jsonObject.contains("size"))
+		{
+			json size = jsonObject["size"];
+
+			go->SetAABB({ Vector2::ZERO, Vector2(size[0]/2, size[1]/2)});
+		}
+
 		if (jsonObject.contains("physics"))
 		{
 			//create a phisics object
@@ -71,8 +86,10 @@ StrongPtr<GameObject> JsonGameObjectUtils::CreateGameObjectFromJson(const char* 
 			json jsonRenderableObject = jsonObject["render"];
 			if (jsonRenderableObject.contains("sprite"))
 			{
-				ros->SetSprite(EngineUtils::CreateSprite(jsonRenderableObject["sprite"].get<std::string>().c_str()));
+				Sprite* sprite(EngineUtils::CreateSprite(jsonRenderableObject["sprite"].get<std::string>().c_str()));
+				ros->SetSprite(sprite);
 			}
+
 		}
 
 		if (jsonObject.contains("collider"))

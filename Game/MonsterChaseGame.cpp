@@ -77,9 +77,9 @@ namespace Game {
 		using namespace std::placeholders;
 		const char* CustomQueueName = "GameObjectLoader";
 		Engine::HashedString QueueName = Engine::JobSystem::CreateQueue(CustomQueueName, 1);
-		Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "test data file.json"));
-		Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "test data file - Copy.json"));
 
+		Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "test data file - Copy.json"));
+		Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "test data file.json"));
 		
 
 		//player_ = JsonGameObjectUtils::CreateGameObjectFromJson("test data file.json");
