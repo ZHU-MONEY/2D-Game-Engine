@@ -91,10 +91,10 @@ void ColliderSystem::Run(float dt)
 			const Vector2 relativeVelocityAToB = physicsObjectA->GetVelocity() - physicsObjectB->GetVelocity();
 
 			// transform relative velocity (as a vector) to object B's coordinate system
-			const Vector4 relativeVelocityWorldToB = matWorldtoB * Vector4(relativeVelocityAToB, 0.0f);
+			const Vector4 relativeVelocityWorldToB = matWorldtoB * Vector4(relativeVelocityAToB, 0.0f, 0.0f);
 
 			// transform A's AABB to B's coordinate system
-			const Vector4 ACenterInB = matAToB * Vector4(aAABB.center, 1.0f);
+			const Vector4 ACenterInB = matAToB * Vector4(aAABB.center, 0.0f, 1.0f);
 			const Vector4 AXExtentInB = matAToB * Vector4(aAABB.extents.x(), 0.0f, 0.0f, 0.0f);
 			const Vector4 AYExtentInB = matAToB * Vector4(0.0f, aAABB.extents.y(), 0.0f, 0.0f);
 			const Vector4 AExtentsInB(fabs(AXExtentInB.x()) + fabs(AYExtentInB.x()), fabs(AXExtentInB.y()) + fabs(AYExtentInB.y()), 0.0f, 0.0f);
@@ -102,15 +102,15 @@ void ColliderSystem::Run(float dt)
 			// for X axis
 			{
 				// treat zero velocities differently
-				//if (RoundedEqual(relativeVelocityWorldToB.x(), 0.0f))
-				if (true)
+				if (RoundedEqual(relativeVelocityWorldToB.x(), 0.0f))
+				//if (true)
 				{
 					// separation check without velocities
 					//isXSeparatedInB = fabs(ACenterInB.x() - bAABB.center.x()) > AXExtentInB.x() + bAABB.extents.x();
 					isXSeparatedInB = fabs(
-						gameObjectA.GetObjectPtr()->GetPosition().x() +
+//						gameObjectA.GetObjectPtr()->GetPosition().x() +
 						fabs(ACenterInB.x()) - bAABB.center.x()
-						+ gameObjectB.GetObjectPtr()->GetPosition().x()
+//						+ gameObjectB.GetObjectPtr()->GetPosition().x()
 					) > AExtentsInB.x() + bAABB.extents.x();
 
 				}
@@ -141,14 +141,14 @@ void ColliderSystem::Run(float dt)
 			//---------if (!isXSeparatedInB)
 			{
 				// treat zero velocities differently
-				//if (RoundedEqual(relativeVelocityWorldToB.y(), 0.0f))
-				if (true)
+				if (RoundedEqual(relativeVelocityWorldToB.y(), 0.0f))
+				//if (true)
 				{
 					// separation check without velocities
 					isYSeparatedInB = fabs(
-						gameObjectA.GetObjectPtr()->GetPosition().y() +
+//						gameObjectA.GetObjectPtr()->GetPosition().y() +
 						fabs(ACenterInB.y()) - bAABB.center.y()
-						+ gameObjectB.GetObjectPtr()->GetPosition().y()
+//						+ gameObjectB.GetObjectPtr()->GetPosition().y()
 					) > AExtentsInB.y() + bAABB.extents.y();
 
 				}
@@ -180,7 +180,7 @@ void ColliderSystem::Run(float dt)
 				//no collision
 				const size_t	lenBuffer = 65;
 				char			Buffer[lenBuffer];
-				sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 211 \n");
+				sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 193 \n");
 				OutputDebugStringA(Buffer);
 			}
 
@@ -197,10 +197,10 @@ void ColliderSystem::Run(float dt)
 			const Vector2 relativeVelocityBToA = physicsObjectB->GetVelocity() - physicsObjectA->GetVelocity();
 
 			// transform relative velocity (as a vector) to A's coordinate system
-			const Vector4 relativeVelocityWorldToA = matWorldToA * Vector4(relativeVelocityBToA, 0.0f);
+			const Vector4 relativeVelocityWorldToA = matWorldToA * Vector4(relativeVelocityBToA, 0.0f, 0.0f);
 
 			// transform B's AABB to A's coordinate system
-			const Vector4 BCenterInA = matBToA * Vector4(bAABB.center, 1.0f);
+			const Vector4 BCenterInA = matBToA * Vector4(bAABB.center, 0.0f, 1.0f);
 			const Vector4 BXExtentInA = matBToA * Vector4(bAABB.extents.x(), 0.0f, 0.0f, 0.0f);
 			const Vector4 BYExtentInA = matBToA * Vector4(0.0f, bAABB.extents.y(), 0.0f, 0.0f);
 			const Vector4 BExtentsInA(fabs(BXExtentInA.x()) + fabs(BYExtentInA.x()), fabs(BXExtentInA.y()) + fabs(BYExtentInA.y()), 0.0f, 0.0f);
@@ -208,14 +208,14 @@ void ColliderSystem::Run(float dt)
 			// for X axis
 			{
 				// treat zero velocities differently
-				//if (RoundedEqual(relativeVelocityWorldToA.x(), 0.0f))
-				if (true)
+				if (RoundedEqual(relativeVelocityWorldToA.x(), 0.0f))
+				//if (true)
 				{
 					// separation check without velocities
 					isXSeparatedInA = fabs(
-						gameObjectB.GetObjectPtr()->GetPosition().x() +
+//						gameObjectB.GetObjectPtr()->GetPosition().x() +
 						fabs(aAABB.center.x()) - BCenterInA.x()
-						+ gameObjectA.GetObjectPtr()->GetPosition().x()
+//						+ gameObjectA.GetObjectPtr()->GetPosition().x()
 					) > aAABB.extents.x() + BExtentsInA.x();
 
 				}
@@ -244,14 +244,14 @@ void ColliderSystem::Run(float dt)
 			//---------------if (!isXSeparatedInA)
 			{
 				// treat zero velocities differently
-				//if (RoundedEqual(relativeVelocityWorldToA.y(), 0.0f))
-				if (true)
+				if (RoundedEqual(relativeVelocityWorldToA.y(), 0.0f))
+				//if (true)
 				{
 					// separation check without velocities
 					isYSeparatedInA = fabs(
-						gameObjectB.GetObjectPtr()->GetPosition().y() +
+//						gameObjectB.GetObjectPtr()->GetPosition().y() +
 						fabs(aAABB.center.y()) - BCenterInA.y()
-						+ gameObjectA.GetObjectPtr()->GetPosition().y()
+//						+ gameObjectA.GetObjectPtr()->GetPosition().y()
 					) > aAABB.extents.y() + BExtentsInA.y();
 
 				}
@@ -282,7 +282,7 @@ void ColliderSystem::Run(float dt)
 				//no collision
 				const size_t	lenBuffer = 65;
 				char			Buffer[lenBuffer];
-				sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 313 \n");
+				sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 295 \n");
 				OutputDebugStringA(Buffer);
 			}
 #pragma endregion
@@ -306,7 +306,7 @@ void ColliderSystem::Run(float dt)
 					//no collision
 					const size_t	lenBuffer = 65;
 					char			Buffer[lenBuffer];
-					sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 337 \n");
+					sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 319 \n");
 					OutputDebugStringA(Buffer);
 				}
 				else
@@ -314,8 +314,11 @@ void ColliderSystem::Run(float dt)
 					//collision
 					const size_t	lenBuffer = 65;
 					char			Buffer[lenBuffer];
-					sprintf_s(Buffer, lenBuffer, "COLLIDING line 345\n");
+					sprintf_s(Buffer, lenBuffer, "COLLIDING line 327\n");
 					OutputDebugStringA(Buffer);
+
+					physicsObjectA->ApplyForce(physicsObjectA->GetVelocity() * -5.0f);
+					physicsObjectB->ApplyForce(physicsObjectB->GetVelocity() * -5.0f);
 
 				}
 			}
@@ -323,7 +326,7 @@ void ColliderSystem::Run(float dt)
 			{
 				const size_t	lenBuffer = 65;
 				char			Buffer[lenBuffer];
-				sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 356\n");
+				sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 339\n");
 				OutputDebugStringA(Buffer);
 			}
 			//**/

@@ -1,6 +1,6 @@
 {
   "position": [140.0,170.0],
-  "rotation": 100,
+  "rotation": 0,
   "size": [64.0,64.0],
   "physics": {
     "controllable":true,
