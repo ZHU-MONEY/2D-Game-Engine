@@ -37,6 +37,7 @@ public:
 	inline const Vector2 GetAcceleration() const { return currentAcceleration_; };
 	inline void SetAcceleration(const Vector2& acceleration) { currentAcceleration_ = acceleration; };
 
+	void RespondToCollision(const Vector2& collisionNormal);
 private:
 
 	WeakPtr<GameObject> objectPtr_;
@@ -46,6 +47,8 @@ private:
 	Vector2 currentVelocity_;
 	Vector2 currentForce_;
 	Vector2 currentAcceleration_;
+
+	bool isFinishedCollisionReaction_;
 
 
 };

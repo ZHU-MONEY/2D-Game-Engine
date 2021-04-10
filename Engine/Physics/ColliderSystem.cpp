@@ -103,14 +103,14 @@ void ColliderSystem::Run(float dt)
 			{
 				// treat zero velocities differently
 				if (RoundedEqual(relativeVelocityWorldToB.x(), 0.0f))
-				//if (true)
+					//if (true)
 				{
 					// separation check without velocities
 					//isXSeparatedInB = fabs(ACenterInB.x() - bAABB.center.x()) > AXExtentInB.x() + bAABB.extents.x();
 					isXSeparatedInB = fabs(
-//						gameObjectA.GetObjectPtr()->GetPosition().x() +
+						//						gameObjectA.GetObjectPtr()->GetPosition().x() +
 						fabs(ACenterInB.x()) - bAABB.center.x()
-//						+ gameObjectB.GetObjectPtr()->GetPosition().x()
+						//						+ gameObjectB.GetObjectPtr()->GetPosition().x()
 					) > AExtentsInB.x() + bAABB.extents.x();
 
 				}
@@ -142,13 +142,13 @@ void ColliderSystem::Run(float dt)
 			{
 				// treat zero velocities differently
 				if (RoundedEqual(relativeVelocityWorldToB.y(), 0.0f))
-				//if (true)
+					//if (true)
 				{
 					// separation check without velocities
 					isYSeparatedInB = fabs(
-//						gameObjectA.GetObjectPtr()->GetPosition().y() +
+						//						gameObjectA.GetObjectPtr()->GetPosition().y() +
 						fabs(ACenterInB.y()) - bAABB.center.y()
-//						+ gameObjectB.GetObjectPtr()->GetPosition().y()
+						//						+ gameObjectB.GetObjectPtr()->GetPosition().y()
 					) > AExtentsInB.y() + bAABB.extents.y();
 
 				}
@@ -158,7 +158,7 @@ void ColliderSystem::Run(float dt)
 					closeYinB = (bAABB.center.y() - bAABB.extents.y() - ACenterInB.y() - AExtentsInB.y()) / relativeVelocityWorldToB.y();
 					openYinB = (bAABB.center.y() + bAABB.extents.y() - ACenterInB.y() + AExtentsInB.y()) / relativeVelocityWorldToB.y();
 
-					// t_close must be less than t_open
+					// close must be less than open
 					// if not, swap them
 					if (openYinB < closeYinB)
 					{
@@ -209,13 +209,13 @@ void ColliderSystem::Run(float dt)
 			{
 				// treat zero velocities differently
 				if (RoundedEqual(relativeVelocityWorldToA.x(), 0.0f))
-				//if (true)
+					//if (true)
 				{
 					// separation check without velocities
 					isXSeparatedInA = fabs(
-//						gameObjectB.GetObjectPtr()->GetPosition().x() +
+						//						gameObjectB.GetObjectPtr()->GetPosition().x() +
 						fabs(aAABB.center.x()) - BCenterInA.x()
-//						+ gameObjectA.GetObjectPtr()->GetPosition().x()
+						//						+ gameObjectA.GetObjectPtr()->GetPosition().x()
 					) > aAABB.extents.x() + BExtentsInA.x();
 
 				}
@@ -245,13 +245,13 @@ void ColliderSystem::Run(float dt)
 			{
 				// treat zero velocities differently
 				if (RoundedEqual(relativeVelocityWorldToA.y(), 0.0f))
-				//if (true)
+					//if (true)
 				{
 					// separation check without velocities
 					isYSeparatedInA = fabs(
-//						gameObjectB.GetObjectPtr()->GetPosition().y() +
+						//						gameObjectB.GetObjectPtr()->GetPosition().y() +
 						fabs(aAABB.center.y()) - BCenterInA.y()
-//						+ gameObjectA.GetObjectPtr()->GetPosition().y()
+						//						+ gameObjectA.GetObjectPtr()->GetPosition().y()
 					) > aAABB.extents.y() + BExtentsInA.y();
 
 				}
@@ -295,12 +295,12 @@ void ColliderSystem::Run(float dt)
 			if (!(isXSeparatedInB || isYSeparatedInB || isXSeparatedInA || isYSeparatedInA))
 				//if (!(isXSeparatedInB == true && isYSeparatedInB == true && isXSeparatedInA == true && isYSeparatedInA == true))
 			{
-				// find the latest t_close and the earliest t_open
+				// find the latest close and the earliest open
 				float closeLatest = GetMaxOfFour(closeXinB, closeYinB, closeXInA, closeYInA);
 				float openEarliest = GetMinOfFour(openXinB, openYinB, openXInA, openYInA);
 
 
-				// if the latest t_close was after the earliest t_open, there was continuity of separation
+				// if the latest close was after the earliest open, there was continuity of separation
 				if (closeLatest > openEarliest)
 				{
 					//no collision
@@ -317,8 +317,37 @@ void ColliderSystem::Run(float dt)
 					sprintf_s(Buffer, lenBuffer, "COLLIDING line 327\n");
 					OutputDebugStringA(Buffer);
 
-					physicsObjectA->ApplyForce(physicsObjectA->GetVelocity() * -5.0f);
-					physicsObjectB->ApplyForce(physicsObjectB->GetVelocity() * -5.0f);
+					Vector2 normal = Vector2::ZERO;
+					if (RoundedEqual(closeLatest, closeXinB))
+					{
+						const Vector4 bXInWorld = matBToWorld.GetCol0();
+						bXInWorld.Normalize();
+						normal.set(bXInWorld.x(), bXInWorld.y());
+						collided_objects_.push_back({ closeLatest, -normal,normal, physicsObjectA, physicsObjectB });
+					}
+					else if (RoundedEqual(closeLatest, closeYinB))
+					{
+						const Vector4 bYInWorld = matBToWorld.GetCol1();
+						bYInWorld.Normalize();
+						normal.set(bYInWorld.x(),bYInWorld.y());
+						collided_objects_.push_back({ closeLatest, -normal,normal, physicsObjectA, physicsObjectB });
+					}
+					else if (RoundedEqual(closeLatest, closeXInA))
+					{
+						const Vector4 aXInWorld = matAToWorld.GetCol0();
+						aXInWorld.Normalize();
+						normal.set(aXInWorld.x(), aXInWorld.y());
+						collided_objects_.push_back({ closeLatest, normal,-normal, physicsObjectA, physicsObjectB });
+					}
+					else if (RoundedEqual(closeLatest, closeYInA))
+					{
+						const Vector4 aYInWorld = matAToWorld.GetCol1();
+						aYInWorld.Normalize();
+						normal.set(aYInWorld.x(),aYInWorld.y());
+						collided_objects_.push_back({ closeLatest, normal,-normal, physicsObjectA, physicsObjectB });
+					}
+
+
 
 				}
 			}
@@ -334,6 +363,16 @@ void ColliderSystem::Run(float dt)
 
 	}
 
+	const size_t num_collided_objects = collided_objects_.size();
+
+	for (size_t i = 0; i < num_collided_objects; ++i)
+	{
+		CollisionPair& collision_pair = collided_objects_[i];
+
+		StrongPtr<PhysicsObject>(collision_pair.objectA)->RespondToCollision(collision_pair.normalA);
+		StrongPtr<PhysicsObject>(collision_pair.objectB)->RespondToCollision(collision_pair.normalB);
+	}
+	collided_objects_.clear();
 }
 
 void ColliderSystem::AddPhysicsObject(WeakPtr<PhysicsObject>& poWeakPtr)

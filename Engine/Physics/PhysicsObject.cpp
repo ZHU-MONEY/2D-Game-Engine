@@ -1,9 +1,10 @@
 #include "PhysicsObject.h"
 #include "Engine/Physics/PhysicsSystem.h"
 #include "Engine/Physics/ColliderSystem.h"
+#include "Engine/Input/InputReader.h"
 
-const float PhysicsObject::DEFAULT_MASS = 2.0f;
-const float PhysicsObject::DEFAULT_COEFFICIENT_DRAG = 0.5f;
+const float PhysicsObject::DEFAULT_MASS = 1.0f;
+const float PhysicsObject::DEFAULT_COEFFICIENT_DRAG = 0.1f;
 const float PhysicsObject::MAX_SPEED = 2.0f;
 const float PhysicsObject::MIN_SPEED = 0.0001f;
 
@@ -14,7 +15,8 @@ PhysicsObject::PhysicsObject() :
 	coefficientDrag_(DEFAULT_COEFFICIENT_DRAG),
 	currentVelocity_(Vector2::ZERO),
 	currentForce_(Vector2::ZERO),
-	currentAcceleration_(Vector2::ZERO)
+	currentAcceleration_(Vector2::ZERO),
+	isFinishedCollisionReaction_(false)
 {
 	//PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
 	//physicsSystemInstance->AddPhysicsObject(this);
@@ -27,7 +29,8 @@ PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject) :
 	coefficientDrag_(DEFAULT_COEFFICIENT_DRAG),
 	currentVelocity_(Vector2::ZERO),
 	currentForce_(Vector2::ZERO),
-	currentAcceleration_(Vector2::ZERO)
+	currentAcceleration_(Vector2::ZERO),
+	isFinishedCollisionReaction_(false)
 {
 	//PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
 	//physicsSystemInstance->AddPhysicsObject(this);
@@ -40,7 +43,8 @@ PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject,float mass, float d
 	coefficientDrag_(drag),
 	currentVelocity_(Vector2::ZERO),
 	currentForce_(Vector2::ZERO),
-	currentAcceleration_(Vector2::ZERO)
+	currentAcceleration_(Vector2::ZERO),
+	isFinishedCollisionReaction_(false)
 {
 	//PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
 	//physicsSystemInstance->AddPhysicsObject(this);
@@ -130,6 +134,8 @@ void PhysicsObject::Update(float dt)
 
 	// update game object
 	objectPtr_->SetPosition(currentPosition);
+
+	isFinishedCollisionReaction_ = false;
 }
 
 void PhysicsObject::ApplyForce(const Vector2& inputForce)
@@ -140,4 +146,42 @@ void PhysicsObject::ApplyForce(const Vector2& inputForce)
 	currentForce_.x(currentForce_.x() + inputForce.x());
 	currentForce_.y(currentForce_.y() + inputForce.y());
 
+}
+float DotProduct(const Vector2& i_v1, const Vector2& i_v2)
+{
+	return (i_v1.x() * i_v2.x() + i_v1.y() * i_v2.y());
+}
+void PhysicsObject::RespondToCollision(const Vector2& collisionNormal)
+{
+	if (isFinishedCollisionReaction_)
+	{
+		return;
+	}
+
+	//InputReader* inputReaderInstance = InputReader::GetInstance();
+	//if (!this->controllable_) {
+	//	float pushSpeed = 0.2f;
+	//	if (inputReaderInstance->isKey_W_Down) {
+	//		this->ApplyForce(Vector2(0.0f, pushSpeed));
+	//	}
+	//	if (inputReaderInstance->isKey_D_Down) {
+	//		this->ApplyForce(Vector2(pushSpeed, 0.0f));
+	//	}
+	//	if (inputReaderInstance->isKey_S_Down) {
+	//		this->ApplyForce(Vector2(0.0f, -pushSpeed));
+	//	}
+	//	if (inputReaderInstance->isKey_A_Down) {
+	//		this->ApplyForce(Vector2(-pushSpeed, 0.0f));
+	//	}
+	//}
+
+	if (currentVelocity_.IsZero()) {
+		currentVelocity_ = currentVelocity_ - collisionNormal;
+	}
+	else {
+		currentVelocity_ = currentVelocity_ - (currentVelocity_ * collisionNormal * 2);
+
+	}
+
+	isFinishedCollisionReaction_ = true;
 }

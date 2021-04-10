@@ -14,6 +14,14 @@ struct AABB;
 class Matrix4x4;
 class PhysicsObject;
 
+struct CollisionPair
+{
+	float time;
+	Vector2	normalA;
+	Vector2	normalB;
+	WeakPtr<PhysicsObject>	objectA;
+	WeakPtr<PhysicsObject>	objectB;
+};
 
 class ColliderSystem
 {
@@ -26,6 +34,8 @@ private:
 	//std::vector<PhysicsObject*> collideableObjects_;
 	std::vector<WeakPtr<PhysicsObject>> collideableObjects_;
 	std::mutex colliderMutex_;
+
+	std::vector<CollisionPair>  collided_objects_;
 
 public:
 	static ColliderSystem* Create();

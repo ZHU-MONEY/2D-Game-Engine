@@ -55,9 +55,12 @@ public:
     // scaling matrix
     static Matrix4x4 GetScale(const float scale);
 
-//#ifdef BUILD_DEBUG
-//    void Print() const;
-//#endif
+    inline Vector4 GetCol0() {
+        return Vector4(f11, f21, f31, f41);
+    };
+    inline Vector4 GetCol1() {
+        return Vector4(f12, f22, f32, f42);
+    };
 
     static const Matrix4x4 IDENTITY;
     static const Matrix4x4 ZERO;
@@ -85,3 +88,4 @@ inline Vector4 operator*(const Vector4& leftMatrix, const Matrix4x4& rightMatrix
 {
     return rightMatrix.MultiplyLeft(leftMatrix);
 };
+
