@@ -65,17 +65,16 @@ namespace Game {
 
 	void MonsterChaseGame::Destroy()
 	{
-		/*if (instance_) {
+		if (instance_) {
 			delete instance_;
 			instance_ = nullptr;
-		}*/
+		}
 	}
 
 	void MonsterChaseGame::Initialize()
 	{
 		using namespace std::placeholders;
-		const char* CustomQueueName = "GameObjectLoader";
-		Engine::HashedString QueueName = Engine::JobSystem::CreateQueue(CustomQueueName, 1);
+		Engine::HashedString QueueName = Engine::JobSystem::CreateQueue("GameObjectLoader", 1);
 
 		Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "test data file - Copy.json"));
 		Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "test data file.json"));

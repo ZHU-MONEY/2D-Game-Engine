@@ -33,8 +33,6 @@ public:
 	// This adds a new GameObject to NewGameObjects
 	static void AddNewGameObject(StrongPtr<GameObject> i_pNewGameObject);
 
-	// This is the mutex we use to guard against accessing NewGameObjects simultaneously on multiple threads
-	//static Engine::Mutex NewGameObjectMutex;
 
 protected:
 	Vector2 position_;
@@ -42,10 +40,7 @@ protected:
 	AABB aabb_;
 
 private:
-	// this is our master list of GameObjects
-	//static std::vector<StrongPtr<GameObject>> AllGameObjects;
 
-	//static std::vector<StrongPtr<GameObject>> NewGameObjects;
 };
 
 

@@ -52,12 +52,7 @@ PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject,float mass, float d
 
 PhysicsObject::~PhysicsObject()
 {
-	//Probably just need to remove pointer, if call delete on gameobject then the gameobject mightget deleted
-	//if (objectPtr_) {
-	//	
-	//	objectPtr_ = nullptr;
-	//}
-	
+	objectPtr_;
 }
 
 StrongPtr<PhysicsObject> PhysicsObject::CreatePOStrongPtr(PhysicsObject* po)

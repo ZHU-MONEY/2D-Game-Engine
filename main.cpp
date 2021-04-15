@@ -65,19 +65,14 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 				Engine::Run();
 				MC->Update();
 			}
-			const size_t	lenBuffer = 65;
-			char			Buffer[lenBuffer];
-			sprintf_s(Buffer, lenBuffer, "\n\nquit GAME\n\n");
-			OutputDebugStringA(Buffer);
-			MC->Destroy();
+
+			Game::Shutdown();
 			// IMPORTANT:  Tell GLib to shutdown, releasing resources.
 			GLib::Shutdown();
+			Engine::Shutdown();
 		}
 	}
-
-	//#if defined _DEBUG
 	_CrtDumpMemoryLeaks();
-	//#endif // _DEBUG
 
 }
 

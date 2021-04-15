@@ -45,5 +45,14 @@ namespace Engine {
 
 	void Shutdown()
 	{
+		PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
+		ColliderSystem* colliderSystemInstance = ColliderSystem::GetInstance();
+		Renderer* rendererInstance = Renderer::GetInstance();
+		InputReader* inputReaderInstance = InputReader::GetInstance();
+
+		physicsSystemInstance->Destroy();
+		colliderSystemInstance->Destroy();
+		rendererInstance->Destroy();
+		inputReaderInstance->Destroy();
 	}
 }
