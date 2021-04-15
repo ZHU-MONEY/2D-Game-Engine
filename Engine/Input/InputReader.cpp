@@ -6,7 +6,7 @@ bool InputReader::isKey_W_Down = false;
 bool InputReader::isKey_A_Down = false;
 bool InputReader::isKey_S_Down = false;
 bool InputReader::isKey_D_Down = false;
-
+bool InputReader::isKey_Q_Down = false;
 void AcceptKey2(unsigned int i_VKeyID, bool bWentDown)
 {
 		//const size_t	lenBuffer = 65;
@@ -34,6 +34,11 @@ void AcceptKey2(unsigned int i_VKeyID, bool bWentDown)
 		//D   44---hexadecimal  68---decimal
 	case 68:
 		InputReader::isKey_D_Down = bWentDown;
+		break;
+
+		//Q 
+	case 81:
+		InputReader::isKey_Q_Down = bWentDown;
 		break;
 	}
 }

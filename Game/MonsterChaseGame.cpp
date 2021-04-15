@@ -10,7 +10,6 @@
 #include "ProcessFile.h"
 
 namespace Game {
-
 	bool StartUp()
 	{
 		// create an instance of the game
@@ -33,7 +32,7 @@ namespace Game {
 
 	// static member initialization
 	MonsterChaseGame* MonsterChaseGame::instance_ = nullptr;
-
+	bool MonsterChaseGame::quitMonsterChaseGame = false;
 	MonsterChaseGame::MonsterChaseGame()
 	{
 		player_ = nullptr;
@@ -80,7 +79,7 @@ namespace Game {
 
 		Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "test data file - Copy.json"));
 		Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "test data file.json"));
-		
+
 
 		//player_ = JsonGameObjectUtils::CreateGameObjectFromJson("test data file.json");
 		//GameObject::CheckForNewGameObjects();
@@ -108,7 +107,17 @@ namespace Game {
 					po->ApplyForce(Vector2(-speed, 0.0f));
 			}
 		}
-		
+
+		//check if quit
+		if (inputReaderInstance->isKey_Q_Down) {
+			quitMonsterChaseGame = true;
+
+			//const size_t	lenBuffer = 65;
+			//char			Buffer[lenBuffer];
+			//sprintf_s(Buffer, lenBuffer, "Q went down \n");
+			//OutputDebugStringA(Buffer);
+		}
+
 	}
 
 }

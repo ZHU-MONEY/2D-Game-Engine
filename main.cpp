@@ -47,25 +47,28 @@ void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)
 #endif // __DEBUG
 }
 
-int WINAPI wWinMain( HINSTANCE i_hInstance,  HINSTANCE i_hPrevInstance,  LPWSTR i_lpCmdLine,  int i_nCmdShow)
+int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow)
 {
 
 	if (Engine::StartUp())
 	{
 		// IMPORTANT: first we need to initialize GLib
-		bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "MonsterChaseGame", -1, 1000, 800, true);
+		bool bSuccess = GLib::Initialize(i_hInstance, i_nCmdShow, "MonsterChaseGame", -1, Game::GAME_WIDTH, Game::GAME_HEIGHT, true);
 		if (bSuccess)
 		{
 			Game::StartUp();
 			Game::MonsterChaseGame* MC = Game::MonsterChaseGame::GetInstance();
 
-			bool quit = false;
-			while (!quit) {
-				GLib::Service(quit);
+			//bool quit = false;
+			while (!MC->quitMonsterChaseGame) {
+				GLib::Service(MC->quitMonsterChaseGame);
 				Engine::Run();
 				MC->Update();
 			}
-			
+			const size_t	lenBuffer = 65;
+			char			Buffer[lenBuffer];
+			sprintf_s(Buffer, lenBuffer, "\n\nquit GAME\n\n");
+			OutputDebugStringA(Buffer);
 			MC->Destroy();
 			// IMPORTANT:  Tell GLib to shutdown, releasing resources.
 			GLib::Shutdown();

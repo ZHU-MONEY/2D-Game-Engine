@@ -16,6 +16,7 @@ public:
 	static bool isKey_A_Down;
 	static bool	isKey_S_Down;
 	static bool	isKey_D_Down;
+	static bool	isKey_Q_Down;
 
 private:
 	static InputReader* instance_;

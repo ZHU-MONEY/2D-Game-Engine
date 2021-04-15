@@ -10,6 +10,10 @@
 #include "Engine/GameObject/StrongPtr.h"
 
 namespace Game {
+
+	static const  int GAME_HEIGHT = 800;
+	static const int GAME_WIDTH = 1000;
+
 	bool StartUp();
 	void Shutdown();
 	//void AcceptKey(unsigned int i_VKeyID, bool bWentDown);
@@ -29,6 +33,8 @@ namespace Game {
 
 		void Initialize();
 		void Update();
+
+		static bool quitMonsterChaseGame;
 		//void Render();
 
 /*		static bool	isKey_W_Down;

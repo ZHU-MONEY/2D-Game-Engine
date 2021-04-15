@@ -178,10 +178,10 @@ void ColliderSystem::Run(float dt)
 
 			if (isXSeparatedInB && isYSeparatedInB) {
 				//no collision
-				const size_t	lenBuffer = 65;
-				char			Buffer[lenBuffer];
-				sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 193 \n");
-				OutputDebugStringA(Buffer);
+				//const size_t	lenBuffer = 65;
+				//char			Buffer[lenBuffer];
+				//sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 193 \n");
+				//OutputDebugStringA(Buffer);
 			}
 
 #pragma endregion
@@ -280,10 +280,10 @@ void ColliderSystem::Run(float dt)
 
 			if (isXSeparatedInA && isYSeparatedInA) {
 				//no collision
-				const size_t	lenBuffer = 65;
-				char			Buffer[lenBuffer];
-				sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 295 \n");
-				OutputDebugStringA(Buffer);
+				//const size_t	lenBuffer = 65;
+				//char			Buffer[lenBuffer];
+				//sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 295 \n");
+				//OutputDebugStringA(Buffer);
 			}
 #pragma endregion
 
@@ -304,18 +304,18 @@ void ColliderSystem::Run(float dt)
 				if (closeLatest > openEarliest)
 				{
 					//no collision
-					const size_t	lenBuffer = 65;
-					char			Buffer[lenBuffer];
-					sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 319 \n");
-					OutputDebugStringA(Buffer);
+					//const size_t	lenBuffer = 65;
+					//char			Buffer[lenBuffer];
+					//sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 319 \n");
+					//OutputDebugStringA(Buffer);
 				}
 				else
 				{
 					//collision
-					const size_t	lenBuffer = 65;
-					char			Buffer[lenBuffer];
-					sprintf_s(Buffer, lenBuffer, "COLLIDING line 327\n");
-					OutputDebugStringA(Buffer);
+					//const size_t	lenBuffer = 65;
+					//char			Buffer[lenBuffer];
+					//sprintf_s(Buffer, lenBuffer, "COLLIDING line 327\n");
+					//OutputDebugStringA(Buffer);
 
 					Vector2 normal = Vector2::ZERO;
 					if (RoundedEqual(closeLatest, closeXinB))
@@ -353,10 +353,10 @@ void ColliderSystem::Run(float dt)
 			}
 			else
 			{
-				const size_t	lenBuffer = 65;
-				char			Buffer[lenBuffer];
-				sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 339\n");
-				OutputDebugStringA(Buffer);
+				//const size_t	lenBuffer = 65;
+				//char			Buffer[lenBuffer];
+				//sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 339\n");
+				//OutputDebugStringA(Buffer);
 			}
 			//**/
 		}
