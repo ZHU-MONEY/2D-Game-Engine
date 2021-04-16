@@ -48,6 +48,5 @@ public:
 	void RemovePhysicsObject(WeakPtr<PhysicsObject>& poWeakPtr);
 
 
-
 };
 

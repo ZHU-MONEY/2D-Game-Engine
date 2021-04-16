@@ -1,6 +1,6 @@
 {
-  "position": [0.0,-200.0],
-  "size": [64.0,64.0],
+  "position": [0,368],
+  "size": [1000,32],
   "static": true,
   "physics": {
     "collideable": true,
@@ -8,6 +8,6 @@
     "coefficient drag": 2
   },
   "render": {
-    "sprite": "data\\default sprite.dds"
+    "sprite": "data\\horizontal wall.dds"
   }
 }

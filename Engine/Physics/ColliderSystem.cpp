@@ -376,6 +376,7 @@ void ColliderSystem::Run(float dt)
 	collided_objects_.clear();
 }
 
+
 void ColliderSystem::AddPhysicsObject(WeakPtr<PhysicsObject>& poWeakPtr)
 {
 	//only add if it is collideable
@@ -415,3 +416,4 @@ void ColliderSystem::RemovePhysicsObject(WeakPtr<PhysicsObject>& poWeakPtr)
 	collideableObjects_.erase(it);
 	--collideableObjectsAmount_;
 }
+
