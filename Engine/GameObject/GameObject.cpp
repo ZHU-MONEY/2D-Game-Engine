@@ -16,7 +16,8 @@ StrongPtr<GameObject> GameObject::Create()
 GameObject::GameObject() :
 	position_(Vector2::ZERO),
 	aabb_(AABB::ZERO),
-	rotation_(0.0f)
+	rotation_(0.0f),
+	isStatic_(false)
 {
 
 }
@@ -31,6 +32,8 @@ GameObject::GameObject(const GameObject& other)
 {
 	position_ = other.position_;
 	aabb_ = other.aabb_;
+	rotation_ = other.rotation_;
+	isStatic_ = other.isStatic_;
 }
 
 

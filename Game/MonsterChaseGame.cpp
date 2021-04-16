@@ -76,12 +76,17 @@ namespace Game {
 		using namespace std::placeholders;
 		Engine::HashedString QueueName = Engine::JobSystem::CreateQueue("GameObjectLoader", 1);
 
-		Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "test data file - Copy.json"));
-		Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "test data file.json"));
+		//Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/center.json"));
+		//Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/center2.json"));
+		//Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/wall left.json"));
+		//Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/wall right.json"));
+		//Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/player.json"));
 
 
-		//player_ = JsonGameObjectUtils::CreateGameObjectFromJson("test data file.json");
-		//GameObject::CheckForNewGameObjects();
+		JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/center2.json");
+		JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/center.json");
+		JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/player.json");
+		GameObject::CheckForNewGameObjects();
 
 	}
 

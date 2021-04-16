@@ -1,9 +1,10 @@
 {
-  "position": [0,140],
+  "position": [200,0],
   "rotation": 0,
   "size": [64.0,64.0],
   "physics": {
     "controllable":true,
+    "collideable": true,
     "mass": 1,
     "coefficient drag": 0.005
   },

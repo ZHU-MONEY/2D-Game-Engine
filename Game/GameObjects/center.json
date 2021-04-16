@@ -1,0 +1,13 @@
+{
+  "position": [0.0,0.0],
+  "size": [64.0,64.0],
+  "static": true,
+  "physics": {
+    "collideable": true,
+    "mass": 2.0,
+    "coefficient drag": 2
+  },
+  "render": {
+    "sprite": "data\\default sprite.dds"
+  }
+}

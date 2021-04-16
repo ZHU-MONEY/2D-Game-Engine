@@ -5,12 +5,13 @@
 
 const float PhysicsObject::DEFAULT_MASS = 1.0f;
 const float PhysicsObject::DEFAULT_COEFFICIENT_DRAG = 0.1f;
-const float PhysicsObject::MAX_SPEED = 2.0f;
+const float PhysicsObject::MAX_SPEED = 0.05f;
 const float PhysicsObject::MIN_SPEED = 0.0001f;
 
 PhysicsObject::PhysicsObject() :
 	objectPtr_(nullptr),
 	controllable_(false),
+	collideable_(false),
 	mass_(DEFAULT_MASS),
 	coefficientDrag_(DEFAULT_COEFFICIENT_DRAG),
 	currentVelocity_(Vector2::ZERO),
@@ -25,6 +26,7 @@ PhysicsObject::PhysicsObject() :
 PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject) :
 	objectPtr_(gameObject),
 	controllable_(false),
+	collideable_(false),
 	mass_(DEFAULT_MASS),
 	coefficientDrag_(DEFAULT_COEFFICIENT_DRAG),
 	currentVelocity_(Vector2::ZERO),
@@ -39,6 +41,7 @@ PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject) :
 PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject,float mass, float drag):
 	objectPtr_(gameObject),
 	controllable_(false),
+	collideable_(false),
 	mass_(mass),
 	coefficientDrag_(drag),
 	currentVelocity_(Vector2::ZERO),
@@ -61,11 +64,9 @@ StrongPtr<PhysicsObject> PhysicsObject::CreatePOStrongPtr(PhysicsObject* po)
 	PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
 	physicsSystemInstance->AddPhysicsObject(POStrongPtr);
 
-	ColliderSystem* colliderSystemInstance = ColliderSystem::GetInstance();
-	colliderSystemInstance->AddPhysicsObject(WeakPtr<PhysicsObject>(POStrongPtr));
-	///
-	//ColliderSystem::GetInstance()->AddPhysicsObject(WeakPtr<PhysicsObject>(POStrongPtr));
-	//
+		//ColliderSystem* colliderSystemInstance = ColliderSystem::GetInstance();
+		//colliderSystemInstance->AddPhysicsObject(WeakPtr<PhysicsObject>(POStrongPtr));
+
 
 
 	return POStrongPtr;
@@ -148,6 +149,10 @@ float DotProduct(const Vector2& i_v1, const Vector2& i_v2)
 }
 void PhysicsObject::RespondToCollision(const Vector2& collisionNormal)
 {
+	//don't move it if static object
+	if (this->objectPtr_.GetObjectPtr()->GetIsStatic()) {
+		return;
+	}
 	if (isFinishedCollisionReaction_)
 	{
 		return;
@@ -171,7 +176,7 @@ void PhysicsObject::RespondToCollision(const Vector2& collisionNormal)
 	//}
 
 	if (currentVelocity_.IsZero()) {
-		currentVelocity_ = currentVelocity_ - collisionNormal;
+		//currentVelocity_ = currentVelocity_ - collisionNormal;
 	}
 	else {
 		currentVelocity_ = currentVelocity_ - (currentVelocity_ * collisionNormal * 2);

@@ -27,6 +27,9 @@ public:
 	inline void SetAABB(const AABB& aabb) { aabb_ = aabb; };
 	inline AABB GetAABB() const { return aabb_; };
 	
+	inline void SetIsStatic(const bool b) { isStatic_ = b; };
+	inline float GetIsStatic() const { return isStatic_; };
+
 	// This will move GameObjects from NewGameObjects -> AllGameObjects
 	static void CheckForNewGameObjects();
 
@@ -38,6 +41,7 @@ protected:
 	Vector2 position_;
 	float rotation_;
 	AABB aabb_;
+	bool isStatic_;
 
 private:
 

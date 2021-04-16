@@ -55,12 +55,25 @@ StrongPtr<GameObject> JsonGameObjectUtils::CreateGameObjectFromJson(const char* 
 			go->SetAABB({ Vector2::ZERO, Vector2(size[0]/2, size[1]/2)});
 		}
 
+		if (jsonObject.contains("static"))
+		{
+			go->SetIsStatic(jsonObject["static"]);
+		}
+
 		if (jsonObject.contains("physics"))
 		{
 			//create a phisics object
 			PhysicsObject* po = new PhysicsObject(WeakPtr<GameObject>(go));
 			StrongPtr<PhysicsObject> pos = po->CreatePOStrongPtr(po);
 			json jsonPhysicsObject = jsonObject["physics"];
+
+			if (jsonPhysicsObject.contains("collideable"))
+			{
+				pos->SetCollideable(jsonPhysicsObject["collideable"]);
+				ColliderSystem* colliderSystemInstance = ColliderSystem::GetInstance();
+				colliderSystemInstance->AddPhysicsObject(WeakPtr<PhysicsObject>(pos));
+
+			}
 
 			if (jsonPhysicsObject.contains("controllable"))
 			{

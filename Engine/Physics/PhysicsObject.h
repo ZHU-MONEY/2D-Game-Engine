@@ -26,6 +26,10 @@ public:
 	inline void SetGameObject(const WeakPtr<GameObject>& gameObject) { objectPtr_ = gameObject; };
 	inline bool GetControllable() const { return controllable_; };
 	inline void SetControllable(bool b) { controllable_ = b; };
+
+	inline bool GetCollideable() const { return collideable_; };
+	inline void SetCollideable(bool b) { collideable_ = b; };
+
 	inline float GetMass() const { return mass_; };
 	inline void SetMass(const float mass) { mass_ = mass; };
 	inline float GetCoefficientDrag() const { return coefficientDrag_; };
@@ -41,6 +45,7 @@ public:
 private:
 
 	WeakPtr<GameObject> objectPtr_;
+	bool collideable_;
 	bool controllable_;
 	float mass_;
 	float coefficientDrag_;

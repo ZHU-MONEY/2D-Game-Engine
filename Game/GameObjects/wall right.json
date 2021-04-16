@@ -1,0 +1,13 @@
+{
+  "position": [484,-400.0],
+  "size": [32.0,1600.0],
+  "static": true,
+  "physics": {
+    "collideable": true,
+    "mass": 2.0,
+    "coefficient drag": 2
+  },
+  "render": {
+    "sprite": "data\\vertical wall.dds"
+  }
+}
