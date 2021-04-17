@@ -108,9 +108,9 @@ void ColliderSystem::Run(float dt)
 					// separation check without velocities
 					//isXSeparatedInB = fabs(ACenterInB.x() - bAABB.center.x()) > AXExtentInB.x() + bAABB.extents.x();
 					isXSeparatedInB = fabs(
-												gameObjectA.GetObjectPtr()->GetPosition().x() +
+				//								gameObjectA.GetObjectPtr()->GetPosition().x() +
 						fabs(ACenterInB.x()) - bAABB.center.x()
-												+ gameObjectB.GetObjectPtr()->GetPosition().x()
+				//								+ gameObjectB.GetObjectPtr()->GetPosition().x()
 					) > AExtentsInB.x() + bAABB.extents.x();
 
 				}
@@ -146,9 +146,9 @@ void ColliderSystem::Run(float dt)
 				{
 					// separation check without velocities
 					isYSeparatedInB = fabs(
-												gameObjectA.GetObjectPtr()->GetPosition().y() +
+				//								gameObjectA.GetObjectPtr()->GetPosition().y() +
 						fabs(ACenterInB.y()) - bAABB.center.y()
-												+ gameObjectB.GetObjectPtr()->GetPosition().y()
+				//								+ gameObjectB.GetObjectPtr()->GetPosition().y()
 					) > AExtentsInB.y() + bAABB.extents.y();
 
 				}
@@ -178,10 +178,10 @@ void ColliderSystem::Run(float dt)
 
 			if (isXSeparatedInB && isYSeparatedInB) {
 				//no collision
-				const size_t	lenBuffer = 65;
-				char			Buffer[lenBuffer];
-				sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 193 \n");
-				OutputDebugStringA(Buffer);
+				//const size_t	lenBuffer = 65;
+				//char			Buffer[lenBuffer];
+				//sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 193 \n");
+				//OutputDebugStringA(Buffer);
 			}
 
 #pragma endregion
@@ -213,9 +213,9 @@ void ColliderSystem::Run(float dt)
 				{
 					// separation check without velocities
 					isXSeparatedInA = fabs(
-												gameObjectB.GetObjectPtr()->GetPosition().x() +
+				//								gameObjectB.GetObjectPtr()->GetPosition().x() +
 						fabs(aAABB.center.x()) - BCenterInA.x()
-												+ gameObjectA.GetObjectPtr()->GetPosition().x()
+				//								+ gameObjectA.GetObjectPtr()->GetPosition().x()
 					) > aAABB.extents.x() + BExtentsInA.x();
 
 				}
@@ -249,9 +249,9 @@ void ColliderSystem::Run(float dt)
 				{
 					// separation check without velocities
 					isYSeparatedInA = fabs(
-												gameObjectB.GetObjectPtr()->GetPosition().y() +
+				//								gameObjectB.GetObjectPtr()->GetPosition().y() +
 						fabs(aAABB.center.y()) - BCenterInA.y()
-												+ gameObjectA.GetObjectPtr()->GetPosition().y()
+				//								+ gameObjectA.GetObjectPtr()->GetPosition().y()
 					) > aAABB.extents.y() + BExtentsInA.y();
 
 				}
@@ -280,10 +280,10 @@ void ColliderSystem::Run(float dt)
 
 			if (isXSeparatedInA && isYSeparatedInA) {
 				//no collision
-				const size_t	lenBuffer = 65;
-				char			Buffer[lenBuffer];
-				sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 295 \n");
-				OutputDebugStringA(Buffer);
+				//const size_t	lenBuffer = 65;
+				//char			Buffer[lenBuffer];
+				//sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 295 \n");
+				//OutputDebugStringA(Buffer);
 			}
 #pragma endregion
 
@@ -304,19 +304,19 @@ void ColliderSystem::Run(float dt)
 				if (closeLatest > openEarliest)
 				{
 					//no collision
-					const size_t	lenBuffer = 65;
-					char			Buffer[lenBuffer];
-					sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 319 \n");
-					OutputDebugStringA(Buffer);
+					//const size_t	lenBuffer = 65;
+					//char			Buffer[lenBuffer];
+					//sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 319 \n");
+					//OutputDebugStringA(Buffer);
 				}
 				else
 				{
 
 					//collision
-					const size_t	lenBuffer = 65;
-					char			Buffer[lenBuffer];
-					sprintf_s(Buffer, lenBuffer, "COLLIDING line 327\n");
-					OutputDebugStringA(Buffer);
+					//const size_t	lenBuffer = 65;
+					//char			Buffer[lenBuffer];
+					//sprintf_s(Buffer, lenBuffer, "COLLIDING line 327\n");
+					//OutputDebugStringA(Buffer);
 
 					Vector2 normal = Vector2::ZERO;
 					if (RoundedEqual(closeLatest, closeXinB))
@@ -354,10 +354,10 @@ void ColliderSystem::Run(float dt)
 			}
 			else
 			{
-				const size_t	lenBuffer = 65;
-				char			Buffer[lenBuffer];
-				sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 339\n");
-				OutputDebugStringA(Buffer);
+				//const size_t	lenBuffer = 65;
+				//char			Buffer[lenBuffer];
+				//sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 339\n");
+				//OutputDebugStringA(Buffer);
 			}
 			//**/
 		}

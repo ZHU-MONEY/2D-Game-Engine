@@ -180,7 +180,7 @@ void PhysicsObject::RespondToCollision(const Vector2& collisionNormal)
 	}
 	else {
 		currentVelocity_ = currentVelocity_ - (currentVelocity_ * collisionNormal * 2);
-
+		//currentVelocity_ = currentVelocity_ *0.1f;
 	}
 
 	isFinishedCollisionReaction_ = true;
