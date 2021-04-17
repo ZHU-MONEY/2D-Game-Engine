@@ -6,7 +6,7 @@
     "controllable":true,
     "collideable": true,
     "mass": 1,
-    "coefficient drag": 0.005
+    "coefficient drag": 1.005
   },
   "render": {
     "sprite": "data\\default sprite.dds"

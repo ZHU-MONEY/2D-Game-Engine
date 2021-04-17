@@ -370,8 +370,10 @@ void ColliderSystem::Run(float dt)
 	{
 		CollisionPair& collision_pair = collided_objects_[i];
 
-		StrongPtr<PhysicsObject>(collision_pair.objectA)->RespondToCollision(collision_pair.normalA);
-		StrongPtr<PhysicsObject>(collision_pair.objectB)->RespondToCollision(collision_pair.normalB);
+		//StrongPtr<PhysicsObject>(collision_pair.objectA)->RespondToCollision(collision_pair.normalA);
+		//StrongPtr<PhysicsObject>(collision_pair.objectB)->RespondToCollision(collision_pair.normalB);
+		collision_pair.objectA.GetObjectPtr()->GetGameObject().GetObjectPtr()->RespondToCollision2(collision_pair.normalA);
+		collision_pair.objectB.GetObjectPtr()->GetGameObject().GetObjectPtr()->RespondToCollision2(collision_pair.normalB);
 	}
 	collided_objects_.clear();
 }

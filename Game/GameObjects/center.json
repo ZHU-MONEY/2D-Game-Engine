@@ -1,7 +1,7 @@
 {
   "position": [0.0,-200.0],
   "size": [64.0,64.0],
-  "static": true,
+  "static": false,
   "physics": {
     "collideable": true,
     "mass": 2.0,

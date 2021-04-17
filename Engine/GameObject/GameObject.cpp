@@ -74,4 +74,24 @@ void GameObject::AddNewGameObject(StrongPtr<GameObject> i_pNewGameObject)
 	}
 }
 
+void GameObject::RespondToCollision2(const Vector2& collisionNormal)
+{
+
+	if (this->GetIsStatic()) {
+		return;
+	}
+	//if (isFinishedCollisionReaction_2)
+	//{
+	//	return;
+	//}
+
+	rotation_ += 0.0001f;
+	//isFinishedCollisionReaction_2 = true;
+}
+
+void GameObject::SetisFinishedCollisionReactionFalse()
+{
+	isFinishedCollisionReaction_2 = false;
+}
+
 

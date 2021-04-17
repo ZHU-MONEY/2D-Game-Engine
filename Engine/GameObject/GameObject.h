@@ -36,12 +36,14 @@ public:
 	// This adds a new GameObject to NewGameObjects
 	static void AddNewGameObject(StrongPtr<GameObject> i_pNewGameObject);
 
-
+	void RespondToCollision2(const Vector2& collisionNormal);
+	void SetisFinishedCollisionReactionFalse();
 protected:
 	Vector2 position_;
 	float rotation_;
 	AABB aabb_;
 	bool isStatic_;
+	bool isFinishedCollisionReaction_2;
 
 private:
 
