@@ -52,7 +52,7 @@ StrongPtr<GameObject> JsonGameObjectUtils::CreateGameObjectFromJson(const char* 
 		{
 			json size = jsonObject["size"];
 
-			go->SetAABB({ Vector2::ZERO, Vector2(size[0]/2, size[1]/2)});
+			go->SetAABB({ Vector2::ZERO, Vector2(size[0]/2.0f, size[1]/2.0f)});
 		}
 
 		if (jsonObject.contains("static"))
