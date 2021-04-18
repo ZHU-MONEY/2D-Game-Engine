@@ -68,7 +68,7 @@ void RenderableObject::Render()
 {
 	if (this->objectPtr_) {
 		StrongPtr<GameObject> objectPtr_(this->objectPtr_);
-		position_ = { objectPtr_->GetPosition().x(), objectPtr_->GetPosition().y() };
+		position_ = { objectPtr_->GetPosition().x(), objectPtr_->GetPosition().y()};
 		rotation_ = objectPtr_->GetRotation();
 	}
 

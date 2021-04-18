@@ -5,7 +5,7 @@
 
 const float PhysicsObject::DEFAULT_MASS = 1.0f;
 const float PhysicsObject::DEFAULT_COEFFICIENT_DRAG = 0.1f;
-const float PhysicsObject::MAX_SPEED = 2.0f;
+const float PhysicsObject::MAX_SPEED = 1.0f;
 const float PhysicsObject::MIN_SPEED = 0.0001f;
 
 PhysicsObject::PhysicsObject() :
@@ -179,7 +179,7 @@ void PhysicsObject::RespondToCollision(const Vector2& collisionNormal)
 		//currentVelocity_ = currentVelocity_ - collisionNormal;
 	}
 	else {
-		currentVelocity_ = currentVelocity_ - (currentVelocity_ * collisionNormal * 2);
+		currentVelocity_ = currentVelocity_ - (currentVelocity_ * Vector2(collisionNormal.x() + 0.01f, collisionNormal.y() + 0.01f) * 2);
 		//currentVelocity_ = currentVelocity_ *0.1f;
 	}
 

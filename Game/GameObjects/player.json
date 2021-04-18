@@ -9,6 +9,6 @@
     "coefficient drag": 0.005
   },
   "render": {
-    "sprite": "data\\GoodGuy.dds"
+    "sprite": "data\\player.dds"
   }
 }

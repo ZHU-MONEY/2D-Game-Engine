@@ -64,7 +64,12 @@ GLib::Sprite* EngineUtils::CreateSprite(const char* i_pFilename)
 	assert((width > 0) && (height > 0));
 
 	// Define the sprite edges
-	GLib::SpriteEdges	Edges = { -float(width / 2.0f), float(height), float(width / 2.0f), 0.0f };
+
+	//this is the original
+	//GLib::SpriteEdges	Edges = { -float(width / 2.0f), float(height), float(width / 2.0f), 0.0f };
+
+	//this is the imprved version, it offsets the center to the center
+	GLib::SpriteEdges    Edges = { -float(width / 2.0f), float(height / 2.0f), float(width / 2.0f), -float(height / 2.0f) };
 	GLib::SpriteUVs	UVs = { { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 0.0f, 1.0f }, { 1.0f, 1.0f } };
 	GLib::RGBA							Color = { 255, 255, 255, 255 };
 

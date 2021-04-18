@@ -1,6 +1,6 @@
 {
-  "position": [484,-400.0],
-  "size": [32.0,1600.0],
+  "position": [484,0.0],
+  "size": [32.0,800.0],
   "static": true,
   "physics": {
     "collideable": true,
