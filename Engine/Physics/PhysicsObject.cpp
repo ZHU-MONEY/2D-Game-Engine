@@ -55,7 +55,7 @@ PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject,float mass, float d
 
 PhysicsObject::~PhysicsObject()
 {
-	objectPtr_;
+
 }
 
 StrongPtr<PhysicsObject> PhysicsObject::CreatePOStrongPtr(PhysicsObject* po)

@@ -4,7 +4,8 @@
 RenderableObject::RenderableObject() :
 
 	objectPtr_(nullptr),
-	sprite_(EngineUtils::CreateSprite("data\\default sprite.dds"))
+	sprite_(EngineUtils::CreateSprite("data\\default sprite.dds")),
+	rotation_(0.0f)
 {
 	position_ = { 0.0f, 0.0f };
 	Renderer* rendererInstance = Renderer::GetInstance();
@@ -15,7 +16,8 @@ RenderableObject::RenderableObject() :
 
 RenderableObject::RenderableObject(WeakPtr<GameObject>& gameObject) :
 	objectPtr_(gameObject),
-	sprite_(EngineUtils::CreateSprite("data\\default sprite.dds"))
+	sprite_(EngineUtils::CreateSprite("data\\default sprite.dds")),
+	rotation_(0.0f)
 {
 	position_ = { 0.0f, 0.0f };
 	//Renderer* rendererInstance = Renderer::GetInstance();
@@ -24,7 +26,8 @@ RenderableObject::RenderableObject(WeakPtr<GameObject>& gameObject) :
 
 RenderableObject::RenderableObject(Sprite* sprite) :
 	objectPtr_(nullptr),
-	sprite_(sprite)
+	sprite_(sprite),
+	rotation_(0.0f)
 {
 	position_ = { 0.0f, 0.0f };
 	//Renderer* rendererInstance = Renderer::GetInstance();
@@ -33,7 +36,8 @@ RenderableObject::RenderableObject(Sprite* sprite) :
 
 RenderableObject::RenderableObject(WeakPtr<GameObject>& gameObject, Sprite* sprite) :
 	objectPtr_(gameObject),
-	sprite_(sprite)
+	sprite_(sprite),
+	rotation_(0.0f)
 {
 	position_ = { 0.0f, 0.0f };
 	//Renderer* rendererInstance = Renderer::GetInstance();
@@ -42,6 +46,7 @@ RenderableObject::RenderableObject(WeakPtr<GameObject>& gameObject, Sprite* spri
 
 RenderableObject::~RenderableObject()
 {
+
 	if (sprite_) {
 		Release(sprite_);
 		sprite_ = nullptr;
@@ -68,6 +73,7 @@ void RenderableObject::Render()
 	}
 
 	GLib::Render(*sprite_, position_, 0.0f, rotation_);
+	
 }
 
 

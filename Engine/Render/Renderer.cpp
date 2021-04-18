@@ -26,7 +26,7 @@ void Renderer::Destroy()
 void Renderer::Run()
 {
 	// Tell GLib that we want to start rendering
-	GLib::BeginRendering(DirectX::Colors::Blue);
+	GLib::BeginRendering(DirectX::Colors::Black);
 	// Tell GLib that we want to render some sprites
 	GLib::Sprites::BeginRendering();
 
@@ -78,4 +78,5 @@ Renderer::Renderer()
 Renderer::~Renderer()
 {
 	renderableObjects_.clear();
+
 }

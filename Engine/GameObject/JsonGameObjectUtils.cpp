@@ -99,8 +99,12 @@ StrongPtr<GameObject> JsonGameObjectUtils::CreateGameObjectFromJson(const char* 
 			json jsonRenderableObject = jsonObject["render"];
 			if (jsonRenderableObject.contains("sprite"))
 			{
+				//this is a very, very weird way of doing this, it removes the default sprite
+				ro->~RenderableObject();
+
 				Sprite* sprite(EngineUtils::CreateSprite(jsonRenderableObject["sprite"].get<std::string>().c_str()));
 				ros->SetSprite(sprite);
+				
 			}
 
 		}

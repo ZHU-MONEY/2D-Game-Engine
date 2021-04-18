@@ -49,7 +49,8 @@ void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)
 
 int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow)
 {
-
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	//_CrtSetBreakAlloc(471);
 	if (Engine::StartUp())
 	{
 		// IMPORTANT: first we need to initialize GLib
@@ -72,7 +73,8 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 			Engine::Shutdown();
 		}
 	}
-	_CrtDumpMemoryLeaks();
+
+	//_CrtDumpMemoryLeaks();
 
 }
 

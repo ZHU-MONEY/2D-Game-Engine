@@ -93,6 +93,7 @@ namespace Game {
 		JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/wall bottom.json");
 
 		JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/player.json");
+
 		GameObject::CheckForNewGameObjects();
 
 	}
