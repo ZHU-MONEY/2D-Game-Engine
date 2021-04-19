@@ -16,7 +16,9 @@ public:
 
 	void AddRenderableObject(StrongPtr<RenderableObject> ro);
 	void RemoveRenderableObject(StrongPtr<RenderableObject> ro);
-
+	std::vector<StrongPtr<RenderableObject>> GetRenderableObjects() {
+		return renderableObjects_;
+	};
 private:
 
 	//std::vector<RenderableObject*> renderableObjects_;

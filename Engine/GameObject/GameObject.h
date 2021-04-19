@@ -38,12 +38,16 @@ public:
 
 	void RespondToCollision2(const Vector2& collisionNormal);
 	void SetisFinishedCollisionReactionFalse();
+
+	inline void SetIsActive(const bool b) { isActive_ = b; };
+	inline float GetIsActive() const { return isActive_; };
 protected:
 	Vector2 position_;
 	float rotation_;
 	AABB aabb_;
 	bool isStatic_;
 	bool isFinishedCollisionReaction_2;
+	bool isActive_;
 
 private:
 

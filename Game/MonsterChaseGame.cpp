@@ -92,7 +92,7 @@ namespace Game {
 		JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/wall top.json");
 		JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/wall bottom.json");
 
-		JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/player.json");
+		player_=JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/player.json");
 		GameObject::CheckForNewGameObjects();
 
 	}
@@ -102,8 +102,16 @@ namespace Game {
 		//get the input reader associated with Engine
 		InputReader* inputReaderInstance = InputReader::GetInstance();
 		PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
+		Renderer* rendererInstance = Renderer::GetInstance();
 		float speed = 0.2f;
-
+		if (!player_.GetObjectPtr()->GetIsActive()) {
+			for each (StrongPtr<RenderableObject> var in rendererInstance->GetRenderableObjects())
+			{
+				if (player_ == var.GetObjectPtr()->GetObjectPtr()) {
+					rendererInstance->RemoveRenderableObject(var);
+				}
+			}
+		}
 		for each (StrongPtr<PhysicsObject> po in physicsSystemInstance->GetPhysicsObjects())
 		{
 			//this is temporary solution, gotta fix later

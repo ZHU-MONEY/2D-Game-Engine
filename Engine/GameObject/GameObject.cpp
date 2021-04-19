@@ -17,7 +17,8 @@ GameObject::GameObject() :
 	position_(Vector2::ZERO),
 	aabb_(AABB::ZERO),
 	rotation_(0.0f),
-	isStatic_(false)
+	isStatic_(false),
+	isActive_(true)
 {
 
 }
@@ -34,6 +35,7 @@ GameObject::GameObject(const GameObject& other)
 	aabb_ = other.aabb_;
 	rotation_ = other.rotation_;
 	isStatic_ = other.isStatic_;
+	isActive_ = other.isActive_;
 }
 
 
@@ -85,7 +87,7 @@ void GameObject::RespondToCollision2(const Vector2& collisionNormal)
 	//	return;
 	//}
 
-	rotation_ += 0.0001f;
+	this->SetIsActive(false);
 	//isFinishedCollisionReaction_2 = true;
 }
 

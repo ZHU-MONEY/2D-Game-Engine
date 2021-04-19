@@ -23,7 +23,9 @@ public:
 
 	//testing
 	inline void SetSprite(Sprite* s) { sprite_ = s; };
-
+	inline WeakPtr<GameObject> GetObjectPtr() {
+		return objectPtr_;
+	};
 	void Render();
 
 
