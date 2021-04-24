@@ -36,6 +36,7 @@ namespace Game {
 	MonsterChaseGame::MonsterChaseGame()
 	{
 		player_ = nullptr;
+		winScene_ = nullptr;
 	}
 
 	MonsterChaseGame::~MonsterChaseGame()
@@ -93,6 +94,8 @@ namespace Game {
 		JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/wall bottom.json");
 
 		player_=JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/player.json");
+		winScene_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/you won.json");
+		winScene_.GetObjectPtr()->SetIsActive(false);
 		GameObject::CheckForNewGameObjects();
 
 	}
@@ -105,12 +108,13 @@ namespace Game {
 		Renderer* rendererInstance = Renderer::GetInstance();
 		float speed = 0.2f;
 		if (!player_.GetObjectPtr()->GetIsActive()) {
-			for each (StrongPtr<RenderableObject> var in rendererInstance->GetRenderableObjects())
-			{
-				if (player_ == var.GetObjectPtr()->GetObjectPtr()) {
-					rendererInstance->RemoveRenderableObject(var);
-				}
-			}
+			//for each (StrongPtr<RenderableObject> var in rendererInstance->GetRenderableObjects())
+			//{
+			//	if (player_ == var.GetObjectPtr()->GetObjectPtr()) {
+			//		rendererInstance->RemoveRenderableObject(var);
+			//	}
+			//}
+			winScene_.GetObjectPtr()->SetIsActive(true);
 		}
 		for each (StrongPtr<PhysicsObject> po in physicsSystemInstance->GetPhysicsObjects())
 		{

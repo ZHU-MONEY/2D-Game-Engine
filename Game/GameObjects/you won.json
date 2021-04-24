@@ -1,0 +1,8 @@
+{
+  "position": [0.0,0.0],
+  "size": [400.0,200.0],
+  "static": true,
+  "render": {
+    "sprite": "data\\you won.dds"
+  }
+}

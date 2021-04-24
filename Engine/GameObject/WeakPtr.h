@@ -48,13 +48,13 @@ public:
 		referenceCounter_->weakPtrCount++;
 	}
 
-	inline WeakPtr(WeakPtr&& copy) :
-		objectPtr_(copy.objectPtr_),
-		referenceCounter_(copy.referenceCounter_)
-	{
-		copy.objectPtr_ = nullptr;
-		copy.referenceCounter_ = nullptr;
-	}
+	//inline WeakPtr(WeakPtr&& copy) :
+	//	objectPtr_(copy.objectPtr_),
+	//	referenceCounter_(copy.referenceCounter_)
+	//{
+	//	copy.objectPtr_ = nullptr;
+	//	copy.referenceCounter_ = nullptr;
+	//}
 
 	inline WeakPtr& operator=(const WeakPtr& copy) {
 		// check for self assignment

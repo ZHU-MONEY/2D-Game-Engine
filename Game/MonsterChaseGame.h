@@ -21,6 +21,7 @@ namespace Game {
 	class MonsterChaseGame
 	{
 		StrongPtr<GameObject> player_;
+		StrongPtr<GameObject> winScene_;
 		MonsterChaseGame();
 		~MonsterChaseGame();
 		static MonsterChaseGame* instance_;
