@@ -41,6 +41,7 @@ void PhysicsSystem::Run(float dt)
 {
 	for each (StrongPtr<PhysicsObject> po in physicsObjects_)
 	{
+		if(po.GetObjectPtr()->GetGameObject().GetObjectPtr()->GetIsActive())
 		po->Update(dt);
 	}
 }

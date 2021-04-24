@@ -32,21 +32,6 @@
 #include "Engine/Input/InputReader.h"
 
 
-
-void TestKeyCallback(unsigned int i_VKeyID, bool bWentDown)
-{
-#ifdef _DEBUG
-	const size_t	lenBuffer = 65;
-	char			Buffer[lenBuffer];
-
-	//sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
-	sprintf_s(Buffer, lenBuffer, "VKey 0x%04x went %s\n", i_VKeyID, bWentDown ? "down" : "up");
-	OutputDebugStringA(Buffer);
-	//std::cout << "THE KEY YOU PRESSED IS-----" << i_VKeyID << std::endl;
-
-#endif // __DEBUG
-}
-
 int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow)
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
