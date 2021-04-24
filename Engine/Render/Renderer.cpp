@@ -37,6 +37,7 @@ void Renderer::Run()
 
 	for each (StrongPtr<RenderableObject>  ro in renderableObjects_)
 	{
+		//if (ro.GetObjectPtr()->GetObjectPtr().GetObjectPtr()->GetIsActive())
 		ro->Render();
 	}
 

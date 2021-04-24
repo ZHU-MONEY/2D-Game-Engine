@@ -30,6 +30,9 @@ public:
 	inline void SetIsStatic(const bool b) { isStatic_ = b; };
 	inline float GetIsStatic() const { return isStatic_; };
 
+	inline void SetIsActive(const bool b) { isActive_ = b; };
+	inline float GetIsActive() const { return isActive_; };
+
 	// This will move GameObjects from NewGameObjects -> AllGameObjects
 	static void CheckForNewGameObjects();
 
@@ -42,7 +45,7 @@ protected:
 	float rotation_;
 	AABB aabb_;
 	bool isStatic_;
-
+	bool isActive_;
 private:
 
 };

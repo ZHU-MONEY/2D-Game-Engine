@@ -17,7 +17,8 @@ GameObject::GameObject() :
 	position_(Vector2::ZERO),
 	aabb_(AABB::ZERO),
 	rotation_(0.0f),
-	isStatic_(false)
+	isStatic_(false),
+	isActive_(true)
 {
 
 }
@@ -34,6 +35,7 @@ GameObject::GameObject(const GameObject& other)
 	aabb_ = other.aabb_;
 	rotation_ = other.rotation_;
 	isStatic_ = other.isStatic_;
+	isActive_ = other.isActive_;
 }
 
 
@@ -41,6 +43,9 @@ GameObject& GameObject::operator=(const GameObject& other)
 {
 	position_ = other.GetPosition();
 	aabb_ = other.GetAABB();
+	rotation_ = other.GetRotation();
+	isStatic_ = other.GetIsStatic();
+	isActive_ = other.GetIsActive();
 	return *this;
 }
 

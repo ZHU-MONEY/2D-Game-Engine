@@ -53,13 +53,13 @@ public:
 		referenceCounter_->strongPtrCount++;
 	}
 
-	inline StrongPtr(StrongPtr&& copy) :
-	objectPtr_(copy.objectPtr_),
-	referenceCounter_(copy.referenceCounter_)
-{
-	copy.objectPtr_ = nullptr;
-	copy.referenceCounter_ = nullptr;
-}
+//	inline StrongPtr(StrongPtr&& copy) :
+//	objectPtr_(copy.objectPtr_),
+//	referenceCounter_(copy.referenceCounter_)
+//{
+//	copy.objectPtr_ = nullptr;
+//	copy.referenceCounter_ = nullptr;
+//}
 
 	//create fron weak pointer
 	inline StrongPtr(const WeakPtr<T>& otherWeakPointer) :

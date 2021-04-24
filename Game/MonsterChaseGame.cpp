@@ -92,7 +92,9 @@ namespace Game {
 		JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/wall top.json");
 		JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/wall bottom.json");
 
-		JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/player.json");
+		JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/you won.json");
+		player_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/player.json");
+		player_.GetObjectPtr()->SetIsActive(false);
 
 		GameObject::CheckForNewGameObjects();
 
