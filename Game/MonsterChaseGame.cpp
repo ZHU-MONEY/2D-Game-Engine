@@ -106,9 +106,19 @@ namespace Game {
 
 	void MonsterChaseGame::Update()
 	{
+		//if win or lose game, wait 3 sec and quit game
+		if (loseScene_.GetObjectPtr()->GetIsActive()|| winScene_.GetObjectPtr()->GetIsActive()) {
+			Sleep(3000);
+			quitMonsterChaseGame = true;
+		}
+
 		//get the input reader associated with Engine
 		InputReader* inputReaderInstance = InputReader::GetInstance();
 		PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
+
+		if (!player_.GetObjectPtr()->GetIsActive()) {
+			loseScene_.GetObjectPtr()->SetIsActive(true);
+		}
 
 
 		//movement

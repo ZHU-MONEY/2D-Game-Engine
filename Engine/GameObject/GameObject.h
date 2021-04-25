@@ -39,7 +39,7 @@ public:
 	// This adds a new GameObject to NewGameObjects
 	static void AddNewGameObject(StrongPtr<GameObject> i_pNewGameObject);
 
-
+	void RespondToCollision();
 protected:
 	Vector2 position_;
 	float rotation_;

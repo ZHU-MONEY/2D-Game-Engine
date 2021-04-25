@@ -79,4 +79,16 @@ void GameObject::AddNewGameObject(StrongPtr<GameObject> i_pNewGameObject)
 	}
 }
 
+void GameObject::RespondToCollision()
+{
 
+	if (this->GetIsStatic()) {
+		return;
+	}
+	//if (isFinishedCollisionReaction_2)
+	//{
+	//	return;
+	//}
+
+	this->SetIsActive(false);
+}
