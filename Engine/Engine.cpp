@@ -5,7 +5,6 @@
 #include "Engine/Input/InputReader.h"
 
 namespace Engine {
-	static bool requestQuit = false;
 	bool StartUp()
 	{
 		PhysicsSystem::Create();
@@ -15,14 +14,11 @@ namespace Engine {
 
 		GetPerformanceFrequency();
 
-		requestQuit = false;
-
 		return true;
 	}
 
 	void Run()
 	{
-		//GLib::Service(requestQuit);
 		CalculateLastFrameTime_ms();
 		float dt = GetLastFrameTime_ms();
 
@@ -31,16 +27,9 @@ namespace Engine {
 		Renderer* rendererInstance = Renderer::GetInstance();
 		InputReader* inputReaderInstance = InputReader::GetInstance();
 
-		//const size_t	lenBuffer = 65;
-		//char			Buffer[lenBuffer];
-		//sprintf_s(Buffer, lenBuffer, "AAA  %s\n", InputReader::isKey_A_Down ? "A is DOWN" : "A is UP");
-		//OutputDebugStringA(Buffer);
-
 		physicsSystemInstance->Run(dt);
 		colliderSystemInstance->Run(dt);
 		rendererInstance->Run();
-
-
 	}
 
 	void Shutdown()

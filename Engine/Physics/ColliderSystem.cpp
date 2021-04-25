@@ -376,8 +376,8 @@ void ColliderSystem::Run(float dt)
 		//StrongPtr<PhysicsObject>(collision_pair.objectA)->RespondToCollision(collision_pair.normalA);
 		//StrongPtr<PhysicsObject>(collision_pair.objectB)->RespondToCollision(collision_pair.normalB);
 
-		collision_pair.objectA.GetObjectPtr()->GetGameObject().GetObjectPtr()->RespondToCollision();
-		collision_pair.objectB.GetObjectPtr()->GetGameObject().GetObjectPtr()->RespondToCollision();
+		collision_pair.objectA.GetObjectPtr()->GetGameObject().GetObjectPtr()->RespondToCollision(collision_pair.objectB.GetObjectPtr()->GetGameObject().GetObjectPtr());
+		collision_pair.objectB.GetObjectPtr()->GetGameObject().GetObjectPtr()->RespondToCollision(collision_pair.objectA.GetObjectPtr()->GetGameObject().GetObjectPtr());
 
 	}
 	collided_objects_.clear();
@@ -396,7 +396,6 @@ void ColliderSystem::AddPhysicsObject(WeakPtr<PhysicsObject>& poWeakPtr)
 	// check if this object already exists
 	if (std::find(collideableObjects_.begin(), collideableObjects_.end(), poWeakPtr) != collideableObjects_.end())
 	{
-		//LOG_ERROR("Collider is already tracking this physics object!");
 		return;
 	}
 

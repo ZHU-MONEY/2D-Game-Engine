@@ -1,5 +1,6 @@
 #include "GameObject.h"
 #include <Engine\EngineUtils.h>
+#include "Game/MonsterChaseGame.h"
 
 static std::vector<StrongPtr<GameObject>> AllGameObjects;
 static std::vector<StrongPtr<GameObject>> NewGameObjects;
@@ -68,27 +69,34 @@ void GameObject::CheckForNewGameObjects()
 	}
 }
 
-void GameObject::AddNewGameObject(StrongPtr<GameObject> i_pNewGameObject)
+void GameObject::AddNewGameObject(StrongPtr<GameObject> newGameObject)
 {
-	if (i_pNewGameObject)
+	if (newGameObject)
 	{
 		// Acquire a scoped lock on the mutex
 		Engine::ScopeLock Lock(NewGameObjectMutex);
 
-		NewGameObjects.push_back(i_pNewGameObject);
+		NewGameObjects.push_back(newGameObject);
 	}
 }
 
-void GameObject::RespondToCollision()
+void GameObject::RespondToCollision(GameObject* other)
 {
 
-	if (this->GetIsStatic()) {
+	if (Game::MonsterChaseGame::GetInstance()->GetPlayer().GetObjectPtr()==this) {
 		return;
 	}
-	//if (isFinishedCollisionReaction_2)
-	//{
-	//	return;
-	//}
 
-	this->SetIsActive(false);
+	if (Game::MonsterChaseGame::GetInstance()->GetTarget1().GetObjectPtr() == this ||
+		Game::MonsterChaseGame::GetInstance()->GetTarget2().GetObjectPtr() == this ||
+		Game::MonsterChaseGame::GetInstance()->GetTarget3().GetObjectPtr() == this) {
+		this->SetIsActive(false);
+	}
+	//this is a very broken way of getting things done
+	if (this->isStatic_) {
+		if (other->GetIsStatic())
+			return;
+		else if (other == Game::MonsterChaseGame::GetInstance()->GetPlayer().GetObjectPtr())
+			other->SetIsActive(false);
+	}
 }

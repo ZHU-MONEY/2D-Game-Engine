@@ -1,0 +1,13 @@
+{
+  "position": [0.0,200.0],
+  "size": [20,40],
+  "static": false,
+  "physics": {
+    "collideable": true,
+    "mass": 2.0,
+    "coefficient drag": 2
+  },
+  "render": {
+    "sprite": "data\\GoodGuy.dds"
+  }
+}

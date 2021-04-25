@@ -36,6 +36,9 @@ namespace Game {
 	MonsterChaseGame::MonsterChaseGame()
 	{
 		player_ = nullptr;
+		target1_ = nullptr;
+		target2_ = nullptr;
+		target3_ = nullptr;
 		winScene_ = nullptr;
 		loseScene_ = nullptr;
 	}
@@ -65,6 +68,21 @@ namespace Game {
 		return player_;
 	}
 
+	StrongPtr<GameObject> MonsterChaseGame::GetTarget1()
+	{
+		return target1_;
+	}
+
+	StrongPtr<GameObject> MonsterChaseGame::GetTarget2()
+	{
+		return target2_;
+	}
+
+	StrongPtr<GameObject> MonsterChaseGame::GetTarget3()
+	{
+		return target3_;
+	}
+
 	void MonsterChaseGame::Destroy()
 	{
 		if (instance_) {
@@ -86,8 +104,7 @@ namespace Game {
 		//Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/player.json"));
 
 
-		JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/center2.json");
-		JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/center.json");
+
 
 		JsonGameObjectUtils::CreateGameObjectFromJson( "Game/GameObjects/wall left.json");
 		JsonGameObjectUtils::CreateGameObjectFromJson( "Game/GameObjects/wall right.json");
@@ -97,6 +114,9 @@ namespace Game {
 		winScene_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/you won.json");
 		loseScene_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/you lost.json");
 		player_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/player.json");
+		target1_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/target1.json");
+		target2_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/target2.json");
+		target3_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/target3.json");
 		winScene_.GetObjectPtr()->SetIsActive(false);
 		loseScene_.GetObjectPtr()->SetIsActive(false);
 
@@ -118,6 +138,10 @@ namespace Game {
 
 		if (!player_.GetObjectPtr()->GetIsActive()) {
 			loseScene_.GetObjectPtr()->SetIsActive(true);
+		}
+
+		if (!target1_.GetObjectPtr()->GetIsActive() && !target2_.GetObjectPtr()->GetIsActive() && !target3_.GetObjectPtr()->GetIsActive()) {
+			winScene_.GetObjectPtr()->SetIsActive(true);
 		}
 
 
@@ -142,10 +166,6 @@ namespace Game {
 		if (inputReaderInstance->isKey_Q_Down) {
 			quitMonsterChaseGame = true;
 
-			//const size_t	lenBuffer = 65;
-			//char			Buffer[lenBuffer];
-			//sprintf_s(Buffer, lenBuffer, "Q went down \n");
-			//OutputDebugStringA(Buffer);
 		}
 
 	}

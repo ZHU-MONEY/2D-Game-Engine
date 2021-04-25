@@ -24,7 +24,7 @@
 #include "Engine/Time/TimeUtils.h"
 #include "Game/PlayerController.h"
 #include "Engine/Engine.h"
-//#include "Engine/Time/TimeUtils.Win.cpp"
+
 #include "Engine/GameObject/WeakPtr.h"
 #include "Engine/Physics/PhysicsSystem.h"
 #include "Engine/Render/Renderer.h"
@@ -45,7 +45,6 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 			Game::StartUp();
 			Game::MonsterChaseGame* MC = Game::MonsterChaseGame::GetInstance();
 
-			//bool quit = false;
 			while (!MC->quitMonsterChaseGame) {
 				GLib::Service(MC->quitMonsterChaseGame);
 				Engine::Run();

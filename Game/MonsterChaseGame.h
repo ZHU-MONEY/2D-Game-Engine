@@ -1,6 +1,4 @@
 #pragma once
-#ifndef MONSTER_CHASE_GAME_
-#define MONSTER_CHASE_GAME_
 #include "Glib\GLib.h"
 #include "Actor\Actor.h"
 #include "Engine\EngineUtils.h"
@@ -16,11 +14,13 @@ namespace Game {
 
 	bool StartUp();
 	void Shutdown();
-	//void AcceptKey(unsigned int i_VKeyID, bool bWentDown);
 
 	class MonsterChaseGame
 	{
 		StrongPtr<GameObject> player_;
+		StrongPtr<GameObject> target1_;
+		StrongPtr<GameObject> target2_;
+		StrongPtr<GameObject> target3_;
 		StrongPtr<GameObject> winScene_;
 		StrongPtr<GameObject> loseScene_;
 		MonsterChaseGame();
@@ -31,18 +31,14 @@ namespace Game {
 		static MonsterChaseGame* Create();
 		static MonsterChaseGame* GetInstance();
 		StrongPtr<GameObject> GetPlayer();
+		StrongPtr<GameObject> GetTarget1();
+		StrongPtr<GameObject> GetTarget2();
+		StrongPtr<GameObject> GetTarget3();
 		static void Destroy();
 
 		void Initialize();
 		void Update();
 
 		static bool quitMonsterChaseGame;
-		//void Render();
-
-/*		static bool	isKey_W_Down;
-		static bool isKey_A_Down;
-		static bool	isKey_S_Down;
-		static bool	isKey_D_Down;	*/	
 	};
 }//end Game namespace
-#endif
