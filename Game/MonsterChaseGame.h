@@ -34,6 +34,8 @@ namespace Game {
 		StrongPtr<GameObject> GetTarget1();
 		StrongPtr<GameObject> GetTarget2();
 		StrongPtr<GameObject> GetTarget3();
+
+		void RespondToCollision(GameObject* go1, GameObject* go2);
 		static void Destroy();
 
 		void Initialize();

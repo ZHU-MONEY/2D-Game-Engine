@@ -1,5 +1,6 @@
 #include "Engine/Physics/ColliderSystem.h"
 #include <cassert>
+//#include <Game\MonsterChaseGame.h>
 
 // static member initialization
 ColliderSystem* ColliderSystem::instance_ = nullptr;
@@ -376,8 +377,13 @@ void ColliderSystem::Run(float dt)
 		//StrongPtr<PhysicsObject>(collision_pair.objectA)->RespondToCollision(collision_pair.normalA);
 		//StrongPtr<PhysicsObject>(collision_pair.objectB)->RespondToCollision(collision_pair.normalB);
 
-		collision_pair.objectA.GetObjectPtr()->GetGameObject().GetObjectPtr()->RespondToCollision(collision_pair.objectB.GetObjectPtr()->GetGameObject().GetObjectPtr());
-		collision_pair.objectB.GetObjectPtr()->GetGameObject().GetObjectPtr()->RespondToCollision(collision_pair.objectA.GetObjectPtr()->GetGameObject().GetObjectPtr());
+		//collision_pair.objectA.GetObjectPtr()->GetGameObject().GetObjectPtr()->RespondToCollision(collision_pair.objectB.GetObjectPtr()->GetGameObject().GetObjectPtr());
+		//collision_pair.objectB.GetObjectPtr()->GetGameObject().GetObjectPtr()->RespondToCollision(collision_pair.objectA.GetObjectPtr()->GetGameObject().GetObjectPtr());
+
+
+		//Game::MonsterChaseGame::GetInstance()->RespondToCollision(
+		//	collision_pair.objectA.GetObjectPtr()->GetGameObject().GetObjectPtr(),
+		//	collision_pair.objectB.GetObjectPtr()->GetGameObject().GetObjectPtr());
 
 	}
 	collided_objects_.clear();

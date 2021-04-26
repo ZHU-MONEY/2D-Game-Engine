@@ -83,6 +83,37 @@ namespace Game {
 		return target3_;
 	}
 
+	void MonsterChaseGame::RespondToCollision(GameObject* go1, GameObject* go2)
+	{
+		//if (Game::MonsterChaseGame::GetInstance()->GetPlayer().GetObjectPtr() == go1 ||
+		//	Game::MonsterChaseGame::GetInstance()->GetPlayer().GetObjectPtr() == go2) {
+		//	player_->SetIsActive(false);
+		//}
+
+		//if (player_.GetObjectPtr() == go1 ||
+		//	player_.GetObjectPtr() == go2) {
+		//	player_->SetIsActive(false);
+		//}
+
+
+		//if (Game::MonsterChaseGame::GetInstance()->GetPlayer().GetObjectPtr() == this) {
+		//	return;
+		//}
+
+		//if (Game::MonsterChaseGame::GetInstance()->GetTarget1().GetObjectPtr() == this ||
+		//	Game::MonsterChaseGame::GetInstance()->GetTarget2().GetObjectPtr() == this ||
+		//	Game::MonsterChaseGame::GetInstance()->GetTarget3().GetObjectPtr() == this) {
+		//	this->SetIsActive(false);
+		//}
+		//this is a very broken way of getting things done
+		//if (this->isStatic_) {
+		//	if (other->GetIsStatic())
+		//		return;
+		//	else if (other == Game::MonsterChaseGame::GetInstance()->GetPlayer().GetObjectPtr())
+		//		other->SetIsActive(false);
+		//}
+	}
+
 	void MonsterChaseGame::Destroy()
 	{
 		if (instance_) {
