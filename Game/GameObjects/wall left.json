@@ -8,6 +8,6 @@
     "coefficient drag": 2
   },
   "render": {
-    "sprite": "data\\vertical wall.dds"
+    "sprite": "data\\vertical fire.dds"
   }
 }

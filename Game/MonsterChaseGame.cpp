@@ -33,6 +33,7 @@ namespace Game {
 	// static member initialization
 	MonsterChaseGame* MonsterChaseGame::instance_ = nullptr;
 	bool MonsterChaseGame::quitMonsterChaseGame = false;
+	bool MonsterChaseGame::movingFireNeedMoveRight = true;
 	MonsterChaseGame::MonsterChaseGame()
 	{
 		player_ = nullptr;
@@ -43,6 +44,8 @@ namespace Game {
 		fire2_ = nullptr;
 		fire3_ = nullptr;
 		fire4_ = nullptr;
+		movingFire1_ = nullptr;
+		movingFire2_ = nullptr;
 		winScene_ = nullptr;
 		loseScene_ = nullptr;
 	}
@@ -145,6 +148,9 @@ namespace Game {
 		fire3_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/wall top.json");
 		fire4_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/wall bottom.json");
 
+		movingFire1_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/moving fire 1.json");
+		//movingFire2_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/wall left.json");
+
 		winScene_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/you won.json");
 		loseScene_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/you lost.json");
 		player_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/player.json");
@@ -195,6 +201,22 @@ namespace Game {
 					po->ApplyForce(Vector2(-speed, 0.0f));
 			}
 		}
+
+#pragma region movingFire1
+		if (movingFireNeedMoveRight) {			
+			movingFire1_->SetPosition(Vector2(movingFire1_->GetPosition().x() + 1.0f, movingFire1_->GetPosition().y()));
+		}
+		else if(!movingFireNeedMoveRight){
+			movingFire1_->SetPosition(Vector2(movingFire1_->GetPosition().x() - 1.0f, movingFire1_->GetPosition().y()));
+		}
+
+		if (RoundedEqual(movingFire1_->GetPosition().x(), 1000.0f)) {
+			movingFireNeedMoveRight = false;
+		}
+		if (RoundedEqual(movingFire1_->GetPosition().x(), -1000.0f)) {
+			movingFireNeedMoveRight = true;
+		}
+#pragma endregion
 
 		//check if quit
 		if (inputReaderInstance->isKey_Q_Down) {

@@ -1,13 +1,13 @@
 {
-  "position": [484,0.0],
-  "size": [32.0,800.0],
-  "static": true,
+  "position": [0,0],
+  "size": [1000,32],
+  "static": false,
   "physics": {
     "collideable": true,
     "mass": 2.0,
     "coefficient drag": 2
   },
   "render": {
-    "sprite": "data\\vertical fire.dds"
+    "sprite": "data\\horizontal fire.dds"
   }
 }

@@ -10,7 +10,7 @@
 namespace Game {
 
 	static const  int GAME_HEIGHT = 800;
-	static const int GAME_WIDTH = 1000;
+	static const int GAME_WIDTH = 2000;
 
 	bool StartUp();
 	void Shutdown();
@@ -25,11 +25,15 @@ namespace Game {
 		StrongPtr<GameObject> fire2_;
 		StrongPtr<GameObject> fire3_;
 		StrongPtr<GameObject> fire4_;
+		StrongPtr<GameObject> movingFire1_;
+		StrongPtr<GameObject> movingFire2_;
 		StrongPtr<GameObject> winScene_;
 		StrongPtr<GameObject> loseScene_;
 		MonsterChaseGame();
 		~MonsterChaseGame();
 		static MonsterChaseGame* instance_;
+
+		static bool movingFireNeedMoveRight;
 
 	public:	
 		static MonsterChaseGame* Create();
