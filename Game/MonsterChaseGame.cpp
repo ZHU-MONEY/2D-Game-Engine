@@ -203,18 +203,17 @@ namespace Game {
 		}
 
 #pragma region movingFire1
-		if (movingFireNeedMoveRight) {			
-			movingFire1_->SetPosition(Vector2(movingFire1_->GetPosition().x() + 1.0f, movingFire1_->GetPosition().y()));
-		}
-		else if(!movingFireNeedMoveRight){
-			movingFire1_->SetPosition(Vector2(movingFire1_->GetPosition().x() - 1.0f, movingFire1_->GetPosition().y()));
-		}
-
-		if (RoundedEqual(movingFire1_->GetPosition().x(), 1000.0f)) {
+		if (movingFire1_->GetPosition().x()== 1000.0f) {
 			movingFireNeedMoveRight = false;
 		}
-		if (RoundedEqual(movingFire1_->GetPosition().x(), -1000.0f)) {
+		if (movingFire1_->GetPosition().x()== -1000.0f) {
 			movingFireNeedMoveRight = true;
+		}
+		if (movingFireNeedMoveRight) {			
+			movingFire1_->SetPosition(Vector2(movingFire1_->GetPosition().x() + 0.5f, movingFire1_->GetPosition().y()));
+		}
+		else if(!movingFireNeedMoveRight){
+			movingFire1_->SetPosition(Vector2(movingFire1_->GetPosition().x() - 0.5f, movingFire1_->GetPosition().y()));
 		}
 #pragma endregion
 
