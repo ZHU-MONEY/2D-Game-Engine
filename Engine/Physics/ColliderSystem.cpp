@@ -374,13 +374,6 @@ void ColliderSystem::Run(float dt)
 	{
 		CollisionPair& collision_pair = collided_objects_[i];
 
-		//StrongPtr<PhysicsObject>(collision_pair.objectA)->RespondToCollision(collision_pair.normalA);
-		//StrongPtr<PhysicsObject>(collision_pair.objectB)->RespondToCollision(collision_pair.normalB);
-
-		//collision_pair.objectA.GetObjectPtr()->GetGameObject().GetObjectPtr()->RespondToCollision(collision_pair.objectB.GetObjectPtr()->GetGameObject().GetObjectPtr());
-		//collision_pair.objectB.GetObjectPtr()->GetGameObject().GetObjectPtr()->RespondToCollision(collision_pair.objectA.GetObjectPtr()->GetGameObject().GetObjectPtr());
-
-
 		Game::MonsterChaseGame::GetInstance()->RespondToCollision(
 			collision_pair.objectA.GetObjectPtr()->GetGameObject().GetObjectPtr(),
 			collision_pair.objectB.GetObjectPtr()->GetGameObject().GetObjectPtr());
