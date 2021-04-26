@@ -39,14 +39,16 @@ namespace Game {
 		target1_ = nullptr;
 		target2_ = nullptr;
 		target3_ = nullptr;
+		fire1_ = nullptr;
+		fire2_ = nullptr;
+		fire3_ = nullptr;
+		fire4_ = nullptr;
 		winScene_ = nullptr;
 		loseScene_ = nullptr;
 	}
 
 	MonsterChaseGame::~MonsterChaseGame()
 	{
-		/*delete player_;
-		player_ = nullptr;*/
 	}
 
 	MonsterChaseGame* MonsterChaseGame::Create()
@@ -85,33 +87,34 @@ namespace Game {
 
 	void MonsterChaseGame::RespondToCollision(GameObject* go1, GameObject* go2)
 	{
-		//if (Game::MonsterChaseGame::GetInstance()->GetPlayer().GetObjectPtr() == go1 ||
-		//	Game::MonsterChaseGame::GetInstance()->GetPlayer().GetObjectPtr() == go2) {
-		//	player_->SetIsActive(false);
-		//}
 
-		//if (player_.GetObjectPtr() == go1 ||
-		//	player_.GetObjectPtr() == go2) {
-		//	player_->SetIsActive(false);
-		//}
+		//if player collides with target
+		if (			
+			(player_.GetObjectPtr() == go1 && (target1_.GetObjectPtr() == go2 || target2_.GetObjectPtr() == go2 || target3_.GetObjectPtr() == go2)) ||
+			(player_.GetObjectPtr() == go2 && (target1_.GetObjectPtr() == go1 || target2_.GetObjectPtr() == go1 || target3_.GetObjectPtr() == go1))			
+			)
+		{
+			if (player_.GetObjectPtr() == go1) {
+				go2->SetIsActive(false);
+			}
+			if (player_.GetObjectPtr() == go2) {
+				go1->SetIsActive(false);
+			}
+		}
 
-
-		//if (Game::MonsterChaseGame::GetInstance()->GetPlayer().GetObjectPtr() == this) {
-		//	return;
-		//}
-
-		//if (Game::MonsterChaseGame::GetInstance()->GetTarget1().GetObjectPtr() == this ||
-		//	Game::MonsterChaseGame::GetInstance()->GetTarget2().GetObjectPtr() == this ||
-		//	Game::MonsterChaseGame::GetInstance()->GetTarget3().GetObjectPtr() == this) {
-		//	this->SetIsActive(false);
-		//}
-		//this is a very broken way of getting things done
-		//if (this->isStatic_) {
-		//	if (other->GetIsStatic())
-		//		return;
-		//	else if (other == Game::MonsterChaseGame::GetInstance()->GetPlayer().GetObjectPtr())
-		//		other->SetIsActive(false);
-		//}
+		//if player collides with fire
+		if (
+			(player_.GetObjectPtr() == go1 && (fire1_.GetObjectPtr() == go2 || fire2_.GetObjectPtr() == go2 || fire3_.GetObjectPtr() == go2 || fire4_.GetObjectPtr() == go2)) ||
+			(player_.GetObjectPtr() == go2 && (fire1_.GetObjectPtr() == go1 || fire2_.GetObjectPtr() == go1 || fire3_.GetObjectPtr() == go1 || fire4_.GetObjectPtr() == go1))
+			)
+		{
+			if (player_.GetObjectPtr() == go1) {
+				go1->SetIsActive(false);
+			}
+			if (player_.GetObjectPtr() == go2) {
+				go2->SetIsActive(false);
+			}
+		}
 	}
 
 	void MonsterChaseGame::Destroy()
@@ -137,10 +140,10 @@ namespace Game {
 
 
 
-		JsonGameObjectUtils::CreateGameObjectFromJson( "Game/GameObjects/wall left.json");
-		JsonGameObjectUtils::CreateGameObjectFromJson( "Game/GameObjects/wall right.json");
-		JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/wall top.json");
-		JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/wall bottom.json");
+		fire1_ = JsonGameObjectUtils::CreateGameObjectFromJson( "Game/GameObjects/wall left.json");
+		fire2_ = JsonGameObjectUtils::CreateGameObjectFromJson( "Game/GameObjects/wall right.json");
+		fire3_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/wall top.json");
+		fire4_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/wall bottom.json");
 
 		winScene_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/you won.json");
 		loseScene_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/you lost.json");

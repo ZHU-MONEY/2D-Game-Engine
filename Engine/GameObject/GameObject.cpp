@@ -10,7 +10,7 @@ StrongPtr<GameObject> GameObject::Create()
 {
 
 	StrongPtr<GameObject> newGO = StrongPtr<GameObject>(new GameObject());
-	AddNewGameObject(newGO);
+	//AddNewGameObject(newGO);
 	return newGO;
 }
 
@@ -60,7 +60,6 @@ void GameObject::CheckForNewGameObjects()
 		{
 			if (p)
 			{
-				//std::cout << "Moving " << p->GetName() << " to AllObjects.\n";
 				AllGameObjects.push_back(p);
 			}
 		}
@@ -80,23 +79,23 @@ void GameObject::AddNewGameObject(StrongPtr<GameObject> newGameObject)
 	}
 }
 
-void GameObject::RespondToCollision(GameObject* other)
-{
-
-	if (Game::MonsterChaseGame::GetInstance()->GetPlayer().GetObjectPtr()==this) {
-		return;
-	}
-
-	if (Game::MonsterChaseGame::GetInstance()->GetTarget1().GetObjectPtr() == this ||
-		Game::MonsterChaseGame::GetInstance()->GetTarget2().GetObjectPtr() == this ||
-		Game::MonsterChaseGame::GetInstance()->GetTarget3().GetObjectPtr() == this) {
-		this->SetIsActive(false);
-	}
-	//this is a very broken way of getting things done
-	if (this->isStatic_) {
-		if (other->GetIsStatic())
-			return;
-		else if (other == Game::MonsterChaseGame::GetInstance()->GetPlayer().GetObjectPtr())
-			other->SetIsActive(false);
-	}
-}
+//void GameObject::RespondToCollision(GameObject* other)
+//{
+//
+//	if (Game::MonsterChaseGame::GetInstance()->GetPlayer().GetObjectPtr()==this) {
+//		return;
+//	}
+//
+//	if (Game::MonsterChaseGame::GetInstance()->GetTarget1().GetObjectPtr() == this ||
+//		Game::MonsterChaseGame::GetInstance()->GetTarget2().GetObjectPtr() == this ||
+//		Game::MonsterChaseGame::GetInstance()->GetTarget3().GetObjectPtr() == this) {
+//		this->SetIsActive(false);
+//	}
+//	//this is a very broken way of getting things done
+//	if (this->isStatic_) {
+//		if (other->GetIsStatic())
+//			return;
+//		else if (other == Game::MonsterChaseGame::GetInstance()->GetPlayer().GetObjectPtr())
+//			other->SetIsActive(false);
+//	}
+//}

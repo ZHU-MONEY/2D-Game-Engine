@@ -21,6 +21,10 @@ namespace Game {
 		StrongPtr<GameObject> target1_;
 		StrongPtr<GameObject> target2_;
 		StrongPtr<GameObject> target3_;
+		StrongPtr<GameObject> fire1_;
+		StrongPtr<GameObject> fire2_;
+		StrongPtr<GameObject> fire3_;
+		StrongPtr<GameObject> fire4_;
 		StrongPtr<GameObject> winScene_;
 		StrongPtr<GameObject> loseScene_;
 		MonsterChaseGame();
