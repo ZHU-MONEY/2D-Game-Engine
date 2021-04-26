@@ -10,7 +10,7 @@ StrongPtr<GameObject> GameObject::Create()
 {
 
 	StrongPtr<GameObject> newGO = StrongPtr<GameObject>(new GameObject());
-	//AddNewGameObject(newGO);
+	AddNewGameObject(newGO);
 	return newGO;
 }
 
