@@ -107,8 +107,8 @@ namespace Game {
 
 		//if player collides with fire
 		if (
-			(player_.GetObjectPtr() == go1 && (fire1_.GetObjectPtr() == go2 || fire2_.GetObjectPtr() == go2 || fire3_.GetObjectPtr() == go2 || fire4_.GetObjectPtr() == go2)) ||
-			(player_.GetObjectPtr() == go2 && (fire1_.GetObjectPtr() == go1 || fire2_.GetObjectPtr() == go1 || fire3_.GetObjectPtr() == go1 || fire4_.GetObjectPtr() == go1))
+			(player_.GetObjectPtr() == go1 && (fire1_.GetObjectPtr() == go2 || fire2_.GetObjectPtr() == go2 || fire3_.GetObjectPtr() == go2 || fire4_.GetObjectPtr() == go2 || movingFire1_.GetObjectPtr() == go2 || movingFire2_.GetObjectPtr() == go2)) ||
+			(player_.GetObjectPtr() == go2 && (fire1_.GetObjectPtr() == go1 || fire2_.GetObjectPtr() == go1 || fire3_.GetObjectPtr() == go1 || fire4_.GetObjectPtr() == go1 || movingFire1_.GetObjectPtr() == go1 || movingFire2_.GetObjectPtr() == go1))
 			)
 		{
 			if (player_.GetObjectPtr() == go1) {
@@ -149,7 +149,7 @@ namespace Game {
 		fire4_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/wall bottom.json");
 
 		movingFire1_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/moving fire 1.json");
-		//movingFire2_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/wall left.json");
+		movingFire2_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/moving fire 2.json");
 
 		winScene_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/you won.json");
 		loseScene_ = JsonGameObjectUtils::CreateGameObjectFromJson("Game/GameObjects/you lost.json");
@@ -203,10 +203,10 @@ namespace Game {
 		}
 
 #pragma region movingFire1
-		if (movingFire1_->GetPosition().x()== 1000.0f) {
+		if (movingFire1_->GetPosition().x()== 500.0f) {
 			movingFireNeedMoveRight = false;
 		}
-		if (movingFire1_->GetPosition().x()== -1000.0f) {
+		if (movingFire1_->GetPosition().x()== -500.0f) {
 			movingFireNeedMoveRight = true;
 		}
 		if (movingFireNeedMoveRight) {			
@@ -214,6 +214,15 @@ namespace Game {
 		}
 		else if(!movingFireNeedMoveRight){
 			movingFire1_->SetPosition(Vector2(movingFire1_->GetPosition().x() - 0.5f, movingFire1_->GetPosition().y()));
+		}
+#pragma endregion
+
+#pragma region movingFire2
+		if (!movingFireNeedMoveRight) {
+			movingFire2_->SetPosition(Vector2(movingFire2_->GetPosition().x() + 0.5f, movingFire2_->GetPosition().y()));
+		}
+		else if (movingFireNeedMoveRight) {
+			movingFire2_->SetPosition(Vector2(movingFire2_->GetPosition().x() - 0.5f, movingFire2_->GetPosition().y()));
 		}
 #pragma endregion
 

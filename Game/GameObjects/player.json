@@ -1,12 +1,12 @@
 {
-  "position": [200,0],
+  "position": [0,-300],
   "rotation": 0,
-  "size": [64.0,64.0],
+  "size": [32.0,52.0],
   "physics": {
     "controllable":true,
     "collideable": true,
     "mass": 1,
-    "coefficient drag": 0.005
+    "coefficient drag": 0.105
   },
   "render": {
     "sprite": "data\\player.dds"

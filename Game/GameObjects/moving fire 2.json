@@ -1,6 +1,6 @@
 {
-  "position": [100.0,-300.0],
-  "size": [20,40],
+  "position": [0,-150],
+  "size": [1000,32],
   "static": false,
   "physics": {
     "collideable": true,
@@ -8,6 +8,6 @@
     "coefficient drag": 2
   },
   "render": {
-    "sprite": "data\\GoodGuy.dds"
+    "sprite": "data\\horizontal fire.dds"
   }
 }
