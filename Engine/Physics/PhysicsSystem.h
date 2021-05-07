@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include "PhysicsObject.h"
-//#include<algorithm>
 
 class PhysicsSystem
 {
@@ -10,7 +9,6 @@ private:
 	~PhysicsSystem();
 
 	static PhysicsSystem* instance_;
-	//std::vector<PhysicsObject*> physicsObjects_;
 	std::vector<StrongPtr<PhysicsObject>> physicsObjects_;
 
 public:

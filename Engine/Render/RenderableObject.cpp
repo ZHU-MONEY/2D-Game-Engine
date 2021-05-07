@@ -20,8 +20,6 @@ RenderableObject::RenderableObject(WeakPtr<GameObject>& gameObject) :
 	rotation_(0.0f)
 {
 	position_ = { 0.0f, 0.0f };
-	//Renderer* rendererInstance = Renderer::GetInstance();
-	//rendererInstance->AddRenderableObject(this);
 }
 
 RenderableObject::RenderableObject(Sprite* sprite) :
@@ -30,8 +28,6 @@ RenderableObject::RenderableObject(Sprite* sprite) :
 	rotation_(0.0f)
 {
 	position_ = { 0.0f, 0.0f };
-	//Renderer* rendererInstance = Renderer::GetInstance();
-	//rendererInstance->AddRenderableObject(this);
 }
 
 RenderableObject::RenderableObject(WeakPtr<GameObject>& gameObject, Sprite* sprite) :
@@ -40,8 +36,6 @@ RenderableObject::RenderableObject(WeakPtr<GameObject>& gameObject, Sprite* spri
 	rotation_(0.0f)
 {
 	position_ = { 0.0f, 0.0f };
-	//Renderer* rendererInstance = Renderer::GetInstance();
-	//rendererInstance->AddRenderableObject(this);
 }
 
 RenderableObject::~RenderableObject()

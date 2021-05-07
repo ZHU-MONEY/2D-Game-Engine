@@ -106,14 +106,10 @@ void ColliderSystem::Run(float dt)
 				{
 					// treat zero velocities differently
 					if (RoundedEqual(relativeVelocityWorldToB.x(), 0.0f))
-						//if (true)
 					{
 						// separation check without velocities
-						//isXSeparatedInB = fabs(ACenterInB.x() - bAABB.center.x()) > AXExtentInB.x() + bAABB.extents.x();
 						isXSeparatedInB = fabs(
-							//							gameObjectA.GetObjectPtr()->GetPosition().x() +
 							fabs(ACenterInB.x()) - bAABB.center.x()
-							//							+ gameObjectB.GetObjectPtr()->GetPosition().x()
 						) > AExtentsInB.x() + bAABB.extents.x();
 
 					}
@@ -138,20 +134,16 @@ void ColliderSystem::Run(float dt)
 
 					}
 
-				} // for X axis
+				}
 
-				// for Y axis, only if no separation was found on the X-axis
-				//---------if (!isXSeparatedInB)
+				// for Y axis
 				{
 					// treat zero velocities differently
 					if (RoundedEqual(relativeVelocityWorldToB.y(), 0.0f))
-						//if (true)
 					{
 						// separation check without velocities
-						isYSeparatedInB = fabs(
-							//							gameObjectA.GetObjectPtr()->GetPosition().y() +
+						isYSeparatedInB = fabs(						
 							fabs(ACenterInB.y()) - bAABB.center.y()
-							//							+ gameObjectB.GetObjectPtr()->GetPosition().y()
 						) > AExtentsInB.y() + bAABB.extents.y();
 
 					}
@@ -175,16 +167,13 @@ void ColliderSystem::Run(float dt)
 						isYSeparatedInB = openYinB < 0 || closeYinB > dt;
 					}
 
-				} // for Y axis
+				}
 
 
 
 				if (isXSeparatedInB && isYSeparatedInB) {
 					//no collision
-					//const size_t	lenBuffer = 65;
-					//char			Buffer[lenBuffer];
-					//sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 193 \n");
-					//OutputDebugStringA(Buffer);
+
 				}
 
 #pragma endregion
@@ -212,13 +201,10 @@ void ColliderSystem::Run(float dt)
 				{
 					// treat zero velocities differently
 					if (RoundedEqual(relativeVelocityWorldToA.x(), 0.0f))
-						//if (true)
 					{
 						// separation check without velocities
 						isXSeparatedInA = fabs(
-							//							gameObjectB.GetObjectPtr()->GetPosition().x() +
 							fabs(aAABB.center.x()) - BCenterInA.x()
-							//							+ gameObjectA.GetObjectPtr()->GetPosition().x()
 						) > aAABB.extents.x() + BExtentsInA.x();
 
 					}
@@ -243,18 +229,14 @@ void ColliderSystem::Run(float dt)
 					}
 				}
 
-				// for Y axis, only if no separation was found on the X axis
-				//---------------if (!isXSeparatedInA)
+				// for Y axis
 				{
 					// treat zero velocities differently
 					if (RoundedEqual(relativeVelocityWorldToA.y(), 0.0f))
-						//if (true)
 					{
 						// separation check without velocities
 						isYSeparatedInA = fabs(
-							//							gameObjectB.GetObjectPtr()->GetPosition().y() +
 							fabs(aAABB.center.y()) - BCenterInA.y()
-							//							+ gameObjectA.GetObjectPtr()->GetPosition().y()
 						) > aAABB.extents.y() + BExtentsInA.y();
 
 					}
@@ -283,20 +265,12 @@ void ColliderSystem::Run(float dt)
 
 				if (isXSeparatedInA && isYSeparatedInA) {
 					//no collision
-					//const size_t	lenBuffer = 65;
-					//char			Buffer[lenBuffer];
-					//sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 295 \n");
-					//OutputDebugStringA(Buffer);
+
 				}
 #pragma endregion
-
-
-
-
-				///**
+				
 				// if separation
 				if (!(isXSeparatedInB || isYSeparatedInB || isXSeparatedInA || isYSeparatedInA))
-					//if (!(isXSeparatedInB == true && isYSeparatedInB == true && isXSeparatedInA == true && isYSeparatedInA == true))
 				{
 					// find the latest close and the earliest open
 					float closeLatest = GetMaxOfFour(closeXinB, closeYinB, closeXInA, closeYInA);
@@ -307,19 +281,13 @@ void ColliderSystem::Run(float dt)
 					if (closeLatest > openEarliest)
 					{
 						//no collision
-						//const size_t	lenBuffer = 65;
-						//char			Buffer[lenBuffer];
-						//sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 319 \n");
-						//OutputDebugStringA(Buffer);
+
 					}
 					else
 					{
 
 						//collision
-						//const size_t	lenBuffer = 65;
-						//char			Buffer[lenBuffer];
-						//sprintf_s(Buffer, lenBuffer, "COLLIDING line 327\n");
-						//OutputDebugStringA(Buffer);
+
 
 						Vector2 normal = Vector2::ZERO;
 						if (RoundedEqual(closeLatest, closeXinB))
@@ -350,19 +318,13 @@ void ColliderSystem::Run(float dt)
 							normal.set(aYInWorld.x(), aYInWorld.y());
 							collided_objects_.push_back({ closeLatest, normal,-normal, physicsObjectA, physicsObjectB });
 						}
-
-
-
 					}
 				}
 				else
 				{
-					//const size_t	lenBuffer = 65;
-					//char			Buffer[lenBuffer];
-					//sprintf_s(Buffer, lenBuffer, "NOOOOOT COLLIDING line 339\n");
-					//OutputDebugStringA(Buffer);
+					//no collision
 				}
-				//**/
+				
 			}
 
 		}

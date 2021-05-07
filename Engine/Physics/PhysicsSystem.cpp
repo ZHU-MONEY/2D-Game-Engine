@@ -11,11 +11,6 @@ PhysicsSystem::PhysicsSystem()
 //destructor
 PhysicsSystem::~PhysicsSystem()
 {
-
-	//for each (StrongPtr<PhysicsObject> po in physicsObjects_)
-	//{
-	//	po->~PhysicsObject();
-	//}
 	physicsObjects_.clear();
 }
 

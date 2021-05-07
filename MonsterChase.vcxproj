@@ -148,7 +148,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Actor\Actor.cpp" />
     <ClCompile Include="Console\ConsolePrint.Win32.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
     <ClCompile Include="Engine\EngineUtils.cpp" />
@@ -175,13 +174,11 @@
     <ClCompile Include="Engine\Test\Matrix4x4Test.cpp" />
     <ClCompile Include="Engine\Time\TimeUtils.Win.cpp" />
     <ClCompile Include="Game\MonsterChaseGame.cpp" />
-    <ClCompile Include="Game\PlayerController.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine\Math\Vector2.cpp" />
     <ClCompile Include="ProcessFile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Actor\Actor.h" />
     <ClInclude Include="Console\ConsolePrint.h" />
     <ClInclude Include="Containers\List-inl.h" />
     <ClInclude Include="Containers\List.h" />
@@ -223,7 +220,6 @@
     <ClInclude Include="Engine\GameObject\StrongPtr.h" />
     <ClInclude Include="Engine\Windows\WindowsHelpers.h" />
     <ClInclude Include="Game\MonsterChaseGame.h" />
-    <ClInclude Include="Game\PlayerController.h" />
     <ClInclude Include="ProcessFile.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>

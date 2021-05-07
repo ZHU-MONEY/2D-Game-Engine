@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Actor">
-      <UniqueIdentifier>{7270436a-f4f6-4370-bf32-fd9f97146f95}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Containers">
       <UniqueIdentifier>{b56b8e11-5b89-476f-bde9-5528bc5bab14}</UniqueIdentifier>
     </Filter>
@@ -66,9 +63,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Actor\Actor.cpp">
-      <Filter>Source Files\Actor</Filter>
-    </ClCompile>
     <ClCompile Include="Console\ConsolePrint.Win32.cpp">
       <Filter>Source Files\Console</Filter>
     </ClCompile>
@@ -92,9 +86,6 @@
     </ClCompile>
     <ClCompile Include="Engine\Physics\PhysicsObject.cpp">
       <Filter>Source Files\Engine\Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\PlayerController.cpp">
-      <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Engine.cpp">
       <Filter>Source Files\Engine</Filter>
@@ -158,9 +149,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Actor\Actor.h">
-      <Filter>Source Files\Actor</Filter>
-    </ClInclude>
     <ClInclude Include="Containers\List.h">
       <Filter>Source Files\Containers</Filter>
     </ClInclude>
@@ -196,9 +184,6 @@
     </ClInclude>
     <ClInclude Include="Engine\Physics\PhysicsObject.h">
       <Filter>Source Files\Engine\Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\PlayerController.h">
-      <Filter>Source Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Engine\GameObject\ReferenceCounter.h">
       <Filter>Source Files\Engine\GameObject</Filter>

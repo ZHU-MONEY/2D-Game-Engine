@@ -14,7 +14,6 @@
 
 #include <DirectXColors.h>
 
-#include "Actor/Actor.h"
 #include "Containers/List.h"
 #include "Console/ConsolePrint.h"
 #include "Glib/GLib.h"
@@ -22,7 +21,6 @@
 #include "Game/MonsterChaseGame.h"
 #include <iostream>
 #include "Engine/Time/TimeUtils.h"
-#include "Game/PlayerController.h"
 #include "Engine/Engine.h"
 
 #include "Engine/GameObject/WeakPtr.h"
@@ -35,7 +33,7 @@
 int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_lpCmdLine, int i_nCmdShow)
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	//_CrtSetBreakAlloc(471);
+
 	if (Engine::StartUp())
 	{
 		// IMPORTANT: first we need to initialize GLib
@@ -57,9 +55,6 @@ int WINAPI wWinMain(HINSTANCE i_hInstance, HINSTANCE i_hPrevInstance, LPWSTR i_l
 			Engine::Shutdown();
 		}
 	}
-
-	//_CrtDumpMemoryLeaks();
-
 }
 
 

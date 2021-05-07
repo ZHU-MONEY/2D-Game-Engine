@@ -11,8 +11,6 @@ StrongPtr<GameObject> JsonGameObjectUtils::CreateGameObjectFromJson(const char* 
 		std::cout << "file not found";
 	}
 
-	//json jsonObject = json::parse("xxx.json",nullptr,false);
-
 	json jsonObject = json::parse(file, nullptr, false);
 
 	//this if needs to be paired with parse above
@@ -42,8 +40,6 @@ StrongPtr<GameObject> JsonGameObjectUtils::CreateGameObjectFromJson(const char* 
 
 		if (jsonObject.contains("rotation"))
 		{
-			//json rot = jsonObject["rotation"];
-
 			go->SetRotation(jsonObject["rotation"]);
 		}
 
@@ -95,7 +91,6 @@ StrongPtr<GameObject> JsonGameObjectUtils::CreateGameObjectFromJson(const char* 
 			//create a renderable object
 			RenderableObject* ro = new RenderableObject(WeakPtr<GameObject>(go));
 			StrongPtr<RenderableObject> ros = ro->CreateROStrongPtr(ro);
-			//ro->CreateROStrongPtr(ro);
 			json jsonRenderableObject = jsonObject["render"];
 			if (jsonRenderableObject.contains("sprite"))
 			{

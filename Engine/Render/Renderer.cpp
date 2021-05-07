@@ -30,11 +30,6 @@ void Renderer::Run()
 	// Tell GLib that we want to render some sprites
 	GLib::Sprites::BeginRendering();
 
-	//for each (RenderableObject * ro in renderableObjects_)
-	//{
-	//	ro->Render();
-	//}
-
 	for each (StrongPtr<RenderableObject>  ro in renderableObjects_)
 	{
 		if (ro.GetObjectPtr()->GetObjectPtr().GetObjectPtr()->GetIsActive())

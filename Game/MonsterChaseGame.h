@@ -1,6 +1,5 @@
 #pragma once
 #include "Glib\GLib.h"
-#include "Actor\Actor.h"
 #include "Engine\EngineUtils.h"
 #include <DirectXColors.h>
 #include "Engine/GameObject/GameObject.h"

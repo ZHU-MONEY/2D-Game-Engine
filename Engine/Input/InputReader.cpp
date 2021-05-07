@@ -9,11 +9,6 @@ bool InputReader::isKey_D_Down = false;
 bool InputReader::isKey_Q_Down = false;
 void AcceptKey2(unsigned int i_VKeyID, bool bWentDown)
 {
-		//const size_t	lenBuffer = 65;
-		//char			Buffer[lenBuffer];
-		//sprintf_s(Buffer, lenBuffer, "000  %s\n", InputReader::isKey_A_Down ? "A is downFUCK" : "A is upFUCK");
-		//OutputDebugStringA(Buffer);
-
 	switch (i_VKeyID)
 	{
 		//W 57---hexadecimal   87---decimal

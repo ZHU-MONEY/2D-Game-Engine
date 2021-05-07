@@ -20,7 +20,6 @@ public:
 
 private:
 	static InputReader* instance_;
-	//void AcceptKey2(unsigned int i_VKeyID, bool bWentDown);
 	InputReader();
 	~InputReader();
 };

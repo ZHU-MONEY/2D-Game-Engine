@@ -22,12 +22,18 @@ namespace Game {
 
 		// initialize the game
 		mc_instance->Initialize();
+		char			Buffer[65];
+		sprintf_s(Buffer, 65, "Game initialized \n");
+		OutputDebugStringA(Buffer);
 		return true;
 	}
 
 	void Shutdown()
 	{
 		MonsterChaseGame::Destroy();
+		char			Buffer[65];
+		sprintf_s(Buffer, 65, "Game shutdown \n");
+		OutputDebugStringA(Buffer);
 	}
 
 	// static member initialization
@@ -60,6 +66,9 @@ namespace Game {
 		{
 			instance_ = new MonsterChaseGame();
 		}
+		char			Buffer[65];
+		sprintf_s(Buffer, 65, "Game created \n");
+		OutputDebugStringA(Buffer);
 		return instance_;
 	}
 
@@ -126,19 +135,23 @@ namespace Game {
 			delete instance_;
 			instance_ = nullptr;
 		}
+
 	}
 
 	void MonsterChaseGame::Initialize()
 	{
-		using namespace std::placeholders;
-		//Engine::HashedString QueueName = Engine::JobSystem::CreateQueue("GameObjectLoader", 1);
 
-		//Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/center.json"));
-		//Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/center2.json"));
-		//Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/wall left.json"));
-		//Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/wall right.json"));
-		//Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/wall top.json"));
-		//Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/player.json"));
+		//loading assets async, this can cause some racing condition some time, so it is not being used
+
+		/*using namespace std::placeholders;
+		Engine::HashedString QueueName = Engine::JobSystem::CreateQueue("GameObjectLoader", 1);
+
+		Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/center.json"));
+		Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/center2.json"));
+		Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/wall left.json"));
+		Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/wall right.json"));
+		Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/wall top.json"));
+		Engine::JobSystem::RunJob(QueueName, std::bind(JsonGameObjectUtils::CreateGameObjectFromJson, "Game/GameObjects/player.json"));**/
 
 
 
@@ -161,7 +174,6 @@ namespace Game {
 		loseScene_.GetObjectPtr()->SetIsActive(false);
 
 		GameObject::CheckForNewGameObjects();
-
 	}
 
 	void MonsterChaseGame::Update()

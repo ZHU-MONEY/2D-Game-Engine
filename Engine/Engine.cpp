@@ -14,6 +14,9 @@ namespace Engine {
 
 		GetPerformanceFrequency();
 
+		char			Buffer[65];
+		sprintf_s(Buffer, 65, "Engine Starting \n");
+		OutputDebugStringA(Buffer);
 		return true;
 	}
 
@@ -43,5 +46,8 @@ namespace Engine {
 		colliderSystemInstance->Destroy();
 		rendererInstance->Destroy();
 		inputReaderInstance->Destroy();
+		char			Buffer[65];
+		sprintf_s(Buffer, 65, "Engine Shutdown \n");
+		OutputDebugStringA(Buffer);
 	}
 }

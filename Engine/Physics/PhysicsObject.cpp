@@ -19,8 +19,6 @@ PhysicsObject::PhysicsObject() :
 	currentAcceleration_(Vector2::ZERO),
 	isFinishedCollisionReaction_(false)
 {
-	//PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
-	//physicsSystemInstance->AddPhysicsObject(this);
 }
 
 PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject) :
@@ -34,8 +32,6 @@ PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject) :
 	currentAcceleration_(Vector2::ZERO),
 	isFinishedCollisionReaction_(false)
 {
-	//PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
-	//physicsSystemInstance->AddPhysicsObject(this);
 }
 
 PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject,float mass, float drag):
@@ -49,8 +45,6 @@ PhysicsObject::PhysicsObject(WeakPtr<GameObject>& gameObject,float mass, float d
 	currentAcceleration_(Vector2::ZERO),
 	isFinishedCollisionReaction_(false)
 {
-	//PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
-	//physicsSystemInstance->AddPhysicsObject(this);
 }
 
 PhysicsObject::~PhysicsObject()
@@ -64,8 +58,6 @@ StrongPtr<PhysicsObject> PhysicsObject::CreatePOStrongPtr(PhysicsObject* po)
 	PhysicsSystem* physicsSystemInstance = PhysicsSystem::GetInstance();
 	physicsSystemInstance->AddPhysicsObject(POStrongPtr);
 
-		//ColliderSystem* colliderSystemInstance = ColliderSystem::GetInstance();
-		//colliderSystemInstance->AddPhysicsObject(WeakPtr<PhysicsObject>(POStrongPtr));
 
 
 
@@ -74,17 +66,7 @@ StrongPtr<PhysicsObject> PhysicsObject::CreatePOStrongPtr(PhysicsObject* po)
 
 void PhysicsObject::Update(float dt)
 {
-
-	//const size_t	lenBuffer = 65;
-	//char			Buffer[lenBuffer];
-	//sprintf_s(Buffer, lenBuffer, "strongPtr Counter BEFORE temporary creation: %d\n", GetGameObject().GetReferenceCounter()->strongPtrCount);
-	//OutputDebugStringA(Buffer);
-
 	StrongPtr<GameObject> objectPtr_(objectPtr_);
-
-
-	//sprintf_s(Buffer, lenBuffer, "strongPtr Counter AFTER temporary creation:   %d\n", objectPtr_.GetReferenceCounter()->strongPtrCount);
-	//OutputDebugStringA(Buffer);
 
 	// save previous velocity and position
 	Vector2 previousVelocity = currentVelocity_;
@@ -136,9 +118,6 @@ void PhysicsObject::Update(float dt)
 
 void PhysicsObject::ApplyForce(const Vector2& inputForce)
 {
-	
-
-	//currentForce_ += inputForce;
 	currentForce_.x(currentForce_.x() + inputForce.x());
 	currentForce_.y(currentForce_.y() + inputForce.y());
 
@@ -147,6 +126,8 @@ float DotProduct(const Vector2& i_v1, const Vector2& i_v2)
 {
 	return (i_v1.x() * i_v2.x() + i_v1.y() * i_v2.y());
 }
+
+//this function is not being used in this game
 void PhysicsObject::RespondToCollision(const Vector2& collisionNormal)
 {
 	//don't move it if static object
@@ -157,23 +138,6 @@ void PhysicsObject::RespondToCollision(const Vector2& collisionNormal)
 	{
 		return;
 	}
-
-	//InputReader* inputReaderInstance = InputReader::GetInstance();
-	//if (!this->controllable_) {
-	//	float pushSpeed = 0.2f;
-	//	if (inputReaderInstance->isKey_W_Down) {
-	//		this->ApplyForce(Vector2(0.0f, pushSpeed));
-	//	}
-	//	if (inputReaderInstance->isKey_D_Down) {
-	//		this->ApplyForce(Vector2(pushSpeed, 0.0f));
-	//	}
-	//	if (inputReaderInstance->isKey_S_Down) {
-	//		this->ApplyForce(Vector2(0.0f, -pushSpeed));
-	//	}
-	//	if (inputReaderInstance->isKey_A_Down) {
-	//		this->ApplyForce(Vector2(-pushSpeed, 0.0f));
-	//	}
-	//}
 
 	if (currentVelocity_.IsZero()) {
 		//currentVelocity_ = currentVelocity_ - collisionNormal;
